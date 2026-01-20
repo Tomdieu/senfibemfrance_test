@@ -217,7 +217,7 @@ export default function Header() {
                   <ChevronDown className="w-3 h-3 opacity-70" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="min-w-[150px]">
+              <DropdownMenuContent align="end" className="min-w-37.5">
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
@@ -243,18 +243,13 @@ export default function Header() {
           <div className="flex items-center justify-between gap-4 lg:gap-8">
 
             {/* Logo Section */}
-            <Link href="/" className="flex items-center gap-3 flex-shrink-0 group">
-              <div className="w-10 h-10 lg:w-11 lg:h-11 relative transition-transform transform group-hover:scale-105 duration-200">
-                <div className="w-full h-full bg-white border-2 border-fibem-primary rounded-xl flex items-center justify-center overflow-hidden shadow-sm">
-                  <span className="text-fibem-primary font-extrabold text-[11px] lg:text-xs leading-none text-center">
-                    FIBEM
-                  </span>
+            <Link href="/" className="flex items-center gap-3 shrink-0 group">
+              <div className="relative">
+                <div className="w-full h-full border-2 rounded-xl flex items-center justify-center overflow-hidden">
+                  <Image src={"/logo.png"} width={100} height={60} alt="FIBEM Logo" />
                 </div>
               </div>
-              <div className="hidden md:flex flex-col">
-                <span className="font-bold text-gray-900 text-lg leading-none tracking-tight">FIBEM</span>
-                <span className="text-[10px] text-fibem-primary font-medium tracking-wide uppercase">France & Sénégal</span>
-              </div>
+              
             </Link>
 
             {/* Desktop Navigation - Centered */}

@@ -63,7 +63,7 @@ export default function Footer() {
   return (
     <footer className="bg-fibem-primary text-white">
       {/* Newsletter section */}
-      {/* <div className="bg-fibem-primary py-8">
+      <div className="bg-fibem-primary py-8">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
@@ -77,7 +77,7 @@ export default function Footer() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="px-4 py-2 rounded-lg text-gray-800 w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-fibem-accent"
+                className="px-4 py-2 bg-white rounded-lg text-gray-800 w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-fibem-accent"
               />
               <button
                 type="submit"
@@ -92,7 +92,7 @@ export default function Footer() {
             )}
           </div>
         </div>
-      </div> */}
+      </div>
 
       {/* Main footer content */}
       <div className="max-w-7xl mx-auto px-4 py-12">

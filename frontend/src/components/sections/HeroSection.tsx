@@ -3,32 +3,83 @@
 import { useState } from 'react'
 import { Search, MapPin, Briefcase, Users, Building } from 'lucide-react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { ScrollAnimationWrapper } from '@/components/ScrollAnimationWrapper'
 
 export default function HeroSection() {
   // const [searchType, setSearchType] = useState<'services' | 'emploi' | 'professionnels'>('services')
   // const [searchQuery, setSearchQuery] = useState('')
   // const [location, setLocation] = useState('')
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8 },
+    },
+  }
+
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: (i: number) => ({
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.6,
+      },
+    }),
+  }
+
   return (
-    <section className="relative bg-gradient-to-br from-fibem-primary via-fibem-secondary to-fibem-primary min-h-[600px] flex items-center">
+    <section className="relative bg-gradient-to-br from-fibem-primary via-fibem-secondary to-fibem-primary min-h-[600px] flex items-center overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.1 }}
+          transition={{ duration: 1 }}
+        />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 py-16 w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
-          <div className="text-white">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          <motion.div
+            className="text-white"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.h1
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+              variants={itemVariants}
+            >
               Votre partenaire pour
               <span className="text-fibem-accent"> réussir</span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100">
+            </motion.h1>
+            <motion.p
+              className="text-xl md:text-2xl mb-8 text-blue-100"
+              variants={itemVariants}
+            >
               Services professionnels, recrutement et mise en relation d'experts en France et au Sénégal
-            </p>
+            </motion.p>
 
             {/* Search tabs */}
             {/* <div className="bg-white rounded-t-xl p-1 inline-flex gap-1">
@@ -117,44 +168,57 @@ export default function HeroSection() {
                 <p className="text-blue-200">Satisfaction</p>
               </div>
             </div> */}
-          </div>
+          </motion.div>
 
           {/* Right content - Feature cards */}
-          <div className="hidden lg:grid grid-cols-2 gap-4">
-            <Link href="/emploi/candidat" className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors group">
-              <div className="w-14 h-14 bg-fibem-accent rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Users className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-white font-semibold text-lg mb-2">Espace Candidat</h3>
-              <p className="text-blue-200 text-sm">Trouvez votre prochain emploi parmi des centaines d'offres</p>
-            </Link>
+          <motion.div
+            className="hidden lg:grid grid-cols-2 gap-4"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div custom={0} variants={cardVariants}>
+              <Link href="/emploi/candidat" className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors group h-full flex flex-col">
+                <div className="w-14 h-14 bg-fibem-accent rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <Users className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-white font-semibold text-lg mb-2">Espace Candidat</h3>
+                <p className="text-blue-200 text-sm">Trouvez votre prochain emploi parmi des centaines d'offres</p>
+              </Link>
+            </motion.div>
 
-            <Link href="/emploi/recruteur" className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors group">
-              <div className="w-14 h-14 bg-green-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Building className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-white font-semibold text-lg mb-2">Espace Recruteur</h3>
-              <p className="text-blue-200 text-sm">Recrutez les meilleurs talents pour votre entreprise</p>
-            </Link>
+            <motion.div custom={1} variants={cardVariants}>
+              <Link href="/emploi/recruteur" className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors group h-full flex flex-col">
+                <div className="w-14 h-14 bg-green-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <Building className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-white font-semibold text-lg mb-2">Espace Recruteur</h3>
+                <p className="text-blue-200 text-sm">Recrutez les meilleurs talents pour votre entreprise</p>
+              </Link>
+            </motion.div>
 
-            <Link href="/services/prestations" className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors group">
-              <div className="w-14 h-14 bg-purple-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Briefcase className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-white font-semibold text-lg mb-2">Services Pro</h3>
-              <p className="text-blue-200 text-sm">Accédez à nos prestations de services professionnels</p>
-            </Link>
+            <motion.div custom={2} variants={cardVariants}>
+              <Link href="/services/prestations" className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors group h-full flex flex-col">
+                <div className="w-14 h-14 bg-purple-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <Briefcase className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-white font-semibold text-lg mb-2">Services Pro</h3>
+                <p className="text-blue-200 text-sm">Accédez à nos prestations de services professionnels</p>
+              </Link>
+            </motion.div>
 
-            <Link href="/services/devis-factures" className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors group">
-              <div className="w-14 h-14 bg-pink-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <h3 className="text-white font-semibold text-lg mb-2">Devis & Factures</h3>
-              <p className="text-blue-200 text-sm">Gérez vos devis et factures en toute simplicité</p>
-            </Link>
-          </div>
+            <motion.div custom={3} variants={cardVariants}>
+              <Link href="/services/devis-factures" className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-colors group h-full flex flex-col">
+                <div className="w-14 h-14 bg-pink-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <h3 className="text-white font-semibold text-lg mb-2">Devis & Factures</h3>
+                <p className="text-blue-200 text-sm">Gérez vos devis et factures en toute simplicité</p>
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -2,99 +2,105 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Mail, Lock, Eye, EyeOff, User, Building, Users, Phone, MapPin, Briefcase, GraduationCap, Shield, ArrowLeft, ArrowRight, Check } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { Mail, Lock, Eye, EyeOff, User, Building, Users, Phone, Shield, ArrowLeft, ArrowRight, Check } from 'lucide-react'
+import { createAccount } from '@/actions/auth'
 
-type UserType = 'particulier' | 'candidat' | 'partenaire' | 'administrateur'
-type PartnerSubType = 'freelance' | 'artisan' | 'entreprise'
+type UserType = 'PARTICULIER' | 'CANDIDAT' | 'PROFESSIONNEL' | 'RECRUTEUR'
 
 const userTypes = [
   {
-    id: 'particulier' as UserType,
+    id: 'PARTICULIER' as UserType,
     label: 'Particulier',
     icon: User,
     description: 'Je recherche des services ou un emploi'
   },
   {
-    id: 'candidat' as UserType,
+    id: 'CANDIDAT' as UserType,
     label: 'Candidat',
     icon: Users,
     description: 'Je recherche un emploi ou un stage'
   },
   {
-    id: 'partenaire' as UserType,
-    label: 'Partenaire',
+    id: 'PROFESSIONNEL' as UserType,
+    label: 'Professionnel',
     icon: Building,
     description: 'Entreprise, Artisan ou Freelance'
   },
   {
-    id: 'administrateur' as UserType,
-    label: 'Administrateur',
+    id: 'RECRUTEUR' as UserType,
+    label: 'Recruteur',
     icon: Shield,
-    description: 'Accès réservé aux équipes FIBEM'
-  },
-]
-
-const partnerSubTypes = [
-  {
-    id: 'freelance' as PartnerSubType,
-    label: 'Freelance',
-    description: 'Travailleur indépendant'
-  },
-  {
-    id: 'artisan' as PartnerSubType,
-    label: 'Artisan',
-    description: 'Entreprise artisanale'
-  },
-  {
-    id: 'entreprise' as PartnerSubType,
-    label: 'Entreprise',
-    description: 'Société / PME / ETI'
+    description: 'Je recrute des talents'
   },
 ]
 
 export default function InscriptionPage() {
+  const router = useRouter()
   const [step, setStep] = useState(1)
   const [selectedType, setSelectedType] = useState<UserType | null>(null)
-  const [partnerSubType, setPartnerSubType] = useState<PartnerSubType | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
-  // Form fields
+  // Form fields - only what's in Register interface
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
     email: '',
     phone: '',
     password: '',
     confirmPassword: '',
-    companyName: '',
-    siret: '',
-    address: '',
-    city: '',
-    postalCode: '',
-    country: 'France',
-    acceptTerms: false,
-    acceptNewsletter: false,
   })
 
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+      [name]: value
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle registration logic
-    console.log({ selectedType, partnerSubType, formData })
+    setError('')
+    setLoading(true)
+
+    try {
+      if (!selectedType) {
+        throw new Error('Veuillez sélectionner un type de compte')
+      }
+
+      if (formData.password !== formData.confirmPassword) {
+        throw new Error('Les mots de passe ne correspondent pas')
+      }
+
+      const registrationData: Register = {
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        email: formData.email,
+        phone: formData.phone,
+        password: formData.password,
+        role: selectedType,
+      }
+
+      await createAccount(registrationData)
+
+      // Redirect to login on success
+      router.push('/connexion')
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Une erreur est survenue'
+      setError(message)
+    } finally {
+      setLoading(false)
+    }
   }
 
-  const canProceedStep1 = selectedType !== null && (selectedType !== 'partenaire' || partnerSubType !== null)
-  const canProceedStep2 = formData.firstName && formData.lastName && formData.email && formData.phone
-  const canProceedStep3 = formData.password && formData.password === formData.confirmPassword && formData.acceptTerms
+  const canProceedStep1 = selectedType !== null
+  const canProceedStep2 = formData.first_name && formData.last_name && formData.email && formData.phone
+  const canProceedStep3 = formData.password && formData.password === formData.confirmPassword && formData.password.length >= 8
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
@@ -131,6 +137,13 @@ export default function InscriptionPage() {
 
         <div className="bg-white rounded-2xl shadow-lg p-6">
           <form onSubmit={handleSubmit}>
+            {/* Error message */}
+            {error && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-red-700 text-sm">{error}</p>
+              </div>
+            )}
+
             {/* Step 1: Choose account type */}
             {step === 1 && (
               <div>
@@ -141,10 +154,7 @@ export default function InscriptionPage() {
                     <button
                       key={type.id}
                       type="button"
-                      onClick={() => {
-                        setSelectedType(type.id)
-                        if (type.id !== 'partenaire') setPartnerSubType(null)
-                      }}
+                      onClick={() => setSelectedType(type.id)}
                       className={`p-4 rounded-xl border-2 transition-all text-left ${
                         selectedType === type.id
                           ? 'border-fibem-primary bg-fibem-light'
@@ -163,34 +173,6 @@ export default function InscriptionPage() {
                     </button>
                   ))}
                 </div>
-
-                {/* Partner sub-type selection */}
-                {selectedType === 'partenaire' && (
-                  <div className="border-t pt-6 mt-6">
-                    <h4 className="font-medium text-gray-700 mb-3">Précisez votre statut :</h4>
-                    <div className="grid grid-cols-3 gap-3">
-                      {partnerSubTypes.map((subType) => (
-                        <button
-                          key={subType.id}
-                          type="button"
-                          onClick={() => setPartnerSubType(subType.id)}
-                          className={`p-3 rounded-lg border-2 transition-all text-center ${
-                            partnerSubType === subType.id
-                              ? 'border-fibem-primary bg-fibem-light'
-                              : 'border-gray-200 hover:border-gray-300'
-                          }`}
-                        >
-                          <p className={`font-medium text-sm ${
-                            partnerSubType === subType.id ? 'text-fibem-primary' : 'text-gray-700'
-                          }`}>
-                            {subType.label}
-                          </p>
-                          <p className="text-xs text-gray-500">{subType.description}</p>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
 
                 <div className="flex justify-end mt-6">
                   <button
@@ -216,8 +198,8 @@ export default function InscriptionPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">Prénom *</label>
                     <input
                       type="text"
-                      name="firstName"
-                      value={formData.firstName}
+                      name="first_name"
+                      value={formData.first_name}
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary"
@@ -227,8 +209,8 @@ export default function InscriptionPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">Nom *</label>
                     <input
                       type="text"
-                      name="lastName"
-                      value={formData.lastName}
+                      name="last_name"
+                      value={formData.last_name}
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary"
@@ -263,65 +245,6 @@ export default function InscriptionPage() {
                     </div>
                   </div>
                 </div>
-
-                {/* Company info for partners */}
-                {selectedType === 'partenaire' && (
-                  <div className="border-t pt-6 mt-6">
-                    <h4 className="font-medium text-gray-700 mb-3">Informations entreprise</h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Nom de l'entreprise</label>
-                        <input
-                          type="text"
-                          name="companyName"
-                          value={formData.companyName}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">SIRET</label>
-                        <input
-                          type="text"
-                          name="siret"
-                          value={formData.siret}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary"
-                        />
-                      </div>
-                      <div className="sm:col-span-2">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Adresse</label>
-                        <input
-                          type="text"
-                          name="address"
-                          value={formData.address}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Ville</label>
-                        <input
-                          type="text"
-                          name="city"
-                          value={formData.city}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Code postal</label>
-                        <input
-                          type="text"
-                          name="postalCode"
-                          value={formData.postalCode}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                )}
 
                 <div className="flex justify-between mt-6">
                   <button
@@ -404,30 +327,15 @@ export default function InscriptionPage() {
                     <label className="flex items-start gap-3 cursor-pointer">
                       <input
                         type="checkbox"
-                        name="acceptTerms"
-                        checked={formData.acceptTerms}
-                        onChange={handleInputChange}
-                        required
+                        checked={true}
+                        readOnly
                         className="w-5 h-5 mt-0.5 rounded border-gray-300 text-fibem-primary focus:ring-fibem-secondary"
                       />
                       <span className="text-sm text-gray-600">
-                        J'accepte les{' '}
+                        En créant votre compte, vous acceptez nos{' '}
                         <Link href="/cgv" className="text-fibem-primary hover:underline">conditions générales</Link>
-                        {' '}et la{' '}
-                        <Link href="/confidentialite" className="text-fibem-primary hover:underline">politique de confidentialité</Link> *
-                      </span>
-                    </label>
-
-                    <label className="flex items-start gap-3 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        name="acceptNewsletter"
-                        checked={formData.acceptNewsletter}
-                        onChange={handleInputChange}
-                        className="w-5 h-5 mt-0.5 rounded border-gray-300 text-fibem-primary focus:ring-fibem-secondary"
-                      />
-                      <span className="text-sm text-gray-600">
-                        Je souhaite recevoir les actualités et offres par email
+                        {' '}et notre{' '}
+                        <Link href="/confidentialite" className="text-fibem-primary hover:underline">politique de confidentialité</Link>
                       </span>
                     </label>
                   </div>
@@ -444,11 +352,11 @@ export default function InscriptionPage() {
                   </button>
                   <button
                     type="submit"
-                    disabled={!canProceedStep3}
+                    disabled={!canProceedStep3 || loading}
                     className="flex items-center gap-2 px-6 py-3 bg-fibem-primary text-white font-semibold rounded-lg hover:bg-fibem-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Créer mon compte
-                    <Check className="w-4 h-4" />
+                    {loading ? 'Création en cours...' : 'Créer mon compte'}
+                    {!loading && <Check className="w-4 h-4" />}
                   </button>
                 </div>
               </div>

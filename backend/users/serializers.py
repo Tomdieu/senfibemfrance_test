@@ -43,8 +43,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         # Create empty profiles based on role
         Profile.objects.create(user=user)
-        if user.role in ['CANDIDAT', 'STAGIAIRE']:
+        if user.role == 'CANDIDAT':
             CandidateProfile.objects.create(user=user)
-        elif user.role in ['PRO', 'PARTENAIRE', 'FREELANCE']:
+        elif user.role in ['PROFESSIONNEL', 'RECRUTEUR']:
             CompanyProfile.objects.create(user=user)
         return user

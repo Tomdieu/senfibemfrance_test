@@ -31,12 +31,10 @@ class UserManager(BaseUserManager):
 
 class User(AbstractUser):
     class Role(models.TextChoices):
-        STAGIAIRE = 'STAGIAIRE', 'Stagiaire'
-        CANDIDAT = 'CANDIDAT', 'Candidat'
         PARTICULIER = 'PARTICULIER', 'Particulier'
-        FREELANCE = 'FREELANCE', 'Freelance'
-        PRO = 'PRO', 'Professionnel'
-        PARTENAIRE = 'PARTENAIRE', 'Partenaire'
+        PROFESSIONNEL = 'PROFESSIONNEL', 'Professionnel'
+        CANDIDAT = 'CANDIDAT', 'Candidat'
+        RECRUTEUR = 'RECRUTEUR', 'Recruteur'
         ADMIN = 'ADMIN', 'Administrateur'
 
     username = None

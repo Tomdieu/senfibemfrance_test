@@ -1,67 +1,58 @@
 'use client'
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ScrollAnimationWrapper } from '@/components/ScrollAnimationWrapper'
 import { Star, MapPin, Clock, CheckCircle } from 'lucide-react'
-
-const featuredServices = [
-  {
-    id: 1,
-    title: 'Plombier Expert',
-    provider: 'Ets A&R COLY',
-    rating: 4.9,
-    reviews: 127,
-    location: 'Paris, France',
-    price: 'À partir de 50€/h',
-    image: '/images/emmanuel-ikwuegbu-zWOgsj3j0wA-unsplash.jpg',
-    verified: true,
-    available: true,
-    tags: ['Urgence 24h', 'Devis gratuit']
-  },
-  {
-    id: 2,
-    title: 'Électricien Certifié',
-    provider: 'CALISTA Électricité',
-    rating: 4.8,
-    reviews: 89,
-    location: 'Lyon, France',
-    price: 'À partir de 45€/h',
-    image: '/images/anton-dmitriev-kBKOaghy8mU-unsplash.jpg',
-    verified: true,
-    available: true,
-    tags: ['NFC 15-100', 'Diagnostic']
-  },
-  {
-    id: 3,
-    title: 'Peintre Décorateur',
-    provider: 'DJCUE OUMARO',
-    rating: 4.7,
-    reviews: 56,
-    location: 'Marseille, France',
-    price: 'À partir de 35€/h',
-    image: '/images/tetiana-shyshkina-yn7R3DLA-ik-unsplash.jpg',
-    verified: true,
-    available: false,
-    tags: ['Finitions', 'Rénovation']
-  },
-  {
-    id: 4,
-    title: 'Développeur Web',
-    provider: 'EDEP Digital',
-    rating: 5.0,
-    reviews: 34,
-    location: 'Paris, France',
-    price: 'À partir de 400€/jour',
-    image: '/images/kaleidico-7lryofJ0H9s-unsplash.jpg',
-    verified: true,
-    available: true,
-    tags: ['Full-Stack', 'React/Node']
-  },
-]
+import { fetchServices } from '@/actions/services';
 
 export default function ServicesSection() {
+  const [services, setServices] = useState<Array<{
+    id: number;
+    title: string;
+    provider: string;
+    rating: number;
+    reviews: number;
+    location: string;
+    price: string;
+    image: string;
+    verified: boolean;
+    available: boolean;
+    tags: string[];
+  }>>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadServices = async () => {
+      try {
+        const data: Service[] = await fetchServices();
+        // Transform the service data to match the expected format
+        const transformedServices = data.map(service => ({
+          id: service.id,
+          title: service.name,
+          provider: service.category_name || 'Fournisseur inconnu',
+          rating: Math.floor(Math.random() * 2) + 4, // Random rating between 4-5 for demo purposes
+          reviews: Math.floor(Math.random() * 100) + 10, // Random review count
+          location: 'France', // Placeholder location
+          price: `À partir de ${service.price}€`,
+          image: service.image || '/placeholder-image.jpg', // Use service image or placeholder
+          verified: true, // Assume all services are verified
+          available: true, // Assume all services are available
+          tags: [] // Add tags if available in service data
+        }));
+        setServices(transformedServices);
+      } catch (error) {
+        console.error('Error fetching services:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadServices();
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -80,6 +71,18 @@ export default function ServicesSection() {
       y: 0,
       transition: { duration: 0.6 },
     },
+  }
+
+  if (loading) {
+    return (
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex justify-center items-center h-64">
+            <p>Chargement des services...</p>
+          </div>
+        </div>
+      </section>
+    );
   }
 
   return (
@@ -111,21 +114,24 @@ export default function ServicesSection() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          {featuredServices.map((service) => (
+          {services.slice(0, 8).map((service) => (
             <motion.div key={service.id} variants={cardVariants}>
               <Link
                 href={`/services/${service.id}`}
                 className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group h-full flex flex-col"
               >
                 {/* Image */}
-                <div className="relative h-48 bg-linear-to-br from-fibem-primary to-fibem-secondary overflow-hidden">
+                <div className="relative h-48 bg-gradient-to-br from-fibem-primary to-fibem-secondary overflow-hidden">
                   <Image
                     src={service.image}
                     alt={service.title}
                     width={400}
                     height={400}
                     className="w-full h-full object-cover"
-                   
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = '/images/placeholder.jpg'; // fallback image
+                    }}
                   />
                   {service.verified && (
                     <div className="absolute top-3 left-3 bg-green-500 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
@@ -164,14 +170,18 @@ export default function ServicesSection() {
                   </div>
 
                   <div className="flex flex-wrap gap-1 mb-3">
-                    {service.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="bg-fibem-light text-fibem-primary text-xs px-2 py-1 rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                    {service.tags.length > 0 ? (
+                      service.tags.map((tag: string, index: number) => (
+                        <span
+                          key={index}
+                          className="bg-fibem-light text-fibem-primary text-xs px-2 py-1 rounded-full"
+                        >
+                          {tag}
+                        </span>
+                      ))
+                    ) : (
+                      <span className="text-gray-400 text-xs italic">Pas de tags spécifiés</span>
+                    )}
                   </div>
 
                   <div className="pt-3 border-t mt-auto">
@@ -182,9 +192,21 @@ export default function ServicesSection() {
             </motion.div>
           ))}
         </motion.div>
+
+        {services.length > 8 && (
+          <div className="text-center mt-8">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-fibem-primary text-white rounded-lg hover:bg-fibem-dark transition-colors"
+            >
+              Voir tous les services
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   )
-
-
 }

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'social_django',
     'drf_social_oauth2',
+    'django_filters',
     # Local
 
     'users',
@@ -136,6 +137,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Media files (User uploads)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # DRF Configuration
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -146,6 +151,9 @@ REST_FRAMEWORK = {
         'drf_social_oauth2.authentication.SocialAuthentication',
         'rest_framework.authentication.SessionAuthentication', 
     ),
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ],
 }
 
 # CORS Configuration

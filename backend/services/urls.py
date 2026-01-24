@@ -4,7 +4,7 @@ from .views import ServiceCategoryViewSet, ServiceViewSet, ServiceRequestViewSet
 
 router = DefaultRouter()
 router.register(r'categories', ServiceCategoryViewSet)
-router.register(r'list', ServiceViewSet)
+router.register(r'', ServiceViewSet)
 router.register(r'requests', ServiceRequestViewSet)
 
 urlpatterns = [

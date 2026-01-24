@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useSession, signOut } from 'next-auth/react'
 import {
   Search,
   Menu,
@@ -13,7 +14,10 @@ import {
   User,
   UserPlus,
   LayoutDashboard,
-  ShoppingCart
+  ShoppingCart,
+  LogOut,
+  Settings,
+  Home
 } from 'lucide-react'
 import {
   NavigationMenu,
@@ -124,18 +128,18 @@ const userTypes = [
 
 // Dashboard user types
 const dashboardTypes = [
-  { label: 'Stagiaire', href: '/dashboard/stagiaire' },
-  { label: 'Candidat', href: '/dashboard/candidat' },
-  { label: 'Particuliers', href: '/dashboard/particuliers' },
-  { label: 'Freelance', href: '/dashboard/freelance' },
-  { label: 'Professionnels', href: '/dashboard/professionnels' },
-  { label: 'Partenaires', href: '/dashboard/partenaires' },
-  { label: '── Administrateurs ──', href: '#' },
-  { label: 'Rédacteur', href: '/dashboard/redacteur' },
-  { label: 'Commercial', href: '/dashboard/commercial' },
-  { label: 'Développeur', href: '/dashboard/developpeur' },
-  { label: 'Chef de Projet', href: '/dashboard/chef-projet' },
-  { label: 'Dirigeant', href: '/dashboard/dirigeant' },
+  { label: 'Dashboard', href: '/dashboard' },
+  // { label: 'Candidat', href: '/dashboard/candidat' },
+  // { label: 'Particuliers', href: '/dashboard/particuliers' },
+  // { label: 'Freelance', href: '/dashboard/freelance' },
+  // { label: 'Professionnels', href: '/dashboard/professionnels' },
+  // { label: 'Partenaires', href: '/dashboard/partenaires' },
+  // { label: '── Administrateurs ──', href: '#' },
+  // { label: 'Rédacteur', href: '/dashboard/redacteur' },
+  // { label: 'Commercial', href: '/dashboard/commercial' },
+  // { label: 'Développeur', href: '/dashboard/developpeur' },
+  // { label: 'Chef de Projet', href: '/dashboard/chef-projet' },
+  // { label: 'Dirigeant', href: '/dashboard/dirigeant' },
 ]
 
 // Cart/Panier submenu
@@ -162,6 +166,7 @@ const languages = [
 ]
 
 export default function Header() {
+  const { data: session } = useSession()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedLanguage, setSelectedLanguage] = useState(languages[0])
@@ -334,13 +339,47 @@ export default function Header() {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-56 mt-2">
-                    <DropdownMenuLabel>Mon Compte</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    {userTypes.slice(0, 6).map((type) => (
-                      <DropdownMenuItem key={type.href} asChild>
-                        <Link href={type.href} className="cursor-pointer">{type.label}</Link>
-                      </DropdownMenuItem>
-                    ))}
+                    {session ? (
+                      <>
+                        <DropdownMenuLabel>
+                          {session.user?.first_name || 'Mon Compte'}
+                        </DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem asChild>
+                          <Link href="/dashboard" className="cursor-pointer flex items-center gap-2">
+                            <Home className="w-4 h-4" />
+                            Tableau de bord
+                          </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <Link href="/dashboard/profil" className="cursor-pointer flex items-center gap-2">
+                            <User className="w-4 h-4" />
+                            Mon profil
+                          </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <Link href="/dashboard/parametres" className="cursor-pointer flex items-center gap-2">
+                            <Settings className="w-4 h-4" />
+                            Paramètres
+                          </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem onClick={() => signOut({ callbackUrl: '/' })} className="cursor-pointer flex items-center gap-2 text-red-600">
+                          <LogOut className="w-4 h-4" />
+                          Déconnexion
+                        </DropdownMenuItem>
+                      </>
+                    ) : (
+                      <>
+                        <DropdownMenuLabel>Mon Compte</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        {userTypes.slice(0, 6).map((type) => (
+                          <DropdownMenuItem key={type.href} asChild>
+                            <Link href={type.href} className="cursor-pointer">{type.label}</Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </>
+                    )}
                   </DropdownMenuContent>
                 </DropdownMenu>
 
@@ -399,12 +438,14 @@ export default function Header() {
 
               {/* Desktop CTA */}
               <div className="hidden sm:block ml-2">
-                <Button asChild className="rounded-full px-6 bg-fibem-primary hover:bg-fibem-primary/90 shadow-md hover:shadow-lg transition-all">
-                  <Link href="/inscription" className="flex items-center gap-2">
-                    <UserPlus className="w-4 h-4" />
-                    <span className="hidden lg:inline font-bold">Inscription</span>
-                  </Link>
-                </Button>
+                {!session && (
+                  <Button asChild className="rounded-full px-6 bg-fibem-primary hover:bg-fibem-primary/90 shadow-md hover:shadow-lg transition-all">
+                    <Link href="/inscription" className="flex items-center gap-2">
+                      <UserPlus className="w-4 h-4" />
+                      <span className="hidden lg:inline font-bold">Inscription</span>
+                    </Link>
+                  </Button>
+                )}
               </div>
 
             </div>

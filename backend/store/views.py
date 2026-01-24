@@ -11,19 +11,48 @@ from drf_yasg.utils import swagger_auto_schema
 
 from django.utils.decorators import method_decorator
 
+from core.permissions import IsAdminOrReadOnly
+
 @method_decorator(name='list', decorator=swagger_auto_schema(tags=['Store products']))
+@method_decorator(name='create', decorator=swagger_auto_schema(tags=['Store products']))
 @method_decorator(name='retrieve', decorator=swagger_auto_schema(tags=['Store products']))
-class ProductViewSet(viewsets.ReadOnlyModelViewSet):
+@method_decorator(name='update', decorator=swagger_auto_schema(tags=['Store products']))
+@method_decorator(name='partial_update', decorator=swagger_auto_schema(tags=['Store products']))
+@method_decorator(name='destroy', decorator=swagger_auto_schema(tags=['Store products']))
+class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.filter(is_active=True)
     serializer_class = ProductSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [IsAdminOrReadOnly]
+    filterset_fields = ['name', 'is_active']
 
 @method_decorator(name='list', decorator=swagger_auto_schema(tags=['Store Plans']))
+@method_decorator(name='create', decorator=swagger_auto_schema(tags=['Store Plans']))
 @method_decorator(name='retrieve', decorator=swagger_auto_schema(tags=['Store Plans']))
-class SubscriptionPlanViewSet(viewsets.ReadOnlyModelViewSet):
+@method_decorator(name='update', decorator=swagger_auto_schema(tags=['Store Plans']))
+@method_decorator(name='partial_update', decorator=swagger_auto_schema(tags=['Store Plans']))
+@method_decorator(name='destroy', decorator=swagger_auto_schema(tags=['Store Plans']))
+class SubscriptionPlanViewSet(viewsets.ModelViewSet):
     queryset = SubscriptionPlan.objects.filter(is_active=True)
     serializer_class = SubscriptionPlanSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [IsAdminOrReadOnly]
+    filterset_fields = ['name', 'is_active']
+
+@method_decorator(name='list', decorator=swagger_auto_schema(tags=['Store User Subscriptions']))
+@method_decorator(name='create', decorator=swagger_auto_schema(tags=['Store User Subscriptions']))
+@method_decorator(name='retrieve', decorator=swagger_auto_schema(tags=['Store User Subscriptions']))
+@method_decorator(name='update', decorator=swagger_auto_schema(tags=['Store User Subscriptions']))
+@method_decorator(name='partial_update', decorator=swagger_auto_schema(tags=['Store User Subscriptions']))
+@method_decorator(name='destroy', decorator=swagger_auto_schema(tags=['Store User Subscriptions']))
+class UserSubscriptionViewSet(viewsets.ModelViewSet):
+    queryset = UserSubscription.objects.all()
+    serializer_class = UserSubscriptionSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    filterset_fields = ['user', 'plan', 'is_active']
+
+    def get_queryset(self):
+        if self.request.user.role == 'ADMIN':
+            return UserSubscription.objects.all()
+        return UserSubscription.objects.filter(user=self.request.user)
 
 @method_decorator(name='list', decorator=swagger_auto_schema(tags=['Store Cart']))
 @method_decorator(name='add_item', decorator=swagger_auto_schema(tags=['Store Cart']))
@@ -65,6 +94,21 @@ class CartViewSet(viewsets.ViewSet):
         
         return Response({'status': 'Item added'}, status=status.HTTP_200_OK)
 
+@method_decorator(name='list', decorator=swagger_auto_schema(tags=['Store Cart Items']))
+@method_decorator(name='create', decorator=swagger_auto_schema(tags=['Store Cart Items']))
+@method_decorator(name='retrieve', decorator=swagger_auto_schema(tags=['Store Cart Items']))
+@method_decorator(name='update', decorator=swagger_auto_schema(tags=['Store Cart Items']))
+@method_decorator(name='partial_update', decorator=swagger_auto_schema(tags=['Store Cart Items']))
+@method_decorator(name='destroy', decorator=swagger_auto_schema(tags=['Store Cart Items']))
+class CartItemViewSet(viewsets.ModelViewSet):
+    from .serializers import CartItemSerializer
+    queryset = CartItem.objects.all()
+    serializer_class = CartItemSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return CartItem.objects.filter(cart__user=self.request.user)
+
 @method_decorator(name='list', decorator=swagger_auto_schema(tags=['Store Orders']))
 @method_decorator(name='create', decorator=swagger_auto_schema(tags=['Store Orders']))
 @method_decorator(name='retrieve', decorator=swagger_auto_schema(tags=['Store Orders']))
@@ -75,6 +119,7 @@ class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = [permissions.IsAuthenticated]
+    filterset_fields = ['user', 'status', 'reference']
 
     def get_queryset(self):
          if not self.request.user.is_authenticated:
@@ -87,3 +132,20 @@ class OrderViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         reference = f"ORD-{uuid.uuid4().hex[:8].upper()}"
         serializer.save(user=self.request.user, reference=reference, total_amount=0)
+
+@method_decorator(name='list', decorator=swagger_auto_schema(tags=['Store Order Items']))
+@method_decorator(name='create', decorator=swagger_auto_schema(tags=['Store Order Items']))
+@method_decorator(name='retrieve', decorator=swagger_auto_schema(tags=['Store Order Items']))
+@method_decorator(name='update', decorator=swagger_auto_schema(tags=['Store Order Items']))
+@method_decorator(name='partial_update', decorator=swagger_auto_schema(tags=['Store Order Items']))
+@method_decorator(name='destroy', decorator=swagger_auto_schema(tags=['Store Order Items']))
+class OrderItemViewSet(viewsets.ModelViewSet):
+    from .serializers import OrderItemSerializer
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        if self.request.user.role == 'ADMIN':
+            return OrderItem.objects.all()
+        return OrderItem.objects.filter(order__user=self.request.user)

@@ -8,8 +8,12 @@ from drf_yasg.utils import swagger_auto_schema
 from django.utils.decorators import method_decorator
 
 @method_decorator(name='list', decorator=swagger_auto_schema(tags=['Notifications']))
+@method_decorator(name='create', decorator=swagger_auto_schema(tags=['Notifications']))
 @method_decorator(name='retrieve', decorator=swagger_auto_schema(tags=['Notifications']))
-class NotificationViewSet(viewsets.ReadOnlyModelViewSet):
+@method_decorator(name='update', decorator=swagger_auto_schema(tags=['Notifications']))
+@method_decorator(name='partial_update', decorator=swagger_auto_schema(tags=['Notifications']))
+@method_decorator(name='destroy', decorator=swagger_auto_schema(tags=['Notifications']))
+class NotificationViewSet(viewsets.ModelViewSet):
     serializer_class = NotificationSerializer
     permission_classes = [permissions.IsAuthenticated]
 

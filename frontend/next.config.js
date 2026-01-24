@@ -2,7 +2,21 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['localhost', 'images.unsplash.com','unsplash.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'localhost',
+        port: '', // Optional: specify a port if needed, otherwise leave empty
+        pathname: '/**', // Use '/**' to allow any path on this hostname
+      },
+      {
+        protocol: 'https',
+        hostname: 'localhost',
+        port: '',
+        pathname: '/**',
+      },
+      // Add other hostnames here as needed
+    ],
   },
 }
 

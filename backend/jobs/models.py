@@ -16,6 +16,7 @@ class JobOffer(models.Model):
     location = models.CharField(max_length=100)
     salary_range = models.CharField(max_length=100, blank=True)
     company_name = models.CharField(max_length=100)
+    num_of_place = models.IntegerField(default=1)  # Number of positions available
     recruiter = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='posted_jobs')
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -34,7 +35,7 @@ class JobApplication(models.Model):
     candidate = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='applications')
     job_offer = models.ForeignKey(JobOffer, on_delete=models.CASCADE, related_name='applications')
     cv_file = models.FileField(upload_to='cvs/')
-    cover_letter = models.TextField(blank=True)
+    cover_letter = models.FileField(upload_to='cover_letters/', blank=True, null=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='PENDING')
     applied_at = models.DateTimeField(auto_now_add=True)
 

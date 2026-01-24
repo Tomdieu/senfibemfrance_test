@@ -77,18 +77,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         },
         async session({ session, token }: { session: any, token: any }) {
             if (token) {
-                session.accessToken = token.accessToken;
-                session.refreshToken = token.refreshToken;
+                // session.user.accessToken = token.accessToken;
+                // session.user.refreshToken = token.refreshToken;
                 session.user.id = token.id;
                 session.user.first_name = token.first_name;
                 session.user.last_name = token.last_name;
                 session.user.role = token.role;
                 session.user.phone = token.phone;
+                session.accessToken = token.accessToken;
+                session.refreshToken = token.refreshToken;
             }
             return session;
         },
     },
     pages: {
-        signIn: "/login",
+        signIn: "/connexion",
     },
 })

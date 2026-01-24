@@ -16,6 +16,7 @@ class QuoteViewSet(viewsets.ModelViewSet):
     queryset = Quote.objects.all()
     serializer_class = QuoteSerializer
     permission_classes = [permissions.IsAuthenticated]
+    filterset_fields = ['user', 'status', 'reference']
 
     def perform_create(self, serializer):
         reference = f"DEV-{uuid.uuid4().hex[:8].upper()}"
@@ -28,12 +29,19 @@ class QuoteViewSet(viewsets.ModelViewSet):
             return Quote.objects.all()
         return Quote.objects.filter(user=self.request.user)
 
+from core.permissions import IsAdminOrReadOnly
+
 @method_decorator(name='list', decorator=swagger_auto_schema(tags=['Billing Invoices']))
+@method_decorator(name='create', decorator=swagger_auto_schema(tags=['Billing Invoices']))
 @method_decorator(name='retrieve', decorator=swagger_auto_schema(tags=['Billing Invoices']))
-class InvoiceViewSet(viewsets.ReadOnlyModelViewSet):
+@method_decorator(name='update', decorator=swagger_auto_schema(tags=['Billing Invoices']))
+@method_decorator(name='partial_update', decorator=swagger_auto_schema(tags=['Billing Invoices']))
+@method_decorator(name='destroy', decorator=swagger_auto_schema(tags=['Billing Invoices']))
+class InvoiceViewSet(viewsets.ModelViewSet):
     queryset = Invoice.objects.all()
     serializer_class = InvoiceSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, IsAdminOrReadOnly]
+    filterset_fields = ['user', 'status', 'reference']
 
     def get_queryset(self):
         if not self.request.user.is_authenticated:
@@ -43,8 +51,20 @@ class InvoiceViewSet(viewsets.ReadOnlyModelViewSet):
         return Invoice.objects.filter(user=self.request.user)
 
 @method_decorator(name='list', decorator=swagger_auto_schema(tags=['Billing Credits']))
+@method_decorator(name='create', decorator=swagger_auto_schema(tags=['Billing Credits']))
 @method_decorator(name='retrieve', decorator=swagger_auto_schema(tags=['Billing Credits']))
-class CreditNoteViewSet(viewsets.ReadOnlyModelViewSet):
+@method_decorator(name='update', decorator=swagger_auto_schema(tags=['Billing Credits']))
+@method_decorator(name='partial_update', decorator=swagger_auto_schema(tags=['Billing Credits']))
+@method_decorator(name='destroy', decorator=swagger_auto_schema(tags=['Billing Credits']))
+class CreditNoteViewSet(viewsets.ModelViewSet):
     queryset = CreditNote.objects.all()
     serializer_class = CreditNoteSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, IsAdminOrReadOnly]
+    filterset_fields = ['invoice', 'reference']
+
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+             return CreditNote.objects.none()
+        if self.request.user.role == 'ADMIN':
+            return CreditNote.objects.all()
+        return CreditNote.objects.filter(invoice__user=self.request.user)

@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ScrollAnimationWrapper } from '@/components/ScrollAnimationWrapper'
@@ -17,95 +18,43 @@ import {
   Car,
   GraduationCap
 } from 'lucide-react'
+import { fetchServiceCategories } from '@/actions/services';
 
-const categories = [
-  {
-    icon: Wrench,
-    name: 'Plomberie',
-    count: 156,
-    color: 'bg-blue-500',
-    href: '/services/plomberie'
-  },
-  {
-    icon: Zap,
-    name: 'Électricité',
-    count: 203,
-    color: 'bg-yellow-500',
-    href: '/services/electricite'
-  },
-  {
-    icon: Paintbrush,
-    name: 'Peinture',
-    count: 178,
-    color: 'bg-purple-500',
-    href: '/services/peinture'
-  },
-  {
-    icon: Home,
-    name: 'Rénovation',
-    count: 245,
-    color: 'bg-green-500',
-    href: '/services/renovation'
-  },
-  {
-    icon: Hammer,
-    name: 'Maçonnerie',
-    count: 89,
-    color: 'bg-orange-500',
-    href: '/services/maconnerie'
-  },
-  {
-    icon: Droplets,
-    name: 'Chauffage',
-    count: 112,
-    color: 'bg-red-500',
-    href: '/services/chauffage'
-  },
-  {
-    icon: MonitorSmartphone,
-    name: 'Informatique',
-    count: 167,
-    color: 'bg-indigo-500',
-    href: '/services/informatique'
-  },
-  {
-    icon: Truck,
-    name: 'Déménagement',
-    count: 78,
-    color: 'bg-teal-500',
-    href: '/services/demenagement'
-  },
-  {
-    icon: ChefHat,
-    name: 'Restauration',
-    count: 134,
-    color: 'bg-pink-500',
-    href: '/services/restauration'
-  },
-  {
-    icon: Scissors,
-    name: 'Couture',
-    count: 45,
-    color: 'bg-rose-500',
-    href: '/services/couture'
-  },
-  {
-    icon: Car,
-    name: 'Transport',
-    count: 98,
-    color: 'bg-cyan-500',
-    href: '/services/transport'
-  },
-  {
-    icon: GraduationCap,
-    name: 'Formation',
-    count: 67,
-    color: 'bg-amber-500',
-    href: '/services/formation'
-  },
-]
+// Mapping of category names to icons and colors
+const categoryIcons: Record<string, { icon: any; color: string }> = {
+  'Plomberie': { icon: Wrench, color: 'bg-blue-500' },
+  'Électricité': { icon: Zap, color: 'bg-yellow-500' },
+  'Peinture': { icon: Paintbrush, color: 'bg-purple-500' },
+  'Rénovation': { icon: Home, color: 'bg-green-500' },
+  'Maçonnerie': { icon: Hammer, color: 'bg-orange-500' },
+  'Chauffage': { icon: Droplets, color: 'bg-red-500' },
+  'Informatique': { icon: MonitorSmartphone, color: 'bg-indigo-500' },
+  'Déménagement': { icon: Truck, color: 'bg-teal-500' },
+  'Restauration': { icon: ChefHat, color: 'bg-pink-500' },
+  'Couture': { icon: Scissors, color: 'bg-rose-500' },
+  'Transport': { icon: Car, color: 'bg-cyan-500' },
+  'Formation': { icon: GraduationCap, color: 'bg-amber-500' },
+};
 
 export default function CategoriesSection() {
+  const [categories, setCategories] = useState<ServiceCategory[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadCategories = async () => {
+      try {
+        const data = await fetchServiceCategories();
+        setCategories(data);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadCategories();
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -124,6 +73,18 @@ export default function CategoriesSection() {
       y: 0,
       transition: { duration: 0.5 },
     },
+  }
+
+  if (loading) {
+    return (
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex justify-center items-center h-64">
+            <p>Chargement des catégories...</p>
+          </div>
+        </div>
+      </section>
+    );
   }
 
   return (
@@ -147,20 +108,23 @@ export default function CategoriesSection() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          {categories.map((category) => (
-            <div key={category.name}>
-              <Link
-                href={category.href}
-                className="bg-white rounded-xl p-4 text-center"
-              >
-                <div className={`${category.color} w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-3`}>
-                  <category.icon className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="font-semibold text-gray-800 text-sm mb-1">{category.name}</h3>
-                <p className="text-xs text-gray-500">{category.count} pros</p>
-              </Link>
-            </div>
-          ))}
+          {categories.map((category) => {
+            const iconInfo = categoryIcons[category.name] || { icon: Wrench, color: 'bg-gray-500' };
+            return (
+              <div key={category.id}>
+                <Link
+                  href={`/services?category=${category.id}`}
+                  className="bg-white rounded-xl p-4 text-center"
+                >
+                  <div className={`${iconInfo.color} w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-3`}>
+                    <iconInfo.icon className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="font-semibold text-gray-800 text-sm mb-1">{category.name}</h3>
+                  <p className="text-xs text-gray-500">Catégorie</p>
+                </Link>
+              </div>
+            );
+          })}
         </motion.div>
 
         <ScrollAnimationWrapper type="fadeInUp" delay={0.3}>

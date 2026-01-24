@@ -15,16 +15,16 @@ declare module "next-auth" {
         } & DefaultSession["user"];
     }
 
-    interface User {
-        id: string | number;
-        first_name: string;
-        last_name: string;
-        email: string;
-        role: string;
-        phone: string;
-        accessToken: string;
-        refreshToken: string;
-    }
+    // interface User {
+    //     id: string | number;
+    //     first_name: string;
+    //     last_name: string;
+    //     email: string;
+    //     role: string;
+    //     phone: string;
+    //     accessToken: string;
+    //     refreshToken: string;
+    // }
 }
 
 declare module "next-auth/jwt" {

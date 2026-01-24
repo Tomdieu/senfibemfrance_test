@@ -72,7 +72,7 @@ export default function ConnexionPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-md mx-auto px-4">
+      <div className="max-w-lg mx-auto px-4">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 mb-6">
             <div className="w-12 h-12 bg-fibem-primary rounded-lg flex items-center justify-center">
@@ -89,7 +89,7 @@ export default function ConnexionPage() {
 
         <div className="bg-white rounded-2xl shadow-lg p-6">
           {/* User Type Selection */}
-          <div className="mb-6">
+          {/* <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-3">
               Sélectionnez votre profil
             </label>
@@ -123,7 +123,7 @@ export default function ConnexionPage() {
             <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
               <p className="text-red-700 text-sm">{error}</p>
             </div>
-          )}
+          )} */}
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Email */}
@@ -202,14 +202,14 @@ export default function ConnexionPage() {
           </form>
 
           {/* Divider */}
-          <div className="flex items-center gap-4 my-6">
+          {/* <div className="flex items-center gap-4 my-6">
             <div className="flex-1 h-px bg-gray-200" />
             <span className="text-sm text-gray-500">ou</span>
             <div className="flex-1 h-px bg-gray-200" />
-          </div>
+          </div> */}
 
           {/* Social login */}
-          <div className="space-y-3">
+          {/* <div className="space-y-3">
             <button type="button" className="w-full py-3 border border-gray-300 rounded-lg flex items-center justify-center gap-3 hover:bg-gray-50 transition-colors" disabled={isLoading}>
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -233,7 +233,7 @@ export default function ConnexionPage() {
               </svg>
               <span className="text-gray-700">Continuer avec LinkedIn</span>
             </button>
-          </div>
+          </div> */}
 
           {/* Sign up link */}
           <p className="text-center text-gray-600 mt-6">

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import {
   LayoutDashboard,
   User,
@@ -14,6 +14,9 @@ import {
   Settings,
   Bell,
   LogOut,
+  Star,
+  BarChart3,
+  Users,
 } from 'lucide-react'
 
 // Sidebar items by role
@@ -21,50 +24,58 @@ const sidebarItemsByRole: Record<string, Array<{ icon: any; label: string; href:
   PARTICULIER: [
     { icon: LayoutDashboard, label: 'Vue d\'ensemble', href: '/dashboard' },
     { icon: User, label: 'Mon Profil', href: '/dashboard/profil' },
-    { icon: Briefcase, label: 'Mes Commandes', href: '/dashboard/commandes' },
-    { icon: FileText, label: 'Mes Documents', href: '/dashboard/documents' },
-    { icon: MessageSquare, label: 'Messages', href: '/dashboard/messages', badge: 3 },
-    { icon: Bell, label: 'Notifications', href: '/dashboard/notifications', badge: 5 },
-    { icon: Settings, label: 'Paramètres', href: '/dashboard/parametres' },
+    { icon: Briefcase, label: 'Trouver un Pro', href: '/dashboard/professionnels' },
+    { icon: ShoppingCart, label: 'Mes Commandes', href: '/dashboard/commandes' },
+    // { icon: FileText, label: 'Mes Devis & Factures', href: '/dashboard/documents' },
+    // { icon: Briefcase, label: 'Mes Projets', href: '/dashboard/projets' },
+    // { icon: Star, label: 'Mes Avis', href: '/dashboard/avis' },
+    // { icon: MessageSquare, label: 'Messages', href: '/dashboard/messages', badge: 3 },
+    // { icon: Bell, label: 'Notifications', href: '/dashboard/notifications', badge: 5 },
+    // { icon: Settings, label: 'Paramètres', href: '/dashboard/parametres' },
   ],
   PROFESSIONNEL: [
     { icon: LayoutDashboard, label: 'Vue d\'ensemble', href: '/dashboard' },
     { icon: User, label: 'Mon Profil', href: '/dashboard/profil' },
-    { icon: Briefcase, label: 'Mes Projets', href: '/dashboard/projets' },
-    { icon: FileText, label: 'Mes Documents', href: '/dashboard/documents' },
+    { icon: Briefcase, label: 'Mes Services', href: '/dashboard/mes-services' },
+    // { icon: FileText, label: 'Mes Devis & Factures', href: '/dashboard/documents' },
     { icon: ShoppingCart, label: 'Mes Commandes', href: '/dashboard/commandes' },
-    { icon: MessageSquare, label: 'Messages', href: '/dashboard/messages', badge: 3 },
-    { icon: Bell, label: 'Notifications', href: '/dashboard/notifications', badge: 5 },
-    { icon: Settings, label: 'Paramètres', href: '/dashboard/parametres' },
+    { icon: Briefcase, label: 'Mes Projets', href: '/dashboard/projets' },
+    // { icon: MessageSquare, label: 'Messages', href: '/dashboard/messages', badge: 3 },
+    // { icon: Bell, label: 'Notifications', href: '/dashboard/notifications', badge: 5 },
+    // { icon: Settings, label: 'Paramètres', href: '/dashboard/parametres' },
   ],
   CANDIDAT: [
     { icon: LayoutDashboard, label: 'Vue d\'ensemble', href: '/dashboard' },
     { icon: User, label: 'Mon Profil', href: '/dashboard/profil' },
-    { icon: FileText, label: 'Mes Candidatures', href: '/dashboard/candidatures' },
-    { icon: Briefcase, label: 'Mes Offres Sauvegardées', href: '/dashboard/offres' },
-    { icon: MessageSquare, label: 'Messages', href: '/dashboard/messages', badge: 3 },
-    { icon: Bell, label: 'Notifications', href: '/dashboard/notifications', badge: 5 },
-    { icon: Settings, label: 'Paramètres', href: '/dashboard/parametres' },
+    { icon: Briefcase, label: 'Rechercher Emploi', href: '/dashboard/offres-emploi' },
+    // { icon: FileText, label: 'Mes Candidatures', href: '/dashboard/candidatures' },
+    // { icon: Briefcase, label: 'Mes Offres Sauvegardées', href: '/dashboard/offres' },
+    // { icon: MessageSquare, label: 'Messages', href: '/dashboard/messages', badge: 3 },
+    // { icon: Bell, label: 'Notifications', href: '/dashboard/notifications', badge: 5 },
+    // { icon: Settings, label: 'Paramètres', href: '/dashboard/parametres' },
   ],
   RECRUTEUR: [
     { icon: LayoutDashboard, label: 'Vue d\'ensemble', href: '/dashboard' },
     { icon: User, label: 'Mon Profil', href: '/dashboard/profil' },
+    { icon: Briefcase, label: 'Publier une Offre', href: '/dashboard/offres' },
+    { icon: Users, label: 'Base de Candidats', href: '/dashboard/base-candidats' },
     { icon: Briefcase, label: 'Mes Offres', href: '/dashboard/offres' },
     { icon: FileText, label: 'Candidatures', href: '/dashboard/candidatures' },
-    { icon: ShoppingCart, label: 'Mes Équipes', href: '/dashboard/equipes' },
-    { icon: MessageSquare, label: 'Messages', href: '/dashboard/messages', badge: 3 },
-    { icon: Bell, label: 'Notifications', href: '/dashboard/notifications', badge: 5 },
+    // { icon: ShoppingCart, label: 'Mes Équipes', href: '/dashboard/equipes' },
+    // { icon: MessageSquare, label: 'Messages', href: '/dashboard/messages', badge: 3 },
+    // { icon: Bell, label: 'Notifications', href: '/dashboard/notifications', badge: 5 },
     { icon: Settings, label: 'Paramètres', href: '/dashboard/parametres' },
   ],
   ADMIN: [
     { icon: LayoutDashboard, label: 'Vue d\'ensemble', href: '/dashboard' },
-    { icon: User, label: 'Utilisateurs', href: '/dashboard/utilisateurs' },
-    { icon: FileText, label: 'Documents', href: '/dashboard/documents' },
-    { icon: Briefcase, label: 'Projets', href: '/dashboard/projets' },
+    { icon: User, label: 'Gestion Utilisateurs', href: '/dashboard/utilisateurs' },
+    { icon: FileText, label: 'Documents & Factures', href: '/dashboard/documents' },
+    { icon: Briefcase, label: 'Gestion Projets', href: '/dashboard/projets' },
     { icon: ShoppingCart, label: 'Commandes', href: '/dashboard/commandes' },
-    { icon: MessageSquare, label: 'Messages', href: '/dashboard/messages' },
-    { icon: Bell, label: 'Notifications', href: '/dashboard/notifications' },
-    { icon: Settings, label: 'Paramètres', href: '/dashboard/parametres' },
+    { icon: BarChart3, label: 'Rapports & Analyses', href: '/dashboard/reports' },
+    // { icon: MessageSquare, label: 'Messages', href: '/dashboard/messages' },
+    // { icon: Bell, label: 'Notifications', href: '/dashboard/notifications' },
+    // { icon: Settings, label: 'Paramètres Système', href: '/dashboard/parametres' },
   ],
 }
 
@@ -74,7 +85,7 @@ export default function DashboardLayout({
   children: React.ReactNode
 }) {
   const { data: session } = useSession()
-  const router = useRouter()
+  const pathname = usePathname()
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const userRole = (session?.user?.role as string) || 'PARTICULIER'
@@ -84,6 +95,14 @@ export default function DashboardLayout({
     const { signOut } = await import('next-auth/react')
     signOut({ redirectTo: '/connexion' })
   }
+
+  // Function to check if the current route matches the item's href or is a child route
+  const isActiveRoute = (href: string) => {
+    // Check if pathname is defined before using startsWith
+    if (!pathname) return false;
+    // Check if the current path starts with the href (for parent/child relationships)
+    return pathname === href || pathname.startsWith(href + '/');
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 flex">
@@ -96,7 +115,7 @@ export default function DashboardLayout({
                 <span className="text-white font-bold">FB</span>
               </div>
               <div>
-                <h1 className="text-fibem-primary font-bold">SEN FIBEM</h1>
+                <h1 className="text-fibem-primary font-bold">FIBEM</h1>
                 <p className="text-xs text-gray-500">Tableau de bord</p>
               </div>
             </Link>
@@ -104,27 +123,34 @@ export default function DashboardLayout({
 
           <nav className="flex-1 p-4 overflow-y-auto">
             <ul className="space-y-1">
-              {sidebarItems.map((item) => (
-                <li key={item.label}>
-                  <Link
-                    href={item.href}
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-gray-600 hover:bg-gray-100"
-                  >
-                    <item.icon className="w-5 h-5" />
-                    <span className="flex-1">{item.label}</span>
-                    {item.badge && (
-                      <span className="bg-fibem-accent text-white text-xs px-2 py-0.5 rounded-full">
-                        {item.badge}
-                      </span>
-                    )}
-                  </Link>
-                </li>
-              ))}
+              {sidebarItems.map((item) => {
+                const isActive = isActiveRoute(item.href);
+                return (
+                  <li key={item.label}>
+                    <Link
+                      href={item.href}
+                      className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                        isActive
+                          ? 'bg-fibem-primary/10 text-fibem-primary border-l-4 border-l-fibem-primary'
+                          : 'text-gray-600 hover:bg-gray-100'
+                      }`}
+                    >
+                      <item.icon className={`w-5 h-5 ${isActive ? 'text-fibem-primary' : ''}`} />
+                      <span className="flex-1">{item.label}</span>
+                      {item.badge && (
+                        <span className="bg-fibem-accent text-white text-xs px-2 py-0.5 rounded-full">
+                          {item.badge}
+                        </span>
+                      )}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
 
           <div className="p-4 border-t space-y-4">
-            <div className="flex items-center gap-3">
+            <Link href={"/dashboard/profil"} className="flex items-center gap-3">
               <div className="w-10 h-10 bg-fibem-primary rounded-full flex items-center justify-center text-white font-bold">
                 {session?.user?.first_name?.[0]}{session?.user?.last_name?.[0]}
               </div>
@@ -134,10 +160,10 @@ export default function DashboardLayout({
                 </p>
                 <p className="text-xs text-gray-500">{userRole}</p>
               </div>
-            </div>
+            </Link>
             <button
               onClick={handleLogout}
-              className="w-full flex items-center gap-3 px-4 py-2 rounded-lg text-red-600 hover:bg-red-50 transition-colors text-sm"
+              className="w-full flex items-center gap-3 px-4 cursor-pointer py-2 rounded-lg text-red-600 hover:bg-red-50 transition-colors text-sm"
             >
               <LogOut className="w-4 h-4" />
               Déconnexion

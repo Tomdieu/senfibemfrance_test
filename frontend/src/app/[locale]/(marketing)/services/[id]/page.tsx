@@ -93,7 +93,7 @@ export default function ServiceDetailsPage({ params }: ServiceDetailsPageProps) 
                             <div className="mb-6">
                                 <p className="text-gray-500 text-sm mb-1">Prix indicatif</p>
                                 <p className="text-4xl font-bold text-gray-900">
-                                    {service.price} € <span className="text-lg font-normal text-gray-500">TTC</span>
+                                    {service.base_price} € <span className="text-lg font-normal text-gray-500">TTC</span>
                                 </p>
                             </div>
 

@@ -554,6 +554,76 @@ export default {
       priceHigh: 'Price: High to Low',
       newest: 'Newest',
     },
+    fallback: {
+      hero: {
+        title: 'Professional Solutions & Resources',
+        subtitle: 'Everything you need to manage your transactions and talents in one place.',
+      },
+      strategic: {
+        title: 'Strategic Support',
+        prestations: {
+          title: 'Services',
+          description: 'Discover our comprehensive B2B services for secure business connections and transactions.',
+        },
+        tarifs: {
+          title: 'Pricing',
+          description: 'Complete transparency on our pricing. View our rate schedules tailored to each professional profile.',
+        },
+        brochure: {
+          title: 'Brochure',
+          description: 'Download our official brochure to discover the entire FIBEM ecosystem.',
+        },
+        learnMore: 'Learn more',
+        viewPricing: 'View pricing',
+        downloadBrochure: 'Download brochure',
+      },
+      humanCapital: {
+        title: 'Human Capital Management',
+        cvForm: {
+          title: 'CV Form',
+          description: 'Create standardized professional CVs to facilitate recruitment and talent management.',
+        },
+        candidateSheet: {
+          title: 'Candidate Sheet',
+          description: 'Centralize all your candidate information in a structured and professional format.',
+        },
+        timesheet: {
+          title: 'Timesheet',
+          description: 'Accurately track your employees\' working time with our time management tools.',
+        },
+      },
+      administrative: {
+        title: 'Administrative & Accounting Tools',
+        quoteTemplate: {
+          title: 'Quote Template',
+          description: 'Generate professional quotes compliant with B2B standards for your business proposals.',
+        },
+        invoiceTemplate: {
+          title: 'Invoice Template',
+          description: 'Create invoices compliant with accounting standards for rigorous financial management.',
+        },
+        creditNote: {
+          title: 'Credit Note Template',
+          description: 'Issue professional credit notes to manage returns and commercial adjustments.',
+        },
+        establishmentSheet: {
+          title: 'Establishment Sheet',
+          description: 'Document your partners and suppliers with complete and structured sheets.',
+        },
+        access: 'Access',
+      },
+      ecosystem: {
+        title: 'Opening to the Ecosystem',
+        description: 'FIBEM is part of a network of strategic partners to offer you comprehensive support. Discover our partner platforms and external resources.',
+        explorePartners: 'Explore our partners',
+        contactUs: 'Contact us',
+      },
+      footerCta: {
+        title: 'Start your project today',
+        subtitle: 'Join thousands of companies that trust FIBEM for their B2B transactions.',
+        button: 'Get started now',
+      },
+    },
   },
   jobs: {
     title: 'Job Offers',

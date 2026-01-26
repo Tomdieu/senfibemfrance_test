@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 import { I18nProviderClient } from "@/locales/client";
 import { SessionProvider } from "next-auth/react";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
+import SearchModal from "@/components/modals/SearchModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,7 +32,10 @@ export default async function RootLayout({
       >
         <SessionProvider>
           <I18nProviderClient locale={locale}>
-            <ReactQueryProvider>{children}</ReactQueryProvider>
+            <ReactQueryProvider>
+              {children}
+              <SearchModal />
+            </ReactQueryProvider>
           </I18nProviderClient>
         </SessionProvider>
       </body>

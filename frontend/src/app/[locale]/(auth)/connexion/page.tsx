@@ -5,13 +5,14 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { signIn } from 'next-auth/react'
 import { Mail, Lock, Eye, EyeOff, User, Building, Users, Briefcase, GraduationCap, Shield } from 'lucide-react'
-import { useI18n } from '@/locales/client'
+import { useI18n, useScopedI18n } from '@/locales/client'
 import Image from 'next/image'
 
 type UserType = 'particulier' | 'candidat' | 'partenaire' | 'administrateur'
 
 export default function ConnexionPage() {
   const t = useI18n()
+  const theader = useScopedI18n('header')
   const router = useRouter()
   const [selectedType, setSelectedType] = useState<UserType>('particulier')
   const [email, setEmail] = useState('')
@@ -54,7 +55,7 @@ export default function ConnexionPage() {
             <Link href="/" className="flex items-center gap-3 shrink-0 group">
               <div className="relative">
                 <div className="w-full h-full rounded-xl flex items-center justify-center overflow-hidden">
-                  <Image src={"/logo.png"} width={100} height={60} alt={t('searchOnFibem')} />
+                  <Image src={"/logo.png"} width={100} height={60} alt={theader('searchOnFibem')} />
                 </div>
               </div>
 

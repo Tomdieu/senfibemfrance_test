@@ -5,12 +5,15 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Mail, Lock, Eye, EyeOff, User, Building, Users, Phone, Shield, ArrowLeft, ArrowRight, Check } from 'lucide-react'
 import { createAccount } from '@/actions/auth'
-import { useI18n } from '@/locales/client'
+import { useI18n, useScopedI18n } from '@/locales/client'
+import Image from 'next/image'
 
 type UserType = 'PARTICULIER' | 'CANDIDAT' | 'PROFESSIONNEL' | 'RECRUTEUR'
 
 export default function InscriptionPage() {
   const t = useI18n()
+  const theader = useScopedI18n('header')
+
   const router = useRouter()
   const [step, setStep] = useState(1)
   const [selectedType, setSelectedType] = useState<UserType | null>(null)
@@ -84,7 +87,7 @@ export default function InscriptionPage() {
             <Link href="/" className="flex items-center gap-3 shrink-0 group">
               <div className="relative">
                 <div className="w-full h-full rounded-xl flex items-center justify-center overflow-hidden">
-                  <Image src={"/logo.png"} width={100} height={60} alt={t('searchOnFibem')} />
+                  <Image src={"/logo.png"} width={100} height={60} alt={theader('searchOnFibem')} />
                 </div>
               </div>
 
@@ -135,8 +138,8 @@ export default function InscriptionPage() {
                       type="button"
                       onClick={() => setSelectedType(type.id)}
                       className={`p-4 rounded-xl border-2 transition-all text-left ${selectedType === type.id
-                          ? 'border-fibem-primary bg-fibem-light'
-                          : 'border-gray-200 hover:border-gray-300'
+                        ? 'border-fibem-primary bg-fibem-light'
+                        : 'border-gray-200 hover:border-gray-300'
                         }`}
                     >
                       <type.icon className={`w-8 h-8 mb-2 ${selectedType === type.id ? 'text-fibem-primary' : 'text-gray-400'

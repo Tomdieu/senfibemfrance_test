@@ -5,37 +5,12 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Mail, Lock, Eye, EyeOff, User, Building, Users, Phone, Shield, ArrowLeft, ArrowRight, Check } from 'lucide-react'
 import { createAccount } from '@/actions/auth'
+import { useI18n } from '@/locales/client'
 
 type UserType = 'PARTICULIER' | 'CANDIDAT' | 'PROFESSIONNEL' | 'RECRUTEUR'
 
-const userTypes = [
-  {
-    id: 'PARTICULIER' as UserType,
-    label: 'Particulier',
-    icon: User,
-    description: 'Je recherche des services ou un emploi'
-  },
-  {
-    id: 'CANDIDAT' as UserType,
-    label: 'Candidat',
-    icon: Users,
-    description: 'Je recherche un emploi ou un stage'
-  },
-  {
-    id: 'PROFESSIONNEL' as UserType,
-    label: 'Professionnel',
-    icon: Building,
-    description: 'Entreprise, Artisan ou Freelance'
-  },
-  {
-    id: 'RECRUTEUR' as UserType,
-    label: 'Recruteur',
-    icon: Shield,
-    description: 'Je recrute des talents'
-  },
-]
-
 export default function InscriptionPage() {
+  const t = useI18n()
   const router = useRouter()
   const [step, setStep] = useState(1)
   const [selectedType, setSelectedType] = useState<UserType | null>(null)
@@ -70,11 +45,11 @@ export default function InscriptionPage() {
 
     try {
       if (!selectedType) {
-        throw new Error('Veuillez sélectionner un type de compte')
+        throw new Error(t('auth.inscription.pleaseSelectAccountType'))
       }
 
       if (formData.password !== formData.confirmPassword) {
-        throw new Error('Les mots de passe ne correspondent pas')
+        throw new Error(t('auth.inscription.passwordMismatch'))
       }
 
       const registrationData: Register = {
@@ -91,8 +66,7 @@ export default function InscriptionPage() {
       // Redirect to login on success
       router.push('/connexion')
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Une erreur est survenue'
-      setError(message)
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue')
     } finally {
       setLoading(false)
     }
@@ -111,12 +85,12 @@ export default function InscriptionPage() {
               <span className="text-white font-bold text-lg">FB</span>
             </div>
             <div className="text-left">
-              <h1 className="text-fibem-primary font-bold text-xl">SEN FIBEM</h1>
-              <p className="text-xs text-gray-500">FRANCE</p>
+              <h1 className="text-fibem-primary font-bold text-xl">{t('common.fibem')}</h1>
+              <p className="text-xs text-gray-500">{t('common.france')}</p>
             </div>
           </Link>
-          <h2 className="text-2xl font-bold text-gray-800">Créer un compte</h2>
-          <p className="text-gray-600 mt-2">Rejoignez notre communauté</p>
+          <h2 className="text-2xl font-bold text-gray-800">{t('auth.inscription.title')}</h2>
+          <p className="text-gray-600 mt-2">{t('auth.inscription.subtitle')}</p>
         </div>
 
         {/* Progress steps */}
@@ -147,10 +121,15 @@ export default function InscriptionPage() {
             {/* Step 1: Choose account type */}
             {step === 1 && (
               <div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-4">Choisissez votre type de compte</h3>
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">{t('auth.inscription.step1.title')}</h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                  {userTypes.map((type) => (
+                  {([
+                    { id: 'PARTICULIER' as UserType, label: t('auth.userType.particulier'), icon: User, description: t('auth.inscription.step1.particulier.description') },
+                    { id: 'CANDIDAT' as UserType, label: t('auth.userType.candidat'), icon: Users, description: t('auth.inscription.step1.candidat.description') },
+                    { id: 'PROFESSIONNEL' as UserType, label: t('auth.userType.professionnel'), icon: Building, description: t('auth.inscription.step1.professionnel.description') },
+                    { id: 'RECRUTEUR' as UserType, label: t('auth.userType.recruteur'), icon: Shield, description: t('auth.inscription.step1.recruteur.description') },
+                  ]).map((type) => (
                     <button
                       key={type.id}
                       type="button"
@@ -181,7 +160,7 @@ export default function InscriptionPage() {
                     disabled={!canProceedStep1}
                     className="flex items-center gap-2 px-6 py-3 bg-fibem-primary text-white font-semibold rounded-lg hover:bg-fibem-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Continuer
+                    {t('common.continue')}
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -191,11 +170,11 @@ export default function InscriptionPage() {
             {/* Step 2: Personal information */}
             {step === 2 && (
               <div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-4">Informations personnelles</h3>
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">{t('auth.inscription.step2.title')}</h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Prénom *</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('auth.inscription.step2.firstName')} *</label>
                     <input
                       type="text"
                       name="first_name"
@@ -203,10 +182,11 @@ export default function InscriptionPage() {
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary"
+                      placeholder={t('auth.inscription.step2.firstNamePlaceholder')}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Nom *</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('auth.inscription.step2.lastName')} *</label>
                     <input
                       type="text"
                       name="last_name"
@@ -214,10 +194,11 @@ export default function InscriptionPage() {
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary"
+                      placeholder={t('auth.inscription.step2.lastNamePlaceholder')}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('auth.inscription.step2.email')} *</label>
                     <div className="relative">
                       <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                       <input
@@ -227,11 +208,12 @@ export default function InscriptionPage() {
                         onChange={handleInputChange}
                         required
                         className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary"
+                        placeholder={t('auth.inscription.step2.emailPlaceholder')}
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Téléphone *</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('auth.inscription.step2.phone')} *</label>
                     <div className="relative">
                       <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                       <input
@@ -241,6 +223,7 @@ export default function InscriptionPage() {
                         onChange={handleInputChange}
                         required
                         className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary"
+                        placeholder={t('auth.inscription.step2.phonePlaceholder')}
                       />
                     </div>
                   </div>
@@ -253,7 +236,7 @@ export default function InscriptionPage() {
                     className="flex items-center gap-2 px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
                   >
                     <ArrowLeft className="w-4 h-4" />
-                    Retour
+                    {t('common.back')}
                   </button>
                   <button
                     type="button"
@@ -261,7 +244,7 @@ export default function InscriptionPage() {
                     disabled={!canProceedStep2}
                     className="flex items-center gap-2 px-6 py-3 bg-fibem-primary text-white font-semibold rounded-lg hover:bg-fibem-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Continuer
+                    {t('common.continue')}
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -271,11 +254,11 @@ export default function InscriptionPage() {
             {/* Step 3: Password and confirmation */}
             {step === 3 && (
               <div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-4">Sécurité et validation</h3>
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">{t('auth.inscription.step3.title')}</h3>
 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Mot de passe *</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('auth.inscription.step3.password')} *</label>
                     <div className="relative">
                       <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                       <input
@@ -286,6 +269,7 @@ export default function InscriptionPage() {
                         required
                         minLength={8}
                         className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary"
+                        placeholder={t('auth.inscription.step3.passwordPlaceholder')}
                       />
                       <button
                         type="button"
@@ -295,11 +279,11 @@ export default function InscriptionPage() {
                         {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                       </button>
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">Minimum 8 caractères</p>
+                    <p className="text-xs text-gray-500 mt-1">{t('auth.inscription.step3.passwordMinLength')}</p>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Confirmer le mot de passe *</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('auth.inscription.step3.confirmPassword')} *</label>
                     <div className="relative">
                       <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                       <input
@@ -309,6 +293,7 @@ export default function InscriptionPage() {
                         onChange={handleInputChange}
                         required
                         className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary"
+                        placeholder={t('auth.inscription.step3.confirmPasswordPlaceholder')}
                       />
                       <button
                         type="button"
@@ -319,7 +304,7 @@ export default function InscriptionPage() {
                       </button>
                     </div>
                     {formData.confirmPassword && formData.password !== formData.confirmPassword && (
-                      <p className="text-xs text-red-500 mt-1">Les mots de passe ne correspondent pas</p>
+                      <p className="text-xs text-red-500 mt-1">{t('auth.inscription.passwordMismatch')}</p>
                     )}
                   </div>
 
@@ -332,10 +317,18 @@ export default function InscriptionPage() {
                         className="w-5 h-5 mt-0.5 rounded border-gray-300 text-fibem-primary focus:ring-fibem-secondary"
                       />
                       <span className="text-sm text-gray-600">
-                        En créant votre compte, vous acceptez nos{' '}
-                        <Link href="/cgv" className="text-fibem-primary hover:underline">conditions générales</Link>
-                        {' '}et notre{' '}
-                        <Link href="/confidentialite" className="text-fibem-primary hover:underline">politique de confidentialité</Link>
+                        {t('auth.inscription.step3.termsAgreement', {
+                          terms: (
+                            <Link key="terms" href="/cgv" className="text-fibem-primary hover:underline">
+                              {t('auth.inscription.step3.terms')}
+                            </Link>
+                          ),
+                          privacy: (
+                            <Link key="privacy" href="/confidentialite" className="text-fibem-primary hover:underline">
+                              {t('auth.inscription.step3.privacy')}
+                            </Link>
+                          )
+                        })}
                       </span>
                     </label>
                   </div>
@@ -348,14 +341,14 @@ export default function InscriptionPage() {
                     className="flex items-center gap-2 px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
                   >
                     <ArrowLeft className="w-4 h-4" />
-                    Retour
+                    {t('common.back')}
                   </button>
                   <button
                     type="submit"
                     disabled={!canProceedStep3 || loading}
                     className="flex items-center gap-2 px-6 py-3 bg-fibem-primary text-white font-semibold rounded-lg hover:bg-fibem-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {loading ? 'Création en cours...' : 'Créer mon compte'}
+                    {loading ? t('auth.inscription.step3.creatingAccount') : t('auth.inscription.step3.createAccount')}
                     {!loading && <Check className="w-4 h-4" />}
                   </button>
                 </div>
@@ -365,9 +358,9 @@ export default function InscriptionPage() {
 
           {/* Login link */}
           <p className="text-center text-gray-600 mt-6 pt-6 border-t">
-            Déjà un compte ?{' '}
+            {t('auth.inscription.alreadyHaveAccount')}{' '}
             <Link href="/connexion" className="text-fibem-primary font-semibold hover:underline">
-              Se connecter
+              {t('auth.inscription.signIn')}
             </Link>
           </p>
         </div>

@@ -5,6 +5,7 @@ import { fetchServices, fetchServiceCategories } from '@/actions/services';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Star, MapPin, Clock, CheckCircle } from 'lucide-react';
+import ServicesFallback from './ServicesFallback';
 
 interface ServiceGridProps {
   categoryId?: number | null;
@@ -16,14 +17,15 @@ export default function ServiceGrid({ categoryId }: ServiceGridProps) {
     data: services = [],
     isLoading: servicesLoading,
     error: servicesError
-  } = useQuery({
-    queryKey: ['services', { category: categoryId }],
-    queryFn: () => {
-      const params = categoryId ? { category: categoryId } : {};
-      return fetchServices(params);
-    },
-    staleTime: 5 * 60 * 1000, // 5 minutes
-  });
+  } = useQuery
+      ({
+        queryKey: ['services', { category: categoryId }],
+        queryFn: () => {
+          const params = categoryId ? { category: categoryId } : {};
+          return fetchServices(params);
+        },
+        staleTime: 5 * 60 * 1000, // 5 minutes
+      });
 
   // Fetch category info if categoryId is provided
   const {
@@ -52,21 +54,9 @@ export default function ServiceGrid({ categoryId }: ServiceGridProps) {
     );
   }
 
-  if (error) {
-    return (
-      <div className="text-center py-8">
-        <p className="text-red-500">Erreur lors du chargement des services: {(error as Error).message}</p>
-        <p className="text-gray-600 mt-2">Veuillez réessayer plus tard.</p>
-      </div>
-    );
-  }
-
-  if (services.length === 0 && !isLoading) {
-    return (
-      <div className="text-center py-8">
-        <p className="text-gray-600">Aucun service disponible actuellement.</p>
-      </div>
-    );
+  // Show comprehensive fallback for errors or no data
+  if (error || services.length === 0) {
+    return <ServicesFallback />;
   }
 
   return (

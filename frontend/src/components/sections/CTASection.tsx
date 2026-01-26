@@ -4,16 +4,10 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ScrollAnimationWrapper } from '@/components/ScrollAnimationWrapper'
 import { ArrowRight, Users, Building } from 'lucide-react'
+import { useScopedI18n } from '@/locales/client'
 
 export default function CTASection() {
-  const cardVariants = {
-    hidden: { opacity: 0, x: 0 },
-    visible: (direction: number) => ({
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.6 },
-    }),
-  }
+  const t = useScopedI18n('home.ctaSection')
 
   return (
     <section className="py-16">
@@ -32,7 +26,7 @@ export default function CTASection() {
               visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
             }}
             whileHover={{ y: -8 }}
-            className="bg-gradient-to-br from-fibem-primary to-fibem-secondary rounded-2xl p-8 text-white"
+            className="bg-linear-to-br from-fibem-primary to-fibem-secondary rounded-2xl p-8 text-white"
           >
             <motion.div
               className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mb-6"
@@ -41,10 +35,9 @@ export default function CTASection() {
             >
               <Building className="w-8 h-8" />
             </motion.div>
-            <h3 className="text-2xl font-bold mb-4">Vous êtes un professionnel ?</h3>
+            <h3 className="text-2xl font-bold mb-4">{t('pro.title')}</h3>
             <p className="text-blue-100 mb-6">
-              Rejoignez notre réseau de professionnels et développez votre activité.
-              Accédez à des centaines de demandes de services chaque jour.
+              {t('pro.description')}
             </p>
             <motion.ul
               className="space-y-2 mb-6"
@@ -57,9 +50,9 @@ export default function CTASection() {
               viewport={{ once: true }}
             >
               {[
-                'Visibilité accrue',
-                'Gestion simplifiée des devis',
-                'Paiements sécurisés',
+                t('pro.benefit1'),
+                t('pro.benefit2'),
+                t('pro.benefit3'),
               ].map((benefit, idx) => (
                 <motion.li
                   key={idx}
@@ -78,7 +71,7 @@ export default function CTASection() {
                 href="/inscription?type=professionnel"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white text-fibem-primary font-semibold rounded-lg hover:bg-fibem-light transition-colors"
               >
-                Devenir partenaire
+                {t('pro.button')}
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
@@ -92,7 +85,7 @@ export default function CTASection() {
               visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
             }}
             whileHover={{ y: -8 }}
-            className="bg-gradient-to-br from-fibem-accent to-orange-500 rounded-2xl p-8 text-white"
+            className="bg-linear-to-br from-fibem-accent to-orange-500 rounded-2xl p-8 text-white"
           >
             <motion.div
               className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center mb-6"
@@ -101,10 +94,9 @@ export default function CTASection() {
             >
               <Users className="w-8 h-8" />
             </motion.div>
-            <h3 className="text-2xl font-bold mb-4">Vous cherchez un emploi ?</h3>
+            <h3 className="text-2xl font-bold mb-4">{t('candidate.title')}</h3>
             <p className="text-orange-100 mb-6">
-              Créez votre profil et accédez à des centaines d'offres d'emploi.
-              Nos recruteurs partenaires recherchent activement des talents.
+              {t('candidate.description')}
             </p>
             <motion.ul
               className="space-y-2 mb-6"
@@ -117,9 +109,9 @@ export default function CTASection() {
               viewport={{ once: true }}
             >
               {[
-                'CV FIBEM professionnel',
-                'Alertes emploi personnalisées',
-                'Accompagnement personnalisé',
+                t('candidate.benefit1'),
+                t('candidate.benefit2'),
+                t('candidate.benefit3'),
               ].map((benefit, idx) => (
                 <motion.li
                   key={idx}
@@ -138,7 +130,7 @@ export default function CTASection() {
                 href="/inscription?type=candidat"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white text-fibem-accent font-semibold rounded-lg hover:bg-orange-50 transition-colors"
               >
-                Créer mon profil
+                {t('candidate.button')}
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
@@ -147,6 +139,4 @@ export default function CTASection() {
       </div>
     </section>
   )
-
-
 }

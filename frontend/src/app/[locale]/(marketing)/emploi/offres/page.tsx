@@ -67,7 +67,7 @@ export default function JobOffersPage() {
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="px-2 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-full uppercase">
-                        {job.job_type}
+                        {job.contract_type}
                       </span>
                       {job.is_active ? (
                         <span className="px-2 py-1 bg-green-50 text-green-700 text-xs font-semibold rounded-full">

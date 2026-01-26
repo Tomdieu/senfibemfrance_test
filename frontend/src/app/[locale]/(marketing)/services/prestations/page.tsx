@@ -85,7 +85,7 @@ export default function PrestationsPage() {
                             {service.name}
                           </h3>
                           <p className="text-gray-600 mt-2 line-clamp-2">{service.description}</p>
-                          <p className="text-fibem-primary font-bold mt-4">{service.price} €</p>
+                          <p className="text-fibem-primary font-bold mt-4">{service.base_price} €</p>
                         </div>
                         <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-fibem-primary group-hover:translate-x-1 transition-all" />
                       </div>
@@ -108,7 +108,7 @@ export default function PrestationsPage() {
         )}
 
         {/* CTA */}
-        <div className="mt-16 bg-gradient-to-r from-fibem-primary to-fibem-secondary rounded-2xl p-8 text-white text-center">
+        <div className="mt-16 bg-linear-to-r from-fibem-primary to-fibem-secondary rounded-2xl p-8 text-white text-center">
           <h2 className="text-2xl font-bold mb-4">Vous ne trouvez pas ce que vous cherchez ?</h2>
           <p className="text-blue-100 mb-6 max-w-xl mx-auto">
             Contactez-nous pour discuter de votre projet. Nous trouverons le professionnel adapté à vos besoins.

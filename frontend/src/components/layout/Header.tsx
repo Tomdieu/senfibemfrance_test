@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useSession, signOut } from 'next-auth/react'
@@ -102,14 +103,6 @@ const menuItems: MenuItem[] = [
   {
     label: 'contact',
     href: '/contact',
-    submenu: [
-      { label: 'registrationForm', href: '/contact/inscription' },
-      { label: 'franceAddress', href: '/contact#france' },
-      { label: 'senegalAddress', href: '/contact#senegal' },
-      { label: 'franceEmail', href: 'mailto:contact@senfibem.fr' },
-      { label: 'senegalEmail', href: 'mailto:contact@senfibem.sn' },
-      { label: 'mapLocation', href: '/contact#map' },
-    ]
   },
 ]
 
@@ -170,6 +163,7 @@ const languages = [
 
 export default function Header() {
   const { data: session } = useSession()
+  const router = useRouter()
   const changeLocale = useChangeLocale()
   const currentLocale = useCurrentLocale()
   const t = useScopedI18n('header')
@@ -271,10 +265,11 @@ export default function Header() {
                     <NavigationMenuItem key={item.label}>
                       {item.submenu ? (
                         <>
-                          <NavigationMenuTrigger asChild className="text-gray-700 hover:text-fibem-primary font-medium bg-transparent hover:bg-gray-50/80 data-[state=open]:bg-gray-50/80 focus:bg-gray-50/80 transition-all rounded-md px-3 py-2 h-auto text-[15px]">
-                            <Link href={item.href}>
-                              {t(`menu.${item.label}` as any)}
-                            </Link>
+                          <NavigationMenuTrigger
+                            className="text-gray-700 hover:text-fibem-primary font-medium bg-transparent hover:bg-gray-50/80 data-[state=open]:bg-gray-50/80 focus:bg-gray-50/80 transition-all rounded-md px-3 py-2 h-auto text-[15px]"
+                            onClick={() => router.push(item.href)}
+                          >
+                            {t(`menu.${item.label}` as any)}
                           </NavigationMenuTrigger>
                           <NavigationMenuContent>
                             <ul className="grid w-[400px] gap-2 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white rounded-xl shadow-xl border-none">

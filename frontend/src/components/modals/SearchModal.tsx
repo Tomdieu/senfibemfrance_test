@@ -1,65 +1,77 @@
 'use client'
 
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo, useRef } from 'react'
 import { useSearchStore } from '@/stores/searchStore'
 import { Credenza, CredenzaBody, CredenzaContent, CredenzaHeader, CredenzaTitle } from '../ui/credenza'
 import { Search, FileText, Briefcase, Users, Receipt, Building2, Home, Phone, Settings, TrendingUp } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { Input } from '../ui/input'
 import { cn } from '@/lib/utils'
+import { useScopedI18n } from '@/locales/client'
 
-interface SearchPage {
-    title: string
-    description: string
+
+interface SearchPageConfig {
+    id: string
     href: string
     icon: any
     category: string
 }
 
-const searchablePages: SearchPage[] = [
+const pagesConfig: SearchPageConfig[] = [
     // Home & Info
-    { title: 'Accueil', description: 'Page d\'accueil FIBEM', href: '/', icon: Home, category: 'Navigation' },
-    { title: 'À Propos', description: 'Découvrez l\'histoire et les valeurs de FIBEM', href: '/a-propos', icon: Users, category: 'Navigation' },
-    { title: 'Actualités', description: 'Dernières nouvelles et actualités', href: '/actualites', icon: TrendingUp, category: 'Navigation' },
-    { title: 'Contact', description: 'Contactez notre équipe', href: '/contact', icon: Phone, category: 'Navigation' },
+    { id: 'accueil', href: '/', icon: Home, category: 'navigation' },
+    { id: 'aPropos', href: '/a-propos', icon: Users, category: 'navigation' },
+    { id: 'actualites', href: '/actualites', icon: TrendingUp, category: 'navigation' },
+    { id: 'contact', href: '/contact', icon: Phone, category: 'navigation' },
 
     // Services
-    { title: 'Services', description: 'Tous nos services professionnels', href: '/services', icon: Briefcase, category: 'Services' },
-    { title: 'Prestations', description: 'Nos prestations de services', href: '/services/prestations', icon: Briefcase, category: 'Services' },
-    { title: 'Tarifs', description: 'Grille tarifaire et plans', href: '/services/tarifs', icon: Receipt, category: 'Services' },
-    { title: 'Plaquette', description: 'Télécharger notre brochure', href: '/services/plaquette', icon: FileText, category: 'Services' },
+    { id: 'services', href: '/services', icon: Briefcase, category: 'services' },
+    { id: 'prestations', href: '/services/prestations', icon: Briefcase, category: 'services' },
+    { id: 'tarifs', href: '/services/tarifs', icon: Receipt, category: 'services' },
+    { id: 'plaquette', href: '/services/plaquette', icon: FileText, category: 'services' },
 
     // Human Capital
-    { title: 'Formulaire CV', description: 'Créer un CV professionnel', href: '/services/formulaire-cv', icon: FileText, category: 'Gestion RH' },
-    { title: 'Fiche Candidat', description: 'Gérer les candidatures', href: '/services/fiche-candidat', icon: Users, category: 'Gestion RH' },
-    { title: 'Feuille d\'heures', description: 'Suivi du temps de travail', href: '/services/feuille-heures', icon: Receipt, category: 'Gestion RH' },
+    { id: 'formulaireCv', href: '/services/formulaire-cv', icon: FileText, category: 'gestionRh' },
+    { id: 'ficheCandidat', href: '/services/fiche-candidat', icon: Users, category: 'gestionRh' },
+    { id: 'feuilleHeures', href: '/services/feuille-heures', icon: Receipt, category: 'gestionRh' },
 
     // Administrative
-    { title: 'Modèle Devis', description: 'Créer des devis professionnels', href: '/services/modele-devis', icon: FileText, category: 'Administratif' },
-    { title: 'Modèle Facture', description: 'Générer des factures', href: '/services/modele-facture', icon: Receipt, category: 'Administratif' },
-    { title: 'Modèle Avoir', description: 'Créer des avoirs', href: '/services/modele-avoir', icon: FileText, category: 'Administratif' },
-    { title: 'Fiche Établissement', description: 'Documenter vos partenaires', href: '/services/fiche-etablissement', icon: Building2, category: 'Administratif' },
-    { title: 'Devis & Factures', description: 'Hub devis et facturation', href: '/services/devis-factures', icon: Receipt, category: 'Administratif' },
+    { id: 'modeleDevis', href: '/services/modele-devis', icon: FileText, category: 'administratif' },
+    { id: 'modeleFacture', href: '/services/modele-facture', icon: Receipt, category: 'administratif' },
+    { id: 'modeleAvoir', href: '/services/modele-avoir', icon: FileText, category: 'administratif' },
+    { id: 'ficheEtablissement', href: '/services/fiche-etablissement', icon: Building2, category: 'administratif' },
+    { id: 'devisFactures', href: '/services/devis-factures', icon: Receipt, category: 'administratif' },
 
     // Ecosystem
-    { title: 'Autres Sites', description: 'Nos plateformes partenaires', href: '/services/autres-sites', icon: TrendingUp, category: 'Écosystème' },
+    { id: 'autresSites', href: '/services/autres-sites', icon: TrendingUp, category: 'ecosysteme' },
 
     // Employment
-    { title: 'Emploi', description: 'Offres d\'emploi et recrutement', href: '/emploi', icon: Briefcase, category: 'Emploi' },
-    { title: 'Espace Candidat', description: 'Espace pour les candidats', href: '/emploi/candidat', icon: Users, category: 'Emploi' },
-    { title: 'Espace Recruteur', description: 'Espace pour les recruteurs', href: '/emploi/recruteur', icon: Building2, category: 'Emploi' },
-    { title: 'Espace Stagiaire', description: 'Espace pour les stagiaires', href: '/emploi/stagiaire', icon: Users, category: 'Emploi' },
+    { id: 'emploi', href: '/emploi', icon: Briefcase, category: 'emploi' },
+    { id: 'espaceCandidat', href: '/emploi/candidat', icon: Users, category: 'emploi' },
+    { id: 'espaceRecruteur', href: '/emploi/recruteur', icon: Building2, category: 'emploi' },
+    { id: 'espaceStagiaire', href: '/emploi/stagiaire', icon: Users, category: 'emploi' },
 
     // Auth
-    { title: 'Connexion', description: 'Se connecter à votre compte', href: '/connexion', icon: Settings, category: 'Compte' },
-    { title: 'Inscription', description: 'Créer un nouveau compte', href: '/inscription', icon: Users, category: 'Compte' },
-    { title: 'Dashboard', description: 'Tableau de bord', href: '/dashboard', icon: Home, category: 'Compte' },
+    { id: 'connexion', href: '/connexion', icon: Settings, category: 'compte' },
+    { id: 'inscription', href: '/inscription', icon: Users, category: 'compte' },
+    { id: 'dashboard', href: '/dashboard', icon: Home, category: 'compte' },
 ]
 
 function SearchModal() {
     const { open, close, search, setSearch } = useSearchStore()
     const router = useRouter()
     const [selectedIndex, setSelectedIndex] = useState(0)
+    const selectedItemRef = useRef<HTMLButtonElement>(null)
+    const t = useScopedI18n('searchModal')
+
+    const searchablePages = useMemo(() => {
+        return pagesConfig.map(page => ({
+            ...page,
+            title: t(`pages.${page.id}.title` as any),
+            description: t(`pages.${page.id}.description` as any),
+            categoryDisplay: t(`categories.${page.category}` as any)
+        }))
+    }, [t])
 
     const filteredPages = useMemo(() => {
         if (!search.trim()) return searchablePages
@@ -68,9 +80,9 @@ function SearchModal() {
         return searchablePages.filter(page =>
             page.title.toLowerCase().includes(query) ||
             page.description.toLowerCase().includes(query) ||
-            page.category.toLowerCase().includes(query)
+            page.categoryDisplay.toLowerCase().includes(query)
         )
-    }, [search])
+    }, [search, searchablePages])
 
     const handleNavigate = (href: string) => {
         router.push(href)
@@ -88,6 +100,16 @@ function SearchModal() {
             setSelectedIndex(0)
         }
     }, [open, setSearch])
+
+    // Scroll to selected item when selection changes
+    useEffect(() => {
+        if (selectedItemRef.current) {
+            selectedItemRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+            })
+        }
+    }, [selectedIndex])
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -110,12 +132,13 @@ function SearchModal() {
     }, [open, selectedIndex, filteredPages])
 
     const groupedPages = useMemo(() => {
-        const groups: Record<string, SearchPage[]> = {}
+        // Use filteredPages which already has the translated categoryDisplay
+        const groups: Record<string, typeof searchablePages> = {}
         filteredPages.forEach(page => {
-            if (!groups[page.category]) {
-                groups[page.category] = []
+            if (!groups[page.categoryDisplay]) {
+                groups[page.categoryDisplay] = []
             }
-            groups[page.category].push(page)
+            groups[page.categoryDisplay].push(page)
         })
         return groups
     }, [filteredPages])
@@ -123,24 +146,24 @@ function SearchModal() {
     return (
         <Credenza open={open} onOpenChange={close}>
             <CredenzaContent className="max-w-2xl">
-                <CredenzaHeader className="border-b pb-4">
+                <CredenzaHeader className="border-b pb-4 mt-2">
                     <div className="relative">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                         <Input
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            placeholder="Rechercher une page... (tapez pour filtrer)"
+                            placeholder={t('placeholder')}
                             className="pl-10 pr-4 h-12 text-lg border-none focus-visible:ring-0 focus-visible:ring-offset-0"
                             autoFocus
                         />
                     </div>
                     <div className="flex items-center gap-2 mt-3 text-xs text-gray-500">
                         <kbd className="px-2 py-1 bg-gray-100 rounded border">↑↓</kbd>
-                        <span>Naviguer</span>
+                        <span>{t('navigation.navigate')}</span>
                         <kbd className="px-2 py-1 bg-gray-100 rounded border">Enter</kbd>
-                        <span>Sélectionner</span>
+                        <span>{t('navigation.select')}</span>
                         <kbd className="px-2 py-1 bg-gray-100 rounded border">Esc</kbd>
-                        <span>Fermer</span>
+                        <span>{t('navigation.close')}</span>
                     </div>
                 </CredenzaHeader>
 
@@ -148,8 +171,8 @@ function SearchModal() {
                     {filteredPages.length === 0 ? (
                         <div className="text-center py-12 text-gray-500">
                             <Search className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                            <p className="text-lg font-medium">Aucun résultat trouvé</p>
-                            <p className="text-sm">Essayez avec d'autres mots-clés</p>
+                            <p className="text-lg font-medium">{t('empty.title')}</p>
+                            <p className="text-sm">{t('empty.description')}</p>
                         </div>
                     ) : (
                         <div className="space-y-6 py-4">
@@ -167,6 +190,7 @@ function SearchModal() {
                                             return (
                                                 <button
                                                     key={page.href}
+                                                    ref={isSelected ? selectedItemRef : null}
                                                     onClick={() => handleNavigate(page.href)}
                                                     onMouseEnter={() => setSelectedIndex(globalIndex)}
                                                     className={cn(

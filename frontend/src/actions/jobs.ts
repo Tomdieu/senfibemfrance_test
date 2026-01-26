@@ -2,9 +2,15 @@ import { AxiosError } from "axios";
 import api from "./config";
 
 
+type JobOfferParam ={
+contract_type?:"CDI"|"CDD"|"STAGE"|"FREELANCE"|"INTERIM";
+location?:string;
+search?:string;
+}
+
 // region Job Offers
 
-export const fetchJobOffers = async (params?: any) => {
+export const fetchJobOffers = async (params?: Partial<JobOfferParam>) => {
     try {
         const response = await api.get<JobOffer[]>("/api/jobs/offers/", { params });
         return response.data;

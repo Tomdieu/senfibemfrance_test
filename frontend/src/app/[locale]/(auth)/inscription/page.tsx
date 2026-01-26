@@ -80,15 +80,16 @@ export default function InscriptionPage() {
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-2xl mx-auto px-4">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 mb-6">
-            <div className="w-12 h-12 bg-fibem-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">FB</span>
-            </div>
-            <div className="text-left">
-              <h1 className="text-fibem-primary font-bold text-xl">{t('common.fibem')}</h1>
-              <p className="text-xs text-gray-500">{t('common.france')}</p>
-            </div>
-          </Link>
+          <div className='flex items-center justify-center'>
+            <Link href="/" className="flex items-center gap-3 shrink-0 group">
+              <div className="relative">
+                <div className="w-full h-full rounded-xl flex items-center justify-center overflow-hidden">
+                  <Image src={"/logo.png"} width={100} height={60} alt={t('searchOnFibem')} />
+                </div>
+              </div>
+
+            </Link>
+          </div>
           <h2 className="text-2xl font-bold text-gray-800">{t('auth.inscription.title')}</h2>
           <p className="text-gray-600 mt-2">{t('auth.inscription.subtitle')}</p>
         </div>
@@ -97,9 +98,8 @@ export default function InscriptionPage() {
         <div className="flex items-center justify-center gap-2 mb-8">
           {[1, 2, 3].map((s) => (
             <div key={s} className="flex items-center">
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
-                step >= s ? 'bg-fibem-primary text-white' : 'bg-gray-200 text-gray-500'
-              }`}>
+              <div className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${step >= s ? 'bg-fibem-primary text-white' : 'bg-gray-200 text-gray-500'
+                }`}>
                 {step > s ? <Check className="w-5 h-5" /> : s}
               </div>
               {s < 3 && (
@@ -134,18 +134,15 @@ export default function InscriptionPage() {
                       key={type.id}
                       type="button"
                       onClick={() => setSelectedType(type.id)}
-                      className={`p-4 rounded-xl border-2 transition-all text-left ${
-                        selectedType === type.id
+                      className={`p-4 rounded-xl border-2 transition-all text-left ${selectedType === type.id
                           ? 'border-fibem-primary bg-fibem-light'
                           : 'border-gray-200 hover:border-gray-300'
-                      }`}
+                        }`}
                     >
-                      <type.icon className={`w-8 h-8 mb-2 ${
-                        selectedType === type.id ? 'text-fibem-primary' : 'text-gray-400'
-                      }`} />
-                      <p className={`font-semibold ${
-                        selectedType === type.id ? 'text-fibem-primary' : 'text-gray-700'
-                      }`}>
+                      <type.icon className={`w-8 h-8 mb-2 ${selectedType === type.id ? 'text-fibem-primary' : 'text-gray-400'
+                        }`} />
+                      <p className={`font-semibold ${selectedType === type.id ? 'text-fibem-primary' : 'text-gray-700'
+                        }`}>
                         {type.label}
                       </p>
                       <p className="text-sm text-gray-500 mt-1">{type.description}</p>

@@ -715,4 +715,123 @@ export default {
       security: 'Sécurité',
     },
   },
+  searchModal: {
+    placeholder: 'Rechercher une page... (tapez pour filtrer)',
+    navigation: {
+      navigate: 'Naviguer',
+      select: 'Sélectionner',
+      close: 'Fermer',
+    },
+    empty: {
+      title: 'Aucun résultat trouvé',
+      description: "Essayez avec d'autres mots-clés",
+    },
+    categories: {
+      navigation: 'Navigation',
+      services: 'Services',
+      gestionRh: 'Gestion RH',
+      administratif: 'Administratif',
+      ecosysteme: 'Écosystème',
+      emploi: 'Emploi',
+      compte: 'Compte',
+    },
+    pages: {
+      accueil: {
+        title: 'Accueil',
+        description: "Page d'accueil FIBEM",
+      },
+      aPropos: {
+        title: 'À Propos',
+        description: "Découvrez l'histoire et les valeurs de FIBEM",
+      },
+      actualites: {
+        title: 'Actualités',
+        description: 'Dernières nouvelles et actualités',
+      },
+      contact: {
+        title: 'Contact',
+        description: 'Contactez notre équipe',
+      },
+      services: {
+        title: 'Services',
+        description: 'Tous nos services professionnels',
+      },
+      prestations: {
+        title: 'Prestations',
+        description: 'Nos prestations de services',
+      },
+      tarifs: {
+        title: 'Tarifs',
+        description: 'Grille tarifaire et plans',
+      },
+      plaquette: {
+        title: 'Plaquette',
+        description: 'Télécharger notre brochure',
+      },
+      formulaireCv: {
+        title: 'Formulaire CV',
+        description: 'Créer un CV professionnel',
+      },
+      ficheCandidat: {
+        title: 'Fiche Candidat',
+        description: 'Gérer les candidatures',
+      },
+      feuilleHeures: {
+        title: "Feuille d'heures",
+        description: 'Suivi du temps de travail',
+      },
+      modeleDevis: {
+        title: 'Modèle Devis',
+        description: 'Créer des devis professionnels',
+      },
+      modeleFacture: {
+        title: 'Modèle Facture',
+        description: 'Générer des factures',
+      },
+      modeleAvoir: {
+        title: 'Modèle Avoir',
+        description: 'Créer des avoirs',
+      },
+      ficheEtablissement: {
+        title: 'Fiche Établissement',
+        description: 'Documenter vos partenaires',
+      },
+      devisFactures: {
+        title: 'Devis & Factures',
+        description: 'Hub devis et facturation',
+      },
+      autresSites: {
+        title: 'Autres Sites',
+        description: 'Nos plateformes partenaires',
+      },
+      emploi: {
+        title: 'Emploi',
+        description: "Offres d'emploi et recrutement",
+      },
+      espaceCandidat: {
+        title: 'Espace Candidat',
+        description: 'Espace pour les candidats',
+      },
+      espaceRecruteur: {
+        title: 'Espace Recruteur',
+        description: 'Espace pour les recruteurs',
+      },
+      espaceStagiaire: {
+        title: 'Espace Stagiaire',
+        description: 'Espace pour les stagiaires',
+      },
+      connexion: {
+        title: 'Connexion',
+        description: 'Se connecter à votre compte',
+      },
+      inscription: {
+        title: 'Inscription',
+        description: 'Créer un nouveau compte',
+      },
+      dashboard: {
+        title: 'Tableau de bord',
+        description: 'Tableau de bord',
+      },
+    },
+  },
 } as const

@@ -542,4 +542,123 @@ export default {
       security: 'Sicherheit',
     },
   },
+  searchModal: {
+    placeholder: 'Seite suchen... (tippen zum Filtern)',
+    navigation: {
+      navigate: 'Navigieren',
+      select: 'Auswählen',
+      close: 'Schließen',
+    },
+    empty: {
+      title: 'Keine Ergebnisse gefunden',
+      description: 'Versuchen Sie andere Suchbegriffe',
+    },
+    categories: {
+      navigation: 'Navigation',
+      services: 'Dienstleistungen',
+      gestionRh: 'Personalwesen',
+      administratif: 'Verwaltung',
+      ecosysteme: 'Ökosystem',
+      emploi: 'Arbeitsmarkt',
+      compte: 'Konto',
+    },
+    pages: {
+      accueil: {
+        title: 'Startseite',
+        description: 'FIBEM Startseite',
+      },
+      aPropos: {
+        title: 'Über uns',
+        description: 'Entdecken Sie die Geschichte und Werte von FIBEM',
+      },
+      actualites: {
+        title: 'Aktuelles',
+        description: 'Neueste Nachrichten und Updates',
+      },
+      contact: {
+        title: 'Kontakt',
+        description: 'Kontaktieren Sie unser Team',
+      },
+      services: {
+        title: 'Dienstleistungen',
+        description: 'Alle unsere professionellen Dienstleistungen',
+      },
+      prestations: {
+        title: 'Angebote',
+        description: 'Unsere Serviceangebote',
+      },
+      tarifs: {
+        title: 'Preise',
+        description: 'Preisliste und Pläne',
+      },
+      plaquette: {
+        title: 'Broschüre',
+        description: 'Laden Sie unsere Broschüre herunter',
+      },
+      formulaireCv: {
+        title: 'Lebenslauf-Formular',
+        description: 'Erstellen Sie einen professionellen Lebenslauf',
+      },
+      ficheCandidat: {
+        title: 'Kandidatenbogen',
+        description: 'Bewerbungen verwalten',
+      },
+      feuilleHeures: {
+        title: 'Stundenzettel',
+        description: 'Arbeitszeiterfassung',
+      },
+      modeleDevis: {
+        title: 'Angebotsvorlage',
+        description: 'Erstellen Sie professionelle Angebote',
+      },
+      modeleFacture: {
+        title: 'Rechnungsvorlage',
+        description: 'Rechnungen generieren',
+      },
+      modeleAvoir: {
+        title: 'Gutschriftvorlage',
+        description: 'Gutschriften erstellen',
+      },
+      ficheEtablissement: {
+        title: 'Firmenbogen',
+        description: 'Dokumentieren Sie Ihre Partner',
+      },
+      devisFactures: {
+        title: 'Angebote & Rechnungen',
+        description: 'Angebots- und Rechnungs-Hub',
+      },
+      autresSites: {
+        title: 'Andere Seiten',
+        description: 'Unsere Partnerplattformen',
+      },
+      emploi: {
+        title: 'Jobs',
+        description: 'Stellenangebote und Rekrutierung',
+      },
+      espaceCandidat: {
+        title: 'Kandidatenbereich',
+        description: 'Bereich für Kandidaten',
+      },
+      espaceRecruteur: {
+        title: 'Recruiter-Bereich',
+        description: 'Bereich für Recruiter',
+      },
+      espaceStagiaire: {
+        title: 'Praktikantenbereich',
+        description: 'Bereich für Praktikanten',
+      },
+      connexion: {
+        title: 'Anmelden',
+        description: 'Melden Sie sich bei Ihrem Konto an',
+      },
+      inscription: {
+        title: 'Registrieren',
+        description: 'Erstellen Sie ein neues Konto',
+      },
+      dashboard: {
+        title: 'Dashboard',
+        description: 'Dashboard',
+      },
+    },
+  },
 } as const

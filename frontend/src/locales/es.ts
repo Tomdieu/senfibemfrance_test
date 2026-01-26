@@ -542,4 +542,123 @@ export default {
       security: 'Seguridad',
     },
   },
+  searchModal: {
+    placeholder: 'Buscar una página... (escribe para filtrar)',
+    navigation: {
+      navigate: 'Navegar',
+      select: 'Seleccionar',
+      close: 'Cerrar',
+    },
+    empty: {
+      title: 'No se encontraron resultados',
+      description: 'Prueba con otras palabras clave',
+    },
+    categories: {
+      navigation: 'Navegación',
+      services: 'Servicios',
+      gestionRh: 'Gestión RRHH',
+      administratif: 'Administrativo',
+      ecosysteme: 'Ecosistema',
+      emploi: 'Empleo',
+      compte: 'Cuenta',
+    },
+    pages: {
+      accueil: {
+        title: 'Inicio',
+        description: 'Página de inicio FIBEM',
+      },
+      aPropos: {
+        title: 'Acerca de',
+        description: 'Descubre la historia y valores de FIBEM',
+      },
+      actualites: {
+        title: 'Noticias',
+        description: 'Últimas noticias y actualizaciones',
+      },
+      contact: {
+        title: 'Contacto',
+        description: 'Contacta a nuestro equipo',
+      },
+      services: {
+        title: 'Servicios',
+        description: 'Todos nuestros servicios profesionales',
+      },
+      prestations: {
+        title: 'Prestaciones',
+        description: 'Nuestras prestaciones de servicios',
+      },
+      tarifs: {
+        title: 'Tarifas',
+        description: 'Tabla de precios y planes',
+      },
+      plaquette: {
+        title: 'Folleto',
+        description: 'Descargar nuestro folleto',
+      },
+      formulaireCv: {
+        title: 'Formulario CV',
+        description: 'Crear un CV profesional',
+      },
+      ficheCandidat: {
+        title: 'Ficha Candidato',
+        description: 'Gestionar candidaturas',
+      },
+      feuilleHeures: {
+        title: 'Hoja de horas',
+        description: 'Seguimiento del tiempo de trabajo',
+      },
+      modeleDevis: {
+        title: 'Modelo Presupuesto',
+        description: 'Crear presupuestos profesionales',
+      },
+      modeleFacture: {
+        title: 'Modelo Factura',
+        description: 'Generar facturas',
+      },
+      modeleAvoir: {
+        title: 'Modelo Abono',
+        description: 'Crear abonos',
+      },
+      ficheEtablissement: {
+        title: 'Ficha Establecimiento',
+        description: 'Documentar tus socios',
+      },
+      devisFactures: {
+        title: 'Presupuestos y Facturas',
+        description: 'Centro de facturación',
+      },
+      autresSites: {
+        title: 'Otros Sitios',
+        description: 'Nuestras plataformas asociadas',
+      },
+      emploi: {
+        title: 'Empleo',
+        description: 'Ofertas de empleo y reclutamiento',
+      },
+      espaceCandidat: {
+        title: 'Espacio Candidato',
+        description: 'Espacio para candidatos',
+      },
+      espaceRecruteur: {
+        title: 'Espacio Reclutador',
+        description: 'Espacio para reclutadores',
+      },
+      espaceStagiaire: {
+        title: 'Espacio Practicante',
+        description: 'Espacio para practicantes',
+      },
+      connexion: {
+        title: 'Conexión',
+        description: 'Inicia sesión en tu cuenta',
+      },
+      inscription: {
+        title: 'Inscripción',
+        description: 'Crea una nueva cuenta',
+      },
+      dashboard: {
+        title: 'Panel de control',
+        description: 'Panel de control',
+      },
+    },
+  },
 } as const

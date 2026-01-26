@@ -542,4 +542,123 @@ export default {
       security: 'Beveiliging',
     },
   },
+  searchModal: {
+    placeholder: 'Zoek pagina... (typ om te filteren)',
+    navigation: {
+      navigate: 'Navigeren',
+      select: 'Selecteren',
+      close: 'Sluiten',
+    },
+    empty: {
+      title: 'Geen resultaten gevonden',
+      description: 'Probeer andere trefwoorden',
+    },
+    categories: {
+      navigation: 'Navigatie',
+      services: 'Diensten',
+      gestionRh: 'HR-beheer',
+      administratif: 'Administratief',
+      ecosysteme: 'Ecosysteem',
+      emploi: 'Werkgelegenheid',
+      compte: 'Account',
+    },
+    pages: {
+      accueil: {
+        title: 'Home',
+        description: 'FIBEM Startpagina',
+      },
+      aPropos: {
+        title: 'Over ons',
+        description: 'Ontdek de geschiedenis en waarden van FIBEM',
+      },
+      actualites: {
+        title: 'Nieuws',
+        description: 'Laatste nieuws en updates',
+      },
+      contact: {
+        title: 'Contact',
+        description: 'Neem contact op met ons team',
+      },
+      services: {
+        title: 'Diensten',
+        description: 'Al onze professionele diensten',
+      },
+      prestations: {
+        title: 'Aanbiedingen',
+        description: 'Onze dienstenaanbod',
+      },
+      tarifs: {
+        title: 'Tarieven',
+        description: 'Prijslijst en plannen',
+      },
+      plaquette: {
+        title: 'Brochure',
+        description: 'Download onze brochure',
+      },
+      formulaireCv: {
+        title: 'CV-formulier',
+        description: 'Maak een professioneel CV',
+      },
+      ficheCandidat: {
+        title: 'Kandidatenblad',
+        description: 'Beheer sollicitaties',
+      },
+      feuilleHeures: {
+        title: 'Uurstaat',
+        description: 'Werkurenregistratie',
+      },
+      modeleDevis: {
+        title: 'Offerte sjabloon',
+        description: 'Maak professionele offertes',
+      },
+      modeleFacture: {
+        title: 'Factuur sjabloon',
+        description: 'Genereer facturen',
+      },
+      modeleAvoir: {
+        title: 'Creditnota sjabloon',
+        description: 'Maak creditnota\'s',
+      },
+      ficheEtablissement: {
+        title: 'Vestigingsblad',
+        description: 'Documenteer uw partners',
+      },
+      devisFactures: {
+        title: 'Offertes & Facturen',
+        description: 'Facturatie hub',
+      },
+      autresSites: {
+        title: 'Andere sites',
+        description: 'Onze partnerplatforms',
+      },
+      emploi: {
+        title: 'Banen',
+        description: 'Vacatures en werving',
+      },
+      espaceCandidat: {
+        title: 'Kandidatenruimte',
+        description: 'Ruimte voor kandidaten',
+      },
+      espaceRecruteur: {
+        title: 'Recruiterruimte',
+        description: 'Ruimte voor recruiters',
+      },
+      espaceStagiaire: {
+        title: 'Stagiairruimte',
+        description: 'Ruimte voor stagiairs',
+      },
+      connexion: {
+        title: 'Inloggen',
+        description: 'Log in op uw account',
+      },
+      inscription: {
+        title: 'Registreren',
+        description: 'Maak een nieuw account',
+      },
+      dashboard: {
+        title: 'Dashboard',
+        description: 'Dashboard',
+      },
+    },
+  },
 } as const

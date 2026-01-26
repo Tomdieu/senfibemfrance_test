@@ -542,4 +542,123 @@ export default {
       security: 'Безопасность',
     },
   },
+  searchModal: {
+    placeholder: 'Поиск страницы... (введите для фильтрации)',
+    navigation: {
+      navigate: 'Навигация',
+      select: 'Выбрать',
+      close: 'Закрыть',
+    },
+    empty: {
+      title: 'Результаты не найдены',
+      description: 'Попробуйте другие ключевые слова',
+    },
+    categories: {
+      navigation: 'Навигация',
+      services: 'Услуги',
+      gestionRh: 'Управление персоналом',
+      administratif: 'Административное',
+      ecosysteme: 'Экосистема',
+      emploi: 'Работа',
+      compte: 'Аккаунт',
+    },
+    pages: {
+      accueil: {
+        title: 'Главная',
+        description: 'Главная страница FIBEM',
+      },
+      aPropos: {
+        title: 'О нас',
+        description: 'Узнайте историю и ценности FIBEM',
+      },
+      actualites: {
+        title: 'Новости',
+        description: 'Последние новости и обновления',
+      },
+      contact: {
+        title: 'Контакты',
+        description: 'Свяжитесь с нашей командой',
+      },
+      services: {
+        title: 'Услуги',
+        description: 'Все наши профессиональные услуги',
+      },
+      prestations: {
+        title: 'Предложения',
+        description: 'Наши предложения услуг',
+      },
+      tarifs: {
+        title: 'Тарифы',
+        description: 'Прайс-лист и тарифные планы',
+      },
+      plaquette: {
+        title: 'Брошюра',
+        description: 'Скачать нашу брошюру',
+      },
+      formulaireCv: {
+        title: 'Форма резюме',
+        description: 'Создать профессиональное резюме',
+      },
+      ficheCandidat: {
+        title: 'Карточка кандидата',
+        description: 'Управление заявками',
+      },
+      feuilleHeures: {
+        title: 'Табель учета рабочего времени',
+        description: 'Отслеживание рабочего времени',
+      },
+      modeleDevis: {
+        title: 'Шаблон коммерческого предложения',
+        description: 'Создание профессиональных предложений',
+      },
+      modeleFacture: {
+        title: 'Шаблон счета-фактуры',
+        description: 'Генерация счетов-фактур',
+      },
+      modeleAvoir: {
+        title: 'Шаблон кредит-ноты',
+        description: 'Создание кредит-нот',
+      },
+      ficheEtablissement: {
+        title: 'Карточка учреждения',
+        description: 'Документирование партнеров',
+      },
+      devisFactures: {
+        title: 'Предложения и счета',
+        description: 'Центр выставления счетов',
+      },
+      autresSites: {
+        title: 'Другие сайты',
+        description: 'Наши партнерские платформы',
+      },
+      emploi: {
+        title: 'Работа',
+        description: 'Вакансии и рекрутинг',
+      },
+      espaceCandidat: {
+        title: 'Кабинет кандидата',
+        description: 'Пространство для кандидатов',
+      },
+      espaceRecruteur: {
+        title: 'Кабинет рекрутера',
+        description: 'Пространство для рекрутеров',
+      },
+      espaceStagiaire: {
+        title: 'Кабинет стажера',
+        description: 'Пространство для стажеров',
+      },
+      connexion: {
+        title: 'Вход',
+        description: 'Войти в свой аккаунт',
+      },
+      inscription: {
+        title: 'Регистрация',
+        description: 'Создать новый аккаунт',
+      },
+      dashboard: {
+        title: 'Панель управления',
+        description: 'Панель управления',
+      },
+    },
+  },
 } as const

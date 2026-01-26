@@ -715,4 +715,123 @@ export default {
       security: 'Security',
     },
   },
+  searchModal: {
+    placeholder: 'Search for a page... (type to filter)',
+    navigation: {
+      navigate: 'Navigate',
+      select: 'Select',
+      close: 'Close',
+    },
+    empty: {
+      title: 'No results found',
+      description: 'Try different keywords',
+    },
+    categories: {
+      navigation: 'Navigation',
+      services: 'Services',
+      gestionRh: 'HR Management',
+      administratif: 'Administrative',
+      ecosysteme: 'Ecosystem',
+      emploi: 'Employment',
+      compte: 'Account',
+    },
+    pages: {
+      accueil: {
+        title: 'Home',
+        description: 'FIBEM Homepage',
+      },
+      aPropos: {
+        title: 'About',
+        description: 'Discover FIBEM history and values',
+      },
+      actualites: {
+        title: 'News',
+        description: 'Latest news and updates',
+      },
+      contact: {
+        title: 'Contact',
+        description: 'Contact our team',
+      },
+      services: {
+        title: 'Services',
+        description: 'All our professional services',
+      },
+      prestations: {
+        title: 'Offerings',
+        description: 'Our service offerings',
+      },
+      tarifs: {
+        title: 'Pricing',
+        description: 'Pricing grid and plans',
+      },
+      plaquette: {
+        title: 'Brochure',
+        description: 'Download our brochure',
+      },
+      formulaireCv: {
+        title: 'CV Form',
+        description: 'Create a professional CV',
+      },
+      ficheCandidat: {
+        title: 'Candidate Sheet',
+        description: 'Manage applications',
+      },
+      feuilleHeures: {
+        title: 'Timesheet',
+        description: 'Track working time',
+      },
+      modeleDevis: {
+        title: 'Quote Template',
+        description: 'Create professional quotes',
+      },
+      modeleFacture: {
+        title: 'Invoice Template',
+        description: 'Generate invoices',
+      },
+      modeleAvoir: {
+        title: 'Credit Note Template',
+        description: 'Create credit notes',
+      },
+      ficheEtablissement: {
+        title: 'Establishment Sheet',
+        description: 'Document your partners',
+      },
+      devisFactures: {
+        title: 'Quotes & Invoices',
+        description: 'Quotes and billing hub',
+      },
+      autresSites: {
+        title: 'Other Sites',
+        description: 'Our partner platforms',
+      },
+      emploi: {
+        title: 'Jobs',
+        description: 'Job offers and recruitment',
+      },
+      espaceCandidat: {
+        title: 'Candidate Space',
+        description: 'Space for candidates',
+      },
+      espaceRecruteur: {
+        title: 'Recruiter Space',
+        description: 'Space for recruiters',
+      },
+      espaceStagiaire: {
+        title: 'Intern Space',
+        description: 'Space for interns',
+      },
+      connexion: {
+        title: 'Login',
+        description: 'Log in to your account',
+      },
+      inscription: {
+        title: 'Register',
+        description: 'Create a new account',
+      },
+      dashboard: {
+        title: 'Dashboard',
+        description: 'Dashboard',
+      },
+    },
+  },
 } as const

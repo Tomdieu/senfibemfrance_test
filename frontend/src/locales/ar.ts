@@ -542,4 +542,123 @@ export default {
       security: 'الأمان',
     },
   },
+  searchModal: {
+    placeholder: 'بحث عن صفحة... (اكتب للتصفية)',
+    navigation: {
+      navigate: 'تصفح',
+      select: 'تحديد',
+      close: 'إغلاق',
+    },
+    empty: {
+      title: 'لم يتم العثور على نتائج',
+      description: 'جرب كلمات رئيسية مختلفة',
+    },
+    categories: {
+      navigation: 'تصفح',
+      services: 'خدمات',
+      gestionRh: 'إدارة الموارد البشرية',
+      administratif: 'إداري',
+      ecosysteme: 'نظام بيئي',
+      emploi: 'توظيف',
+      compte: 'حساب',
+    },
+    pages: {
+      accueil: {
+        title: 'الرئيسية',
+        description: 'الصفحة الرئيسية FIBEM',
+      },
+      aPropos: {
+        title: 'من نحن',
+        description: 'اكتشف تاريخ وقيم FIBEM',
+      },
+      actualites: {
+        title: 'أخبار',
+        description: 'آخر الأخبار والتحديثات',
+      },
+      contact: {
+        title: 'اتصل بنا',
+        description: 'اتصل بفريقنا',
+      },
+      services: {
+        title: 'خدمات',
+        description: 'جميع خدماتنا المهنية',
+      },
+      prestations: {
+        title: 'عروض',
+        description: 'عروض خدماتنا',
+      },
+      tarifs: {
+        title: 'أسعار',
+        description: 'قائمة الأسعار والخطط',
+      },
+      plaquette: {
+        title: 'كتيب',
+        description: 'تحميل الكتيب الخاص بنا',
+      },
+      formulaireCv: {
+        title: 'نموذج السيرة الذاتية',
+        description: 'إنشاء سيرة ذاتية احترافية',
+      },
+      ficheCandidat: {
+        title: 'بطاقة المرشح',
+        description: 'إدارة الطلبات',
+      },
+      feuilleHeures: {
+        title: 'ورقة الوقت',
+        description: 'تتبع وقت العمل',
+      },
+      modeleDevis: {
+        title: 'نموذج عرض سعر',
+        description: 'إنشاء عروض أسعار احترافية',
+      },
+      modeleFacture: {
+        title: 'نموذج فاتورة',
+        description: 'إنشاء فواتير',
+      },
+      modeleAvoir: {
+        title: 'نموذج إشعار دائن',
+        description: 'إنشاء إشعارات دائنة',
+      },
+      ficheEtablissement: {
+        title: 'بطاقة المؤسسة',
+        description: 'توثيق شركائك',
+      },
+      devisFactures: {
+        title: 'عروض أسعار وفواتير',
+        description: 'مركز الفواتير',
+      },
+      autresSites: {
+        title: 'مواقع أخرى',
+        description: 'منصات شركائنا',
+      },
+      emploi: {
+        title: 'وظائف',
+        description: 'عروض العمل والتوظيف',
+      },
+      espaceCandidat: {
+        title: 'منطقة المرشح',
+        description: 'منطقة للمرشحين',
+      },
+      espaceRecruteur: {
+        title: 'منطقة التوظيف',
+        description: 'منطقة للقائمين بالتوظيف',
+      },
+      espaceStagiaire: {
+        title: 'منطقة المتدرب',
+        description: 'منطقة للمتدربين',
+      },
+      connexion: {
+        title: 'تسجيل الدخول',
+        description: 'سجّل الدخول إلى حسابك',
+      },
+      inscription: {
+        title: 'تسجيل',
+        description: 'إنشاء حساب جديد',
+      },
+      dashboard: {
+        title: 'لوحة القيادة',
+        description: 'لوحة القيادة',
+      },
+    },
+  },
 } as const

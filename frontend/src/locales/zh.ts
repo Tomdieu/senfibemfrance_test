@@ -542,4 +542,123 @@ export default {
       security: '安全',
     },
   },
+  searchModal: {
+    placeholder: '搜索页面... (输入以筛选)',
+    navigation: {
+      navigate: '导航',
+      select: '选择',
+      close: '关闭',
+    },
+    empty: {
+      title: '未找到结果',
+      description: '尝试其他关键词',
+    },
+    categories: {
+      navigation: '导航',
+      services: '服务',
+      gestionRh: '人力资源管理',
+      administratif: '行政',
+      ecosysteme: '生态系统',
+      emploi: '就业',
+      compte: '账户',
+    },
+    pages: {
+      accueil: {
+        title: '首页',
+        description: 'FIBEM 首页',
+      },
+      aPropos: {
+        title: '关于',
+        description: '发现 FIBEM 的历史和价值',
+      },
+      actualites: {
+        title: '新闻',
+        description: '最新新闻和更新',
+      },
+      contact: {
+        title: '联系',
+        description: '联系我们的团队',
+      },
+      services: {
+        title: '服务',
+        description: '我们所有的专业服务',
+      },
+      prestations: {
+        title: '产品',
+        description: '我们的服务产品',
+      },
+      tarifs: {
+        title: '价格',
+        description: '价格表和计划',
+      },
+      plaquette: {
+        title: '手册',
+        description: '下载我们的手册',
+      },
+      formulaireCv: {
+        title: '简历表格',
+        description: '创建专业简历',
+      },
+      ficheCandidat: {
+        title: '候选人表',
+        description: '管理申请',
+      },
+      feuilleHeures: {
+        title: '工时表',
+        description: '跟踪工作时间',
+      },
+      modeleDevis: {
+        title: '报价模板',
+        description: '创建专业报价',
+      },
+      modeleFacture: {
+        title: '发票模板',
+        description: '生成发票',
+      },
+      modeleAvoir: {
+        title: '贷项通知单模板',
+        description: '创建贷项通知单',
+      },
+      ficheEtablissement: {
+        title: '机构表',
+        description: '记录您的合作伙伴',
+      },
+      devisFactures: {
+        title: '报价和发票',
+        description: '计费中心',
+      },
+      autresSites: {
+        title: '其他网站',
+        description: '我们的合作伙伴平台',
+      },
+      emploi: {
+        title: '工作',
+        description: '工作机会和招聘',
+      },
+      espaceCandidat: {
+        title: '候选人空间',
+        description: '候选人专用空间',
+      },
+      espaceRecruteur: {
+        title: '招聘人员空间',
+        description: '招聘人员专用空间',
+      },
+      espaceStagiaire: {
+        title: '实习生空间',
+        description: '实习生专用空间',
+      },
+      connexion: {
+        title: '登录',
+        description: '登录到您的帐户',
+      },
+      inscription: {
+        title: '注册',
+        description: '创建一个新帐户',
+      },
+      dashboard: {
+        title: '仪表板',
+        description: '仪表板',
+      },
+    },
+  },
 } as const

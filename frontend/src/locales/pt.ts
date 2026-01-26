@@ -542,4 +542,123 @@ export default {
       security: 'Segurança',
     },
   },
+  searchModal: {
+    placeholder: 'Pesquisar página... (digite para filtrar)',
+    navigation: {
+      navigate: 'Navegar',
+      select: 'Selecionar',
+      close: 'Fechar',
+    },
+    empty: {
+      title: 'Nenhum resultado encontrado',
+      description: 'Tente outras palavras-chave',
+    },
+    categories: {
+      navigation: 'Navegação',
+      services: 'Serviços',
+      gestionRh: 'Gestão de RH',
+      administratif: 'Administrativo',
+      ecosysteme: 'Ecossistema',
+      emploi: 'Emprego',
+      compte: 'Conta',
+    },
+    pages: {
+      accueil: {
+        title: 'Início',
+        description: 'Página inicial FIBEM',
+      },
+      aPropos: {
+        title: 'Sobre nós',
+        description: 'Descubra a história e os valores da FIBEM',
+      },
+      actualites: {
+        title: 'Notícias',
+        description: 'Últimas notícias e atualizações',
+      },
+      contact: {
+        title: 'Contato',
+        description: 'Contate nossa equipe',
+      },
+      services: {
+        title: 'Serviços',
+        description: 'Todos os nossos serviços profissionais',
+      },
+      prestations: {
+        title: 'Ofertas',
+        description: 'Nossas ofertas de serviços',
+      },
+      tarifs: {
+        title: 'Tarifas',
+        description: 'Tabela de preços e planos',
+      },
+      plaquette: {
+        title: 'Brochura',
+        description: 'Baixe nossa brochura',
+      },
+      formulaireCv: {
+        title: 'Formulário de CV',
+        description: 'Crie um CV profissional',
+      },
+      ficheCandidat: {
+        title: 'Ficha do Candidato',
+        description: 'Gerenciar candidaturas',
+      },
+      feuilleHeures: {
+        title: 'Folha de ponto',
+        description: 'Rastreamento de horas de trabalho',
+      },
+      modeleDevis: {
+        title: 'Modelo de Orçamento',
+        description: 'Criar orçamentos profissionais',
+      },
+      modeleFacture: {
+        title: 'Modelo de Fatura',
+        description: 'Gerar faturas',
+      },
+      modeleAvoir: {
+        title: 'Modelo de Nota de Crédito',
+        description: 'Criar notas de crédito',
+      },
+      ficheEtablissement: {
+        title: 'Ficha do Estabelecimento',
+        description: 'Documente seus parceiros',
+      },
+      devisFactures: {
+        title: 'Orçamentos e Faturas',
+        description: 'Hub de faturamento',
+      },
+      autresSites: {
+        title: 'Outros Sites',
+        description: 'Nossas plataformas parceiras',
+      },
+      emploi: {
+        title: 'Emprego',
+        description: 'Vagas e recrutamento',
+      },
+      espaceCandidat: {
+        title: 'Espaço do Candidato',
+        description: 'Espaço para candidatos',
+      },
+      espaceRecruteur: {
+        title: 'Espaço do Recrutador',
+        description: 'Espaço para recrutadores',
+      },
+      espaceStagiaire: {
+        title: 'Espaço do Estagiário',
+        description: 'Espaço para estagiários',
+      },
+      connexion: {
+        title: 'Entrar',
+        description: 'Acesse sua conta',
+      },
+      inscription: {
+        title: 'Registrar',
+        description: 'Crie uma nova conta',
+      },
+      dashboard: {
+        title: 'Painel',
+        description: 'Painel de controle',
+      },
+    },
+  },
 } as const

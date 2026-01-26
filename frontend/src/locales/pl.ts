@@ -542,4 +542,123 @@ export default {
       security: 'Bezpieczeństwo',
     },
   },
+  searchModal: {
+    placeholder: 'Szukaj strony... (wpisz, aby przefiltrować)',
+    navigation: {
+      navigate: 'Nawiguj',
+      select: 'Wybierz',
+      close: 'Zamknij',
+    },
+    empty: {
+      title: 'Nie znaleziono wyników',
+      description: 'Spróbuj innych słów kluczowych',
+    },
+    categories: {
+      navigation: 'Nawigacja',
+      services: 'Usługi',
+      gestionRh: 'Zarządzanie HR',
+      administratif: 'Administracyjne',
+      ecosysteme: 'Ekosystem',
+      emploi: 'Zatrudnienie',
+      compte: 'Konto',
+    },
+    pages: {
+      accueil: {
+        title: 'Strona główna',
+        description: 'Strona główna FIBEM',
+      },
+      aPropos: {
+        title: 'O nas',
+        description: 'Poznaj historię i wartości FIBEM',
+      },
+      actualites: {
+        title: 'Aktualności',
+        description: 'Najnowsze wiadomości i aktualizacje',
+      },
+      contact: {
+        title: 'Kontakt',
+        description: 'Skontaktuj się z naszym zespołem',
+      },
+      services: {
+        title: 'Usługi',
+        description: 'Wszystkie nasze usługi profesjonalne',
+      },
+      prestations: {
+        title: 'Oferty',
+        description: 'Nasze oferty usług',
+      },
+      tarifs: {
+        title: 'Cennik',
+        description: 'Cennik i plany',
+      },
+      plaquette: {
+        title: 'Broszura',
+        description: 'Pobierz naszą broszurę',
+      },
+      formulaireCv: {
+        title: 'Formularz CV',
+        description: 'Stwórz profesjonalne CV',
+      },
+      ficheCandidat: {
+        title: 'Karta kandydata',
+        description: 'Zarządzaj aplikacjami',
+      },
+      feuilleHeures: {
+        title: 'Karta czasu pracy',
+        description: 'Śledzenie czasu pracy',
+      },
+      modeleDevis: {
+        title: 'Szablon wyceny',
+        description: 'Twórz profesjonalne wyceny',
+      },
+      modeleFacture: {
+        title: 'Szablon faktury',
+        description: 'Generuj faktury',
+      },
+      modeleAvoir: {
+        title: 'Szablon noty kredytowej',
+        description: 'Twórz noty kredytowe',
+      },
+      ficheEtablissement: {
+        title: 'Karta zakładu',
+        description: 'Dokumentuj swoich partnerów',
+      },
+      devisFactures: {
+        title: 'Wyceny i faktury',
+        description: 'Centrum fakturowania',
+      },
+      autresSites: {
+        title: 'Inne strony',
+        description: 'Nasze platformy partnerskie',
+      },
+      emploi: {
+        title: 'Praca',
+        description: 'Oferty pracy i rekrutacja',
+      },
+      espaceCandidat: {
+        title: 'Strefa kandydata',
+        description: 'Strefa dla kandydatów',
+      },
+      espaceRecruteur: {
+        title: 'Strefa rekrutera',
+        description: 'Strefa dla rekruterów',
+      },
+      espaceStagiaire: {
+        title: 'Strefa stażysty',
+        description: 'Strefa dla stażystów',
+      },
+      connexion: {
+        title: 'Logowanie',
+        description: 'Zaloguj się na swoje konto',
+      },
+      inscription: {
+        title: 'Rejestracja',
+        description: 'Utwórz nowe konto',
+      },
+      dashboard: {
+        title: 'Panel główny',
+        description: 'Panel główny',
+      },
+    },
+  },
 } as const

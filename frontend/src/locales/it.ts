@@ -542,4 +542,123 @@ export default {
       security: 'Sicurezza',
     },
   },
+  searchModal: {
+    placeholder: 'Cerca una pagina... (digita per filtrare)',
+    navigation: {
+      navigate: 'Naviga',
+      select: 'Seleziona',
+      close: 'Chiudi',
+    },
+    empty: {
+      title: 'Nessun risultato trovato',
+      description: 'Prova con altre parole chiave',
+    },
+    categories: {
+      navigation: 'Navigazione',
+      services: 'Servizi',
+      gestionRh: 'Gestione RU',
+      administratif: 'Amministrativo',
+      ecosysteme: 'Ecosistema',
+      emploi: 'Impiego',
+      compte: 'Account',
+    },
+    pages: {
+      accueil: {
+        title: 'Home',
+        description: 'Homepage FIBEM',
+      },
+      aPropos: {
+        title: 'Chi siamo',
+        description: 'Scopri la storia e i valori di FIBEM',
+      },
+      actualites: {
+        title: 'Notizie',
+        description: 'Ultime notizie e aggiornamenti',
+      },
+      contact: {
+        title: 'Contatti',
+        description: 'Contatta il nostro team',
+      },
+      services: {
+        title: 'Servizi',
+        description: 'Tutti i nostri servizi professionali',
+      },
+      prestations: {
+        title: 'Prestazioni',
+        description: 'Le nostre offerte di servizi',
+      },
+      tarifs: {
+        title: 'Tariffe',
+        description: 'Listino prezzi e piani',
+      },
+      plaquette: {
+        title: 'Brochure',
+        description: 'Scarica la nostra brochure',
+      },
+      formulaireCv: {
+        title: 'Modulo CV',
+        description: 'Crea un CV professionale',
+      },
+      ficheCandidat: {
+        title: 'Scheda Candidato',
+        description: 'Gestisci le candidature',
+      },
+      feuilleHeures: {
+        title: 'Foglio ore',
+        description: 'Tracciamento ore di lavoro',
+      },
+      modeleDevis: {
+        title: 'Modello Preventivo',
+        description: 'Crea preventivi professionali',
+      },
+      modeleFacture: {
+        title: 'Modello Fattura',
+        description: 'Genera fatture',
+      },
+      modeleAvoir: {
+        title: 'Modello Nota di Credito',
+        description: 'Crea note di credito',
+      },
+      ficheEtablissement: {
+        title: 'Scheda Stabilimento',
+        description: 'Documenta i tuoi partner',
+      },
+      devisFactures: {
+        title: 'Preventivi e Fatture',
+        description: 'Hub fatturazione',
+      },
+      autresSites: {
+        title: 'Altri Siti',
+        description: 'Le nostre piattaforme partner',
+      },
+      emploi: {
+        title: 'Lavoro',
+        description: 'Offerte di lavoro e reclutamento',
+      },
+      espaceCandidat: {
+        title: 'Spazio Candidato',
+        description: 'Spazio per candidati',
+      },
+      espaceRecruteur: {
+        title: 'Spazio Reclutatore',
+        description: 'Spazio per reclutatori',
+      },
+      espaceStagiaire: {
+        title: 'Spazio Stagista',
+        description: 'Spazio per stagisti',
+      },
+      connexion: {
+        title: 'Accesso',
+        description: 'Accedi al tuo account',
+      },
+      inscription: {
+        title: 'Registrazione',
+        description: 'Crea un nuovo account',
+      },
+      dashboard: {
+        title: 'Dashboard',
+        description: 'Dashboard',
+      },
+    },
+  },
 } as const

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useSession, signOut } from 'next-auth/react'
+import { useChangeLocale, useCurrentLocale, useI18n, useScopedI18n } from '@/locales/client'
 import {
   Search,
   Menu,
@@ -54,81 +55,81 @@ interface MenuItem {
 
 const menuItems: MenuItem[] = [
   {
-    label: 'Accueil',
+    label: 'home',
     href: '/',
     submenu: [
-      { label: 'À propos', href: '/a-propos' },
-      { label: 'Qui sommes-nous', href: '/qui-sommes-nous' },
-      { label: 'Blog', href: '/blog' },
-      { label: 'Actualités', href: '/actualites' },
+      { label: 'about', href: '/a-propos' },
+      { label: 'whoAreWe', href: '/qui-sommes-nous' },
+      { label: 'blog', href: '/blog' },
+      { label: 'news', href: '/actualites' },
     ]
   },
   {
-    label: 'Services',
+    label: 'services',
     href: '/services',
     submenu: [
-      { label: 'Prestation Service', href: '/services/prestations' },
-      { label: 'Tarifs', href: '/services/tarifs' },
-      { label: 'Plaquette', href: '/services/plaquette' },
-      { label: 'Formulaire CV', href: '/services/formulaire-cv' },
-      { label: 'Feuille d\'heures', href: '/services/feuille-heures' },
-      { label: 'Fiche Candidat', href: '/services/fiche-candidat' },
-      { label: 'Fiche Établissement', href: '/services/fiche-etablissement' },
-      { label: 'Modèle Devis', href: '/services/modele-devis' },
-      { label: 'Modèle Facture', href: '/services/modele-facture' },
-      { label: 'Modèle Avoir', href: '/services/modele-avoir' },
-      { label: 'Autres sites', href: '/services/autres-sites' },
+      { label: 'serviceOfferings', href: '/services/prestations' },
+      { label: 'rates', href: '/services/tarifs' },
+      { label: 'brochure', href: '/services/plaquette' },
+      { label: 'cvForm', href: '/services/formulaire-cv' },
+      { label: 'timesheet', href: '/services/feuille-heures' },
+      { label: 'candidateSheet', href: '/services/fiche-candidat' },
+      { label: 'establishmentSheet', href: '/services/fiche-etablissement' },
+      { label: 'quoteTemplate', href: '/services/modele-devis' },
+      { label: 'invoiceTemplate', href: '/services/modele-facture' },
+      { label: 'creditNoteTemplate', href: '/services/modele-avoir' },
+      { label: 'otherSites', href: '/services/autres-sites' },
     ]
   },
   {
-    label: 'Emploi',
+    label: 'jobs',
     href: '/emploi',
     submenu: [
-      { label: 'Espace Candidat', href: '/emploi/candidat' },
-      { label: 'Espace Recruteur', href: '/emploi/recruteur' },
-      { label: 'Espace Stagiaire', href: '/emploi/stagiaire' },
-      { label: '── Abonnements ──', href: '/emploi/abonnements' },
-      { label: 'Abonnement Stagiaire', href: '/emploi/abonnements/stagiaire' },
-      { label: 'Abonnement Candidat', href: '/emploi/abonnements/candidat' },
-      { label: 'Abonnement Particuliers', href: '/emploi/abonnements/particuliers' },
-      { label: 'Abonnement Freelance', href: '/emploi/abonnements/freelance' },
-      { label: 'Abonnement Professionnels', href: '/emploi/abonnements/professionnels' },
-      { label: 'Abonnement Partenaires', href: '/emploi/abonnements/partenaires' },
+      { label: 'candidateSpace', href: '/emploi/candidat' },
+      { label: 'recruiterSpace', href: '/emploi/recruteur' },
+      { label: 'internSpace', href: '/emploi/stagiaire' },
+      { label: 'subscriptions', href: '/emploi/abonnements' },
+      { label: 'internSubscription', href: '/emploi/abonnements/stagiaire' },
+      { label: 'candidateSubscription', href: '/emploi/abonnements/candidat' },
+      { label: 'individualSubscription', href: '/emploi/abonnements/particuliers' },
+      { label: 'freelancerSubscription', href: '/emploi/abonnements/freelance' },
+      { label: 'professionalSubscription', href: '/emploi/abonnements/professionnels' },
+      { label: 'partnerSubscription', href: '/emploi/abonnements/partenaires' },
     ]
   },
   {
-    label: 'Contact',
+    label: 'contact',
     href: '/contact',
     submenu: [
-      { label: 'Formulaire d\'inscription', href: '/contact/inscription' },
-      { label: 'Adresse France', href: '/contact#france' },
-      { label: 'Adresse Sénégal', href: '/contact#senegal' },
-      { label: 'Email France', href: 'mailto:contact@senfibem.fr' },
-      { label: 'Email Sénégal', href: 'mailto:contact@senfibem.sn' },
-      { label: 'Carte / Localisation', href: '/contact#map' },
+      { label: 'registrationForm', href: '/contact/inscription' },
+      { label: 'franceAddress', href: '/contact#france' },
+      { label: 'senegalAddress', href: '/contact#senegal' },
+      { label: 'franceEmail', href: 'mailto:contact@senfibem.fr' },
+      { label: 'senegalEmail', href: 'mailto:contact@senfibem.sn' },
+      { label: 'mapLocation', href: '/contact#map' },
     ]
   },
 ]
 
 // Connexion/Inscription user types
 const userTypes = [
-  { label: 'Stagiaire', href: '/connexion?type=stagiaire' },
-  { label: 'Candidat', href: '/connexion?type=candidat' },
-  { label: 'Particuliers', href: '/connexion?type=particuliers' },
-  { label: 'Freelance', href: '/connexion?type=freelance' },
-  { label: 'Professionnels', href: '/connexion?type=professionnels' },
-  { label: 'Partenaires', href: '/connexion?type=partenaires' },
-  { label: '── Administrateurs ──', href: '#' },
-  { label: 'Admin Rédacteur', href: '/connexion?type=admin-redacteur' },
-  { label: 'Admin Commercial', href: '/connexion?type=admin-commercial' },
-  { label: 'Admin Développeur', href: '/connexion?type=admin-developpeur' },
-  { label: 'Admin Chef de Projet', href: '/connexion?type=admin-chef-projet' },
-  { label: 'Admin Dirigeant', href: '/connexion?type=admin-dirigeant' },
+  { label: 'userType.stagiaire', href: '/connexion?type=stagiaire' },
+  { label: 'userType.candidat', href: '/connexion?type=candidat' },
+  { label: 'userType.particuliers', href: '/connexion?type=particuliers' },
+  { label: 'userType.freelance', href: '/connexion?type=freelance' },
+  { label: 'userType.professionnels', href: '/connexion?type=professionnels' },
+  { label: 'userType.partenaires', href: '/connexion?type=partenaires' },
+  { label: 'userType.administrateur', href: '#' },
+  { label: 'userType.adminRedacteur', href: '/connexion?type=admin-redacteur' },
+  { label: 'userType.adminCommercial', href: '/connexion?type=admin-commercial' },
+  { label: 'userType.adminDeveloppeur', href: '/connexion?type=admin-developpeur' },
+  { label: 'userType.adminChefProjet', href: '/connexion?type=admin-chef-projet' },
+  { label: 'userType.adminDirigeant', href: '/connexion?type=admin-dirigeant' },
 ]
 
 // Dashboard user types
 const dashboardTypes = [
-  { label: 'Dashboard', href: '/dashboard' },
+  { label: 'dashboard', href: '/dashboard' },
   // { label: 'Candidat', href: '/dashboard/candidat' },
   // { label: 'Particuliers', href: '/dashboard/particuliers' },
   // { label: 'Freelance', href: '/dashboard/freelance' },
@@ -144,10 +145,10 @@ const dashboardTypes = [
 
 // Cart/Panier submenu
 const panierSubmenu = [
-  { label: 'Mon Panier', href: '/panier' },
-  { label: 'Espace Paiement', href: '/panier/paiement' },
-  { label: 'Livraison', href: '/panier/livraison' },
-  { label: 'Historique Commandes', href: '/panier/historique' },
+  { label: 'cart', href: '/panier' },
+  { label: 'paymentSpace', href: '/panier/paiement' },
+  { label: 'delivery', href: '/panier/livraison' },
+  { label: 'orderHistory', href: '/panier/historique' },
 ]
 
 const languages = [
@@ -167,9 +168,12 @@ const languages = [
 
 export default function Header() {
   const { data: session } = useSession()
+  const changeLocale = useChangeLocale()
+  const currentLocale = useCurrentLocale()
+  const t = useScopedI18n('header')
+  const tAuth = useScopedI18n('auth')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  const [selectedLanguage, setSelectedLanguage] = useState(languages[0])
   const [cartCount] = useState(0)
 
   return (
@@ -181,31 +185,31 @@ export default function Header() {
           <div className="flex items-center gap-4 sm:gap-6">
             <div className="hidden md:flex items-center gap-4">
               <a
-                href="tel:+221775914406"
+                href={`tel:${t('utilityBar.phone').replace(/\s/g, '')}`}
                 className="flex items-center gap-1.5 hover:text-white transition-colors duration-200"
               >
                 <Phone className="w-3.5 h-3.5" />
-                <span>+221 77 591 44 06</span>
+                <span>{t('utilityBar.phone')}</span>
               </a>
               <a
-                href="mailto:ds.senagenceb2b99@gmail.com"
+                href={`mailto:${t('utilityBar.email')}`}
                 className="flex items-center gap-1.5 hover:text-white transition-colors duration-200"
               >
                 <Mail className="w-3.5 h-3.5" />
-                <span>ds.senagenceb2b99@gmail.com</span>
+                <span>{t('utilityBar.email')}</span>
               </a>
             </div>
             {/* Mobile simplified tagline */}
             <div className="md:hidden flex items-center gap-2">
               <span className="w-2 h-2 bg-fibem-primary rounded-full animate-pulse"></span>
-              <span className="text-white">Plateforme PRO</span>
+              <span className="text-white">{t('utilityBar.tagline')}</span>
             </div>
           </div>
 
           {/* Right Side: Language & Extras */}
           <div className="flex items-center gap-4">
             <span className="hidden lg:inline text-slate-400">
-              La référence pour vos projets B2B & B2C
+              {t('utilityBar.description')}
             </span>
             <div className="h-3 w-[1px] bg-slate-700 hidden lg:block"></div>
 
@@ -217,8 +221,8 @@ export default function Header() {
                   size="sm"
                   className="h-6 px-1.5 text-slate-200 hover:text-white hover:bg-slate-800 data-[state=open]:bg-slate-800 flex items-center gap-1.5 rounded"
                 >
-                  <span className="text-sm shadow-sm rounded-sm overflow-hidden">{selectedLanguage.flag}</span>
-                  <span className="hidden sm:inline font-normal">{selectedLanguage.name}</span>
+                  <span className="text-sm shadow-sm rounded-sm overflow-hidden">{languages.find(lang => lang.code === currentLocale)?.flag}</span>
+                  <span className="hidden sm:inline font-normal">{languages.find(lang => lang.code === currentLocale)?.name}</span>
                   <ChevronDown className="w-3 h-3 opacity-70" />
                 </Button>
               </DropdownMenuTrigger>
@@ -226,10 +230,10 @@ export default function Header() {
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
-                    onClick={() => setSelectedLanguage(lang)}
+                    onClick={() => changeLocale(lang.code as any)}
                     className={cn(
                       "cursor-pointer",
-                      selectedLanguage.code === lang.code && "bg-slate-100 font-medium"
+                      currentLocale === lang.code && "bg-slate-100 font-medium"
                     )}
                   >
                     <span className="text-lg mr-3 drop-shadow-sm">{lang.flag}</span>
@@ -251,10 +255,10 @@ export default function Header() {
             <Link href="/" className="flex items-center gap-3 shrink-0 group">
               <div className="relative">
                 <div className="w-full h-full border-2 rounded-xl flex items-center justify-center overflow-hidden">
-                  <Image src={"/logo.png"} width={100} height={60} alt="FIBEM Logo" />
+                  <Image src={"/logo.png"} width={100} height={60} alt={t('searchOnFibem')} />
                 </div>
               </div>
-              
+
             </Link>
 
             {/* Desktop Navigation - Centered */}
@@ -266,15 +270,15 @@ export default function Header() {
                       {item.submenu ? (
                         <>
                           <NavigationMenuTrigger className="text-gray-700 hover:text-fibem-primary font-medium bg-transparent hover:bg-gray-50/80 data-[state=open]:bg-gray-50/80 focus:bg-gray-50/80 transition-all rounded-md px-3 py-2 h-auto text-[15px]">
-                            {item.label}
+                            {t(`menu.${item.label}` as any)}
                           </NavigationMenuTrigger>
                           <NavigationMenuContent>
                             <ul className="grid w-[400px] gap-2 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white rounded-xl shadow-xl border-none">
                               {item.submenu.map((subItem) => (
-                                <li key={subItem.href} className={subItem.label.startsWith('──') ? 'col-span-2' : ''}>
-                                  {subItem.label.startsWith('──') ? (
+                                <li key={subItem.href} className={subItem.label.startsWith('subscriptions') ? 'col-span-2' : ''}>
+                                  {subItem.label.startsWith('subscriptions') ? (
                                     <div className="px-3 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wider select-none">
-                                      {subItem.label.replace(/─/g, '').trim()}
+                                      {t(`menu.${subItem.label}` as any)}
                                     </div>
                                   ) : (
                                     <NavigationMenuLink asChild>
@@ -282,7 +286,7 @@ export default function Header() {
                                         href={subItem.href}
                                         className="block select-none space-y-1 rounded-lg p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-50 hover:text-fibem-primary focus:bg-slate-50 focus:text-fibem-primary group"
                                       >
-                                        <div className="text-sm font-medium leading-none group-hover:translate-x-1 transition-transform">{subItem.label}</div>
+                                        <div className="text-sm font-medium leading-none group-hover:translate-x-1 transition-transform">{t(`menu.${subItem.label}` as any)}</div>
                                       </Link>
                                     </NavigationMenuLink>
                                   )}
@@ -297,7 +301,7 @@ export default function Header() {
                             href={item.href}
                             className="text-gray-700 hover:text-fibem-primary font-medium bg-transparent hover:bg-gray-50/80 px-4 py-2 rounded-md transition-all text-[15px] flex items-center"
                           >
-                            {item.label}
+                            {t(`menu.${item.label}` as any)}
                           </Link>
                         </NavigationMenuLink>
                       )}
@@ -314,7 +318,7 @@ export default function Header() {
               <div className="hidden lg:flex w-52 xl:w-60 relative group">
                 <Input
                   type="text"
-                  placeholder="Rechercher..."
+                  placeholder={t('searchPlaceholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="rounded-full bg-gray-50 border-gray-200 pl-4 pr-10 focus:bg-white focus:ring-2 focus:ring-fibem-primary/20 transition-all h-10 text-sm"
@@ -342,40 +346,40 @@ export default function Header() {
                     {session ? (
                       <>
                         <DropdownMenuLabel>
-                          {session.user?.first_name || 'Mon Compte'}
+                          {session.user?.first_name || t('account')}
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem asChild>
                           <Link href="/dashboard" className="cursor-pointer flex items-center gap-2">
                             <Home className="w-4 h-4" />
-                            Tableau de bord
+                            {t('dashboard')}
                           </Link>
                         </DropdownMenuItem>
                         <DropdownMenuItem asChild>
                           <Link href="/dashboard/profil" className="cursor-pointer flex items-center gap-2">
                             <User className="w-4 h-4" />
-                            Mon profil
+                            {t('profile')}
                           </Link>
                         </DropdownMenuItem>
                         <DropdownMenuItem asChild>
                           <Link href="/dashboard/parametres" className="cursor-pointer flex items-center gap-2">
                             <Settings className="w-4 h-4" />
-                            Paramètres
+                            {t('settings')}
                           </Link>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={() => signOut({ callbackUrl: '/' })} className="cursor-pointer flex items-center gap-2 text-red-600">
                           <LogOut className="w-4 h-4" />
-                          Déconnexion
+                          {t('logout')}
                         </DropdownMenuItem>
                       </>
                     ) : (
                       <>
-                        <DropdownMenuLabel>Mon Compte</DropdownMenuLabel>
+                        <DropdownMenuLabel>{t('account')}</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        {userTypes.slice(0, 6).map((type) => (
+                        {userTypes.map((type) => (
                           <DropdownMenuItem key={type.href} asChild>
-                            <Link href={type.href} className="cursor-pointer">{type.label}</Link>
+                            <Link href={type.href} className="cursor-pointer">{tAuth(type.label as any)}</Link>
                           </DropdownMenuItem>
                         ))}
                       </>
@@ -391,13 +395,11 @@ export default function Header() {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-56 mt-2">
-                    <DropdownMenuLabel>Tableau de bord</DropdownMenuLabel>
+                    <DropdownMenuLabel>{t('dashboard')}</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    {dashboardTypes.slice(0, 6).map((type) => (
-                      <DropdownMenuItem key={type.href} asChild>
-                        <Link href={type.href} className="cursor-pointer">{type.label}</Link>
-                      </DropdownMenuItem>
-                    ))}
+                    <DropdownMenuItem asChild>
+                      <Link href="/dashboard" className="cursor-pointer">{t('dashboard')}</Link>
+                    </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
 
@@ -414,13 +416,20 @@ export default function Header() {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-56 mt-2">
-                    <DropdownMenuLabel>Mon Panier</DropdownMenuLabel>
+                    <DropdownMenuLabel>{t('cart')}</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    {panierSubmenu.map((item) => (
-                      <DropdownMenuItem key={item.href} asChild>
-                        <Link href={item.href} className="cursor-pointer">{item.label}</Link>
-                      </DropdownMenuItem>
-                    ))}
+                    <DropdownMenuItem asChild>
+                      <Link href="/panier" className="cursor-pointer">{t('cart')}</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/panier/paiement" className="cursor-pointer">{t('paymentSpace')}</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/panier/livraison" className="cursor-pointer">{t('delivery')}</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/panier/historique" className="cursor-pointer">{t('orderHistory')}</Link>
+                    </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
 
@@ -442,7 +451,7 @@ export default function Header() {
                   <Button asChild className="rounded-full px-6 bg-fibem-primary hover:bg-fibem-primary/90 shadow-md hover:shadow-lg transition-all">
                     <Link href="/inscription" className="flex items-center gap-2">
                       <UserPlus className="w-4 h-4" />
-                      <span className="hidden lg:inline font-bold">Inscription</span>
+                      <span className="hidden lg:inline font-bold">{t('signup')}</span>
                     </Link>
                   </Button>
                 )}
@@ -456,7 +465,7 @@ export default function Header() {
             <div className="relative">
               <Input
                 type="text"
-                placeholder="Rechercher sur FIBEM..."
+                placeholder={t('searchOnFibem')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="rounded-full bg-gray-50 border-gray-200 pl-10 pr-4 focus:bg-white focus:ring-2 focus:ring-fibem-primary/20 transition-all h-10 w-full text-sm"
@@ -479,22 +488,22 @@ export default function Header() {
                     className="block px-6 py-3.5 text-gray-800 hover:bg-gray-50 hover:text-fibem-primary font-semibold text-base flex justify-between items-center"
                     onClick={() => !item.submenu && setMobileMenuOpen(false)}
                   >
-                    {item.label}
+                    {t(`menu.${item.label}` as any)}
                     {item.submenu && <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-fibem-primary transition-colors" />}
                   </Link>
                   {item.submenu && (
                     <ul className="bg-gray-50/50 px-6 pb-3 space-y-1">
                       {item.submenu.map((subItem) => (
                         <li key={subItem.href}>
-                          {subItem.label.startsWith('──') ? (
-                            <div className="px-2 pt-3 pb-1 text-xs font-bold text-gray-400 uppercase">{subItem.label.replace(/─/g, '').trim()}</div>
+                          {subItem.label.startsWith('subscriptions') ? (
+                            <div className="px-2 pt-3 pb-1 text-xs font-bold text-gray-400 uppercase">{t(`menu.${subItem.label}` as any)}</div>
                           ) : (
                             <Link
                               href={subItem.href}
                               className="block px-3 py-2 text-sm text-gray-600 hover:text-fibem-primary hover:bg-white rounded-md transition-all"
                               onClick={() => setMobileMenuOpen(false)}
                             >
-                              {subItem.label}
+                              {t(`menu.${subItem.label}` as any)}
                             </Link>
                           )}
                         </li>
@@ -508,10 +517,10 @@ export default function Header() {
             <li className="p-4 bg-gray-50/50">
               <div className="grid grid-cols-2 gap-3">
                 <Button asChild variant="outline" className="w-full bg-white">
-                  <Link href="/connexion">Connexion</Link>
+                  <Link href="/connexion">{t('login')}</Link>
                 </Button>
                 <Button asChild className="w-full">
-                  <Link href="/inscription">Inscription</Link>
+                  <Link href="/inscription">{t('signup')}</Link>
                 </Button>
               </div>
             </li>

@@ -44,7 +44,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                         const userProfile = await userProfileResponse.json() as User;
 
                         return {
-                            id: userProfile.id,
+                            id: String(userProfile.id),
                             first_name: userProfile.first_name,
                             last_name: userProfile.last_name,
                             email: userProfile.email,

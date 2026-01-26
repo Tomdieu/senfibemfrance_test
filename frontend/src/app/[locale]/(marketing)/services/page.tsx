@@ -5,8 +5,10 @@ import { useSearchParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { fetchServiceCategories } from '@/actions/services';
 import ServiceGrid from '@/components/services/ServiceGrid';
+import { useI18n } from '@/locales/client';
 
 export default function ServicePage() {
+  const t = useI18n();
   const searchParams = useSearchParams();
   const categoryId = searchParams.get('category') ? Number(searchParams.get('category')) : null;
 
@@ -35,15 +37,15 @@ export default function ServicePage() {
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
           </svg>
-          Retour
+          {t('common.back')}
         </button>
       </div>
       <h1 className="text-3xl font-bold mb-4 capitalize">
-        {categoryId && category ? `Services par catégorie: ${category.name}` :
-         categoryId && categoryLoading ? 'Services par catégorie...' :
-         'Services'}
+        {categoryId && category ? `${t('services.title')} : ${category.name}` :
+         categoryId && categoryLoading ? `${t('services.categoryLoading')}` :
+         t('services.title')}
       </h1>
-      <Suspense fallback={<div className="flex justify-center items-center h-64"><p>Chargement des services...</p></div>}>
+      <Suspense fallback={<div className="flex justify-center items-center h-64"><p>{t('services.loading')}</p></div>}>
         <ServiceGrid categoryId={categoryId} />
       </Suspense>
     </div>

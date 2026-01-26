@@ -3,47 +3,50 @@
 import { motion } from 'framer-motion'
 import { ScrollAnimationWrapper } from '@/components/ScrollAnimationWrapper'
 import { Star, Quote } from 'lucide-react'
-
-const testimonials = [
-  {
-    id: 1,
-    name: 'Marie Dupont',
-    role: 'Particulier',
-    avatar: 'MD',
-    rating: 5,
-    text: 'Service impeccable ! J\'ai trouvé un plombier en moins d\'une heure pour une urgence. Très professionnel et tarif transparent.',
-    location: 'Paris'
-  },
-  {
-    id: 2,
-    name: 'Jean-Pierre Martin',
-    role: 'Chef d\'entreprise',
-    avatar: 'JM',
-    rating: 5,
-    text: 'La plateforme nous a permis de recruter rapidement des développeurs qualifiés. Le processus de sélection est très efficace.',
-    location: 'Lyon'
-  },
-  {
-    id: 3,
-    name: 'Fatou Diallo',
-    role: 'Artisan',
-    avatar: 'FD',
-    rating: 5,
-    text: 'En tant qu\'artisan, SEN FIBEM m\'a aidé à développer ma clientèle. Les outils de gestion de devis sont vraiment pratiques.',
-    location: 'Dakar'
-  },
-  {
-    id: 4,
-    name: 'Thomas Bernard',
-    role: 'Freelance',
-    avatar: 'TB',
-    rating: 4,
-    text: 'Excellente plateforme pour les freelances. J\'ai pu trouver des missions régulières et gérer mes factures facilement.',
-    location: 'Marseille'
-  },
-]
+import { useScopedI18n } from '@/locales/client'
 
 export default function TestimonialsSection() {
+  const t = useScopedI18n('home.testimonials')
+
+  const testimonials = [
+    {
+      id: 1,
+      name: 'Marie Dupont',
+      role: t('marie.role' as any),
+      avatar: 'MD',
+      rating: 5,
+      text: t('marie.text' as any),
+      location: 'Paris'
+    },
+    {
+      id: 2,
+      name: 'Jean-Pierre Martin',
+      role: t('jeanPierre.role' as any),
+      avatar: 'JM',
+      rating: 5,
+      text: t('jeanPierre.text' as any),
+      location: 'Lyon'
+    },
+    {
+      id: 3,
+      name: 'Fatou Diallo',
+      role: t('fatou.role' as any),
+      avatar: 'FD',
+      rating: 5,
+      text: t('fatou.text' as any),
+      location: 'Dakar'
+    },
+    {
+      id: 4,
+      name: 'Thomas Bernard',
+      role: t('thomas.role' as any),
+      avatar: 'TB',
+      rating: 4,
+      text: t('thomas.text' as any),
+      location: 'Marseille'
+    },
+  ]
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -70,10 +73,10 @@ export default function TestimonialsSection() {
         <ScrollAnimationWrapper type="fadeInUp">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Ce que disent nos utilisateurs
+              {t('title')}
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Des milliers de professionnels et particuliers nous font confiance
+              {t('subtitle')}
             </p>
           </div>
         </ScrollAnimationWrapper>
@@ -116,11 +119,10 @@ export default function TestimonialsSection() {
                     transition={{ delay: i * 0.05 }}
                   >
                     <Star
-                      className={`w-4 h-4 ${
-                        i < testimonial.rating
-                          ? 'text-yellow-500 fill-yellow-500'
-                          : 'text-gray-300'
-                      }`}
+                      className={`w-4 h-4 ${i < testimonial.rating
+                        ? 'text-yellow-500 fill-yellow-500'
+                        : 'text-gray-300'
+                        }`}
                     />
                   </motion.div>
                 ))}

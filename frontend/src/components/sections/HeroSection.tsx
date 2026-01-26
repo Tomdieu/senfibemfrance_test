@@ -5,11 +5,10 @@ import { Search, MapPin, Briefcase, Users, Building } from 'lucide-react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ScrollAnimationWrapper } from '@/components/ScrollAnimationWrapper'
+import { useScopedI18n } from '@/locales/client'
 
 export default function HeroSection() {
-  // const [searchType, setSearchType] = useState<'services' | 'emploi' | 'professionnels'>('services')
-  // const [searchQuery, setSearchQuery] = useState('')
-  // const [location, setLocation] = useState('')
+  const t = useScopedI18n('home.hero')
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -71,103 +70,15 @@ export default function HeroSection() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
               variants={itemVariants}
             >
-              Votre partenaire pour
-              <span className="text-fibem-accent"> réussir</span>
+              {t('title')}
+              <span className="text-fibem-accent"> {t('succeed')}</span>
             </motion.h1>
             <motion.p
               className="text-xl md:text-2xl mb-8 text-blue-100"
               variants={itemVariants}
             >
-              Services professionnels, recrutement et mise en relation d'experts en France et au Sénégal
+              {t('subtitle')}
             </motion.p>
-
-            {/* Search tabs */}
-            {/* <div className="bg-white rounded-t-xl p-1 inline-flex gap-1">
-              <button
-                onClick={() => setSearchType('services')}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  searchType === 'services'
-                    ? 'bg-fibem-primary text-white'
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}
-              >
-                <Briefcase className="w-4 h-4 inline mr-1" />
-                Services
-              </button>
-              <button
-                onClick={() => setSearchType('emploi')}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  searchType === 'emploi'
-                    ? 'bg-fibem-primary text-white'
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}
-              >
-                <Users className="w-4 h-4 inline mr-1" />
-                Emploi
-              </button>
-              <button
-                onClick={() => setSearchType('professionnels')}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  searchType === 'professionnels'
-                    ? 'bg-fibem-primary text-white'
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}
-              >
-                <Building className="w-4 h-4 inline mr-1" />
-                Professionnels
-              </button>
-            </div> */}
-
-            {/* Search box */}
-            {/* <div className="bg-white rounded-b-xl rounded-tr-xl p-4 shadow-2xl">
-              <div className="flex flex-col md:flex-row gap-3">
-                <div className="flex-1 relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                  <input
-                    type="text"
-                    placeholder={
-                      searchType === 'services'
-                        ? 'Quel service recherchez-vous ?'
-                        : searchType === 'emploi'
-                        ? 'Quel emploi recherchez-vous ?'
-                        : 'Quel professionnel recherchez-vous ?'
-                    }
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary text-gray-800"
-                  />
-                </div>
-                <div className="md:w-48 relative">
-                  <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                  <input
-                    type="text"
-                    placeholder="Localisation"
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary text-gray-800"
-                  />
-                </div>
-                <button className="px-8 py-3 bg-fibem-accent text-white font-semibold rounded-lg hover:bg-amber-600 transition-colors">
-                  Rechercher
-                </button>
-              </div>
-            </div> */}
-
-            {/* Quick stats */}
-            {/* <div className="flex flex-wrap gap-8 mt-8">
-              <div>
-                <p className="text-3xl font-bold text-white">5000+</p>
-                <p className="text-blue-200">Professionnels</p>
-              </div>
-              <div>
-                <p className="text-3xl font-bold text-white">1200+</p>
-                <p className="text-blue-200">Entreprises</p>
-              </div>
-              <div>
-                <p className="text-3xl font-bold text-white">98%</p>
-                <p className="text-blue-200">Satisfaction</p>
-              </div>
-            </div> */}
           </motion.div>
 
           {/* Right content - Feature cards */}
@@ -182,8 +93,8 @@ export default function HeroSection() {
                 <div className="w-14 h-14 bg-fibem-accent rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <Users className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-white font-semibold text-lg mb-2">Espace Candidat</h3>
-                <p className="text-blue-200 text-sm">Trouvez votre prochain emploi parmi des centaines d'offres</p>
+                <h3 className="text-white font-semibold text-lg mb-2">{t('cta1')}</h3>
+                <p className="text-blue-200 text-sm">{t('cta1Description')}</p>
               </Link>
             </motion.div>
 
@@ -192,8 +103,8 @@ export default function HeroSection() {
                 <div className="w-14 h-14 bg-green-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <Building className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-white font-semibold text-lg mb-2">Espace Recruteur</h3>
-                <p className="text-blue-200 text-sm">Recrutez les meilleurs talents pour votre entreprise</p>
+                <h3 className="text-white font-semibold text-lg mb-2">{t('cta2')}</h3>
+                <p className="text-blue-200 text-sm">{t('cta2Description')}</p>
               </Link>
             </motion.div>
 
@@ -202,8 +113,8 @@ export default function HeroSection() {
                 <div className="w-14 h-14 bg-purple-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <Briefcase className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-white font-semibold text-lg mb-2">Services Pro</h3>
-                <p className="text-blue-200 text-sm">Accédez à nos prestations de services professionnels</p>
+                <h3 className="text-white font-semibold text-lg mb-2">{t('cta3')}</h3>
+                <p className="text-blue-200 text-sm">{t('cta3Description')}</p>
               </Link>
             </motion.div>
 
@@ -214,8 +125,8 @@ export default function HeroSection() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                 </div>
-                <h3 className="text-white font-semibold text-lg mb-2">Devis & Factures</h3>
-                <p className="text-blue-200 text-sm">Gérez vos devis et factures en toute simplicité</p>
+                <h3 className="text-white font-semibold text-lg mb-2">{t('cta4')}</h3>
+                <p className="text-blue-200 text-sm">{t('cta4Description')}</p>
               </Link>
             </motion.div>
           </motion.div>

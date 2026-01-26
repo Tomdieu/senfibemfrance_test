@@ -137,7 +137,7 @@ export default function JobDetailsPage({ params }: JobDetailsPageProps) {
             </div>
           </section>
 
-          <section className="bg-blue-900 rounded-2xl p-8 text-white shadow-xl overflow-hidden relative">
+          {/* <section className="bg-blue-900 rounded-2xl p-8 text-white shadow-xl overflow-hidden relative">
             <div className="relative z-10">
               <h3 className="text-2xl font-bold mb-4 text-fibem-accent">
                 À propos de l'entreprise
@@ -157,9 +157,8 @@ export default function JobDetailsPage({ params }: JobDetailsPageProps) {
                 </span>
               </div>
             </div>
-            {/* Simple decorative element */}
             <div className="absolute top-0 right-0 -transtion-x-1/2 -translate-y-1/2 w-64 h-64 bg-white/5 rounded-full blur-3xl" />
-          </section>
+          </section> */}
         </div>
 
         <div>

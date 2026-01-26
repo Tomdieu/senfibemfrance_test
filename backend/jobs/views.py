@@ -11,8 +11,11 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
 from .models import JobOffer, JobApplication
 from .serializers import JobOfferSerializer, JobApplicationSerializer
+from .filters import JobOfferFilter, JobApplicationFilter
 from drf_yasg.utils import swagger_auto_schema
 
 from django.utils.decorators import method_decorator
@@ -30,7 +33,9 @@ class JobOfferViewSet(viewsets.ModelViewSet):
     Includes a custom action 'get_applications' to retrieve all applications for a specific job offer.
     """
     serializer_class = JobOfferSerializer
-    filterset_fields = ['contract_type', 'location', 'company_name', 'recruiter', 'is_active']
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filterset_class = JobOfferFilter
+    search_fields = ['title', 'description', 'location', 'company_name', 'contract_type']
 
     def get_permissions(self):
         if self.action in ['create', 'update', 'destroy']:
@@ -88,7 +93,8 @@ class JobApplicationViewSet(viewsets.ModelViewSet):
     queryset = JobApplication.objects.all()
     serializer_class = JobApplicationSerializer
     permission_classes = [permissions.IsAuthenticated]
-    filterset_fields = ['status', 'job_offer', 'candidate']
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = JobApplicationFilter
     parser_classes = [JSONParser, MultiPartParser, FormParser]
 
     def perform_create(self, serializer):

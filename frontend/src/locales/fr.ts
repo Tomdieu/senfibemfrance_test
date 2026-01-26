@@ -554,6 +554,76 @@ export default {
       priceHigh: 'Prix : Décroissant',
       newest: 'Plus récents',
     },
+    fallback: {
+      hero: {
+        title: 'Solutions & Ressources Professionnelles',
+        subtitle: 'Tout ce dont vous avez besoin pour gérer vos transactions et vos talents au même endroit.',
+      },
+      strategic: {
+        title: 'Accompagnement Stratégique',
+        prestations: {
+          title: 'Prestations',
+          description: 'Découvrez nos services B2B complets pour la mise en relation et les transactions sécurisées entre entreprises.',
+        },
+        tarifs: {
+          title: 'Tarifs',
+          description: 'Transparence totale sur nos prix. Consultez nos grilles tarifaires adaptées à chaque profil professionnel.',
+        },
+        brochure: {
+          title: 'Plaquette',
+          description: 'Téléchargez notre brochure officielle pour découvrir l\'ensemble de notre écosystème FIBEM.',
+        },
+        learnMore: 'En savoir plus',
+        viewPricing: 'Voir les tarifs',
+        downloadBrochure: 'Télécharger la plaquette',
+      },
+      humanCapital: {
+        title: 'Gestion du Capital Humain',
+        cvForm: {
+          title: 'Formulaire CV',
+          description: 'Créez des CV professionnels standardisés pour faciliter le recrutement et la gestion des talents.',
+        },
+        candidateSheet: {
+          title: 'Fiche Candidat',
+          description: 'Centralisez toutes les informations de vos candidats dans un format structuré et professionnel.',
+        },
+        timesheet: {
+          title: 'Feuille d\'heures',
+          description: 'Suivez précisément le temps de travail de vos collaborateurs avec nos outils de gestion horaire.',
+        },
+      },
+      administrative: {
+        title: 'Outils Administratifs & Comptables',
+        quoteTemplate: {
+          title: 'Modèle de Devis',
+          description: 'Générez des devis professionnels conformes aux standards B2B pour vos propositions commerciales.',
+        },
+        invoiceTemplate: {
+          title: 'Modèle de Facture',
+          description: 'Créez des factures conformes aux normes comptables pour une gestion financière rigoureuse.',
+        },
+        creditNote: {
+          title: 'Modèle d\'Avoir',
+          description: 'Émettez des avoirs professionnels pour gérer les retours et ajustements commerciaux.',
+        },
+        establishmentSheet: {
+          title: 'Fiche Établissement',
+          description: 'Documentez vos partenaires et fournisseurs avec des fiches complètes et structurées.',
+        },
+        access: 'Accéder',
+      },
+      ecosystem: {
+        title: 'Ouverture sur l\'Écosystème',
+        description: 'FIBEM s\'inscrit dans un réseau de partenaires stratégiques pour vous offrir un accompagnement complet. Découvrez nos plateformes partenaires et ressources externes.',
+        explorePartners: 'Découvrir nos partenaires',
+        contactUs: 'Nous contacter',
+      },
+      footerCta: {
+        title: 'Commencer votre projet aujourd\'hui',
+        subtitle: 'Rejoignez des milliers d\'entreprises qui font confiance à FIBEM pour leurs transactions B2B.',
+        button: 'Démarrer maintenant',
+      },
+    },
   },
   jobs: {
     title: 'Offres d\'emploi',

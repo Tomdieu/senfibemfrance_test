@@ -116,7 +116,7 @@ export default function ServiceGrid({ categoryId }: ServiceGridProps) {
             </div> */}
 
             <div className="pt-3 border-t mt-auto">
-              <p className="font-bold text-fibem-primary">À partir de {service.price}€</p>
+              <p className="font-bold text-fibem-primary">À partir de {service.base_price}€</p>
             </div>
           </div>
         </div>

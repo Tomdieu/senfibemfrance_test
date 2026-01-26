@@ -3,35 +3,38 @@
 import { motion } from 'framer-motion'
 import { ScrollAnimationWrapper } from '@/components/ScrollAnimationWrapper'
 import { Search, UserCheck, FileText, ThumbsUp } from 'lucide-react'
-
-const steps = [
-  {
-    icon: Search,
-    title: 'Recherchez',
-    description: 'Trouvez le service ou le professionnel dont vous avez besoin parmi notre réseau qualifié.',
-    color: 'bg-blue-500'
-  },
-  {
-    icon: UserCheck,
-    title: 'Sélectionnez',
-    description: 'Comparez les profils, consultez les avis et choisissez le prestataire idéal.',
-    color: 'bg-green-500'
-  },
-  {
-    icon: FileText,
-    title: 'Demandez un devis',
-    description: 'Obtenez un devis détaillé et transparent adapté à vos besoins spécifiques.',
-    color: 'bg-purple-500'
-  },
-  {
-    icon: ThumbsUp,
-    title: 'Validez & Payez',
-    description: 'Confirmez la prestation et payez en toute sécurité via notre plateforme.',
-    color: 'bg-fibem-accent'
-  },
-]
+import { useScopedI18n } from '@/locales/client'
 
 export default function HowItWorksSection() {
+  const t = useScopedI18n('home.howItWorks')
+
+  const steps = [
+    {
+      icon: Search,
+      title: t('step1Title'),
+      description: t('step1Desc'),
+      color: 'bg-blue-500'
+    },
+    {
+      icon: UserCheck,
+      title: t('step2Title'),
+      description: t('step2Desc'),
+      color: 'bg-green-500'
+    },
+    {
+      icon: FileText,
+      title: t('step3Title'),
+      description: t('step3Desc'),
+      color: 'bg-purple-500'
+    },
+    {
+      icon: ThumbsUp,
+      title: t('step4Title'),
+      description: t('step4Desc'),
+      color: 'bg-fibem-accent'
+    },
+  ]
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -58,10 +61,10 @@ export default function HowItWorksSection() {
         <ScrollAnimationWrapper type="fadeInUp">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Comment ça marche ?
+              {t('title')}
             </h2>
             <p className="text-gray-300 max-w-2xl mx-auto">
-              En quelques étapes simples, trouvez le professionnel qu'il vous faut
+              {t('subtitle')}
             </p>
           </div>
         </ScrollAnimationWrapper>

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ScrollAnimationWrapper } from '@/components/ScrollAnimationWrapper'
+import { useScopedI18n } from '@/locales/client'
 
 const partners = [
   { name: 'France Travail', logo: 'FT' },
@@ -13,6 +14,8 @@ const partners = [
 ]
 
 export default function PartnersSection() {
+  const t = useScopedI18n('home.partners')
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -37,7 +40,7 @@ export default function PartnersSection() {
     <section className="py-12 border-t border-b">
       <div className="max-w-7xl mx-auto px-4">
         <ScrollAnimationWrapper type="fadeIn">
-          <p className="text-center text-gray-500 mb-8">Ils nous font confiance</p>
+          <p className="text-center text-gray-500 mb-8">{t('trust')}</p>
         </ScrollAnimationWrapper>
 
         <motion.div

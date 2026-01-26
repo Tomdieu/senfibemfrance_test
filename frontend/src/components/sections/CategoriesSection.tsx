@@ -19,6 +19,7 @@ import {
   GraduationCap
 } from 'lucide-react'
 import { fetchServiceCategories } from '@/actions/services';
+import { useI18n, useScopedI18n } from '@/locales/client';
 
 // Mapping of category names to icons and colors
 const categoryIcons: Record<string, { icon: any; color: string }> = {
@@ -39,6 +40,8 @@ const categoryIcons: Record<string, { icon: any; color: string }> = {
 export default function CategoriesSection() {
   const [categories, setCategories] = useState<ServiceCategory[]>([]);
   const [loading, setLoading] = useState(true);
+  const t = useI18n();
+  const tHome = useScopedI18n('home.categories');
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -80,7 +83,7 @@ export default function CategoriesSection() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-center items-center h-64">
-            <p>Chargement des catégories...</p>
+            <p>{t('services.categoryLoading')}</p>
           </div>
         </div>
       </section>
@@ -93,10 +96,10 @@ export default function CategoriesSection() {
         <ScrollAnimationWrapper type="fadeInUp">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Nos catégories de services
+              {tHome('title')}
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Découvrez une large gamme de services professionnels pour tous vos besoins
+              {tHome('subtitle')}
             </p>
           </div>
         </ScrollAnimationWrapper>
@@ -114,13 +117,13 @@ export default function CategoriesSection() {
               <div key={category.id}>
                 <Link
                   href={`/services?category=${category.id}`}
-                  className="bg-white rounded-xl p-4 text-center"
+                  className="bg-white rounded-xl p-4 text-center block h-full hover:shadow-md transition-shadow"
                 >
                   <div className={`${iconInfo.color} w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-3`}>
                     <iconInfo.icon className="w-7 h-7 text-white" />
                   </div>
                   <h3 className="font-semibold text-gray-800 text-sm mb-1">{category.name}</h3>
-                  <p className="text-xs text-gray-500">Catégorie</p>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider">{t('services.filters.title')}</p>
                 </Link>
               </div>
             );
@@ -133,7 +136,7 @@ export default function CategoriesSection() {
               href="/services"
               className="inline-flex items-center gap-2 px-6 py-3 bg-fibem-primary text-white rounded-lg hover:bg-fibem-dark transition-colors"
             >
-              Voir toutes les catégories
+              {tHome('viewAll')}
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>

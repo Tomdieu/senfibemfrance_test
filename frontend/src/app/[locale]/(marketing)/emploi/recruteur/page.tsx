@@ -64,14 +64,14 @@ export default function RecruteurPage() {
           {/* Quick actions */}
           <div className="flex flex-wrap gap-4">
             <Link
-              href="/emploi/recruteur/nouvelle-offre"
+              href="#"
               className="px-8 py-4 bg-fibem-accent text-white font-bold rounded-xl hover:bg-orange-500 transform hover:-translate-y-1 transition-all duration-300 shadow-lg flex items-center gap-3"
             >
               <Plus className="w-5 h-5" />
               {t('hero.actions.post')}
             </Link>
             <Link
-              href="/emploi/recruteur/cvtheque"
+              href="#"
               className="px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 font-bold rounded-xl hover:bg-white/20 transform hover:-translate-y-1 transition-all duration-300 flex items-center gap-3"
             >
               <Search className="w-5 h-5" />

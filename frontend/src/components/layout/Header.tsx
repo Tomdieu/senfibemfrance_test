@@ -41,6 +41,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
+import { useSearchStore } from '@/stores/searchStore'
 
 interface SubMenuItem {
   label: string
@@ -164,6 +165,7 @@ const languages = [
 export default function Header() {
   const { data: session } = useSession()
   const router = useRouter()
+  const { setOpen } = useSearchStore()
   const changeLocale = useChangeLocale()
   const currentLocale = useCurrentLocale()
   const t = useScopedI18n('header')
@@ -250,7 +252,7 @@ export default function Header() {
             {/* Logo Section */}
             <Link href="/" className="flex items-center gap-3 shrink-0 group">
               <div className="relative">
-                <div className="w-full h-full border-2 rounded-xl flex items-center justify-center overflow-hidden">
+                <div className="w-full h-full rounded-xl flex items-center justify-center overflow-hidden">
                   <Image src={"/logo.png"} width={100} height={60} alt={t('searchOnFibem')} />
                 </div>
               </div>
@@ -317,6 +319,7 @@ export default function Header() {
               <Button
                 size="icon"
                 variant="ghost"
+                onClick={() => setOpen(true)}
                 className="h-9 w-9 text-gray-600 hover:text-fibem-primary hover:bg-fibem-primary/5 rounded-full transition-all"
               >
                 <Search className="w-5 h-5" />

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   Facebook,
   Twitter,
@@ -102,15 +103,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
           {/* Company info */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
-                <span className="text-fibem-primary font-bold text-lg">{t('common.fb')}</span>
+            <Link href="/" className="flex items-center gap-3 shrink-0 group">
+              <div className="relative">
+                <div className="w-full h-full rounded-xl flex items-center justify-center overflow-hidden">
+                  <Image src={"/logo.png"} width={100} height={60} alt={t('header.searchOnFibem')} />
+                </div>
               </div>
-              <div>
-                <h2 className="font-bold text-xl">{tFooter('company.title')}</h2>
-                <p className="text-sm text-solid-500">{t('common.france')}</p>
-              </div>
-            </div>
+            </Link>
             <p className="text-solid-500 mb-4 text-sm">
               {tFooter('company.subtitle')}
             </p>

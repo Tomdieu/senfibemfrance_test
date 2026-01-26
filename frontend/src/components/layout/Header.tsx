@@ -57,12 +57,14 @@ const menuItems: MenuItem[] = [
   {
     label: 'home',
     href: '/',
-    submenu: [
-      { label: 'about', href: '/a-propos' },
-      { label: 'whoAreWe', href: '/qui-sommes-nous' },
-      { label: 'blog', href: '/blog' },
-      { label: 'news', href: '/actualites' },
-    ]
+  },
+  {
+    label: 'about',
+    href: '/a-propos',
+  },
+  {
+    label: 'news',
+    href: '/actualites',
   },
   {
     label: 'services',
@@ -269,8 +271,10 @@ export default function Header() {
                     <NavigationMenuItem key={item.label}>
                       {item.submenu ? (
                         <>
-                          <NavigationMenuTrigger className="text-gray-700 hover:text-fibem-primary font-medium bg-transparent hover:bg-gray-50/80 data-[state=open]:bg-gray-50/80 focus:bg-gray-50/80 transition-all rounded-md px-3 py-2 h-auto text-[15px]">
-                            {t(`menu.${item.label}` as any)}
+                          <NavigationMenuTrigger asChild className="text-gray-700 hover:text-fibem-primary font-medium bg-transparent hover:bg-gray-50/80 data-[state=open]:bg-gray-50/80 focus:bg-gray-50/80 transition-all rounded-md px-3 py-2 h-auto text-[15px]">
+                            <Link href={item.href}>
+                              {t(`menu.${item.label}` as any)}
+                            </Link>
                           </NavigationMenuTrigger>
                           <NavigationMenuContent>
                             <ul className="grid w-[400px] gap-2 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white rounded-xl shadow-xl border-none">
@@ -314,23 +318,14 @@ export default function Header() {
             {/* Right Actions: Search & Tools */}
             <div className="flex items-center gap-1.5 sm:gap-2">
 
-              {/* Search Bar (Desktop) */}
-              <div className="hidden lg:flex w-52 xl:w-60 relative group">
-                <Input
-                  type="text"
-                  placeholder={t('searchPlaceholder')}
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="rounded-full bg-gray-50 border-gray-200 pl-4 pr-10 focus:bg-white focus:ring-2 focus:ring-fibem-primary/20 transition-all h-10 text-sm"
-                />
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  className="absolute right-0 top-0 h-10 w-10 text-gray-400 hover:text-fibem-primary rounded-full hover:bg-transparent"
-                >
-                  <Search className="w-4 h-4" />
-                </Button>
-              </div>
+              {/* Search Icon Button */}
+              <Button
+                size="icon"
+                variant="ghost"
+                className="h-9 w-9 text-gray-600 hover:text-fibem-primary hover:bg-fibem-primary/5 rounded-full transition-all"
+              >
+                <Search className="w-5 h-5" />
+              </Button>
 
               {/* Right Icons Group */}
               <div className="flex items-center border-l border-gray-200 pl-2 lg:pl-6 ml-2 lg:ml-4 gap-1 sm:gap-2">
@@ -460,19 +455,6 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Mobile Search Bar (Expandable or always visible on very small screens) */}
-          <div className="lg:hidden mt-3 pb-1">
-            <div className="relative">
-              <Input
-                type="text"
-                placeholder={t('searchOnFibem')}
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="rounded-full bg-gray-50 border-gray-200 pl-10 pr-4 focus:bg-white focus:ring-2 focus:ring-fibem-primary/20 transition-all h-10 w-full text-sm"
-              />
-              <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-3" />
-            </div>
-          </div>
         </div>
       </div>
 

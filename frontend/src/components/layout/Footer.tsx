@@ -13,45 +13,48 @@ import {
   MapPin,
   Send
 } from 'lucide-react'
-
-const footerLinks = {
-  accueil: [
-    { label: 'À propos', href: '/a-propos' },
-    { label: 'Qui sommes-nous', href: '/qui-sommes-nous' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Actualités', href: '/actualites' },
-  ],
-  services: [
-    { label: 'Prestations', href: '/services/prestations' },
-    { label: 'Tarifs', href: '/services/tarifs' },
-    { label: 'Devis & Factures', href: '/services/devis-factures' },
-    { label: 'Plaquette', href: '/services/plaquette' },
-  ],
-  emploi: [
-    { label: 'Espace Candidat', href: '/emploi/candidat' },
-    { label: 'Espace Recruteur', href: '/emploi/recruteur' },
-    { label: 'Offres d\'emploi', href: '/emploi/offres' },
-    { label: 'Abonnements', href: '/emploi/abonnements' },
-  ],
-  legal: [
-    { label: 'Mentions légales', href: '/mentions-legales' },
-    { label: 'CGV', href: '/cgv' },
-    { label: 'Politique de confidentialité', href: '/confidentialite' },
-    { label: 'Cookies', href: '/cookies' },
-  ],
-}
-
-const socialLinks = [
-  { icon: Facebook, href: 'https://facebook.com/senfibem', label: 'Facebook' },
-  { icon: Twitter, href: 'https://twitter.com/senfibem', label: 'Twitter' },
-  { icon: Linkedin, href: 'https://linkedin.com/company/senfibem', label: 'LinkedIn' },
-  { icon: Instagram, href: 'https://instagram.com/senfibem', label: 'Instagram' },
-  { icon: Youtube, href: 'https://youtube.com/senfibem', label: 'YouTube' },
-]
+import { useI18n, useScopedI18n } from '@/locales/client'
 
 export default function Footer() {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
+  const t = useI18n()
+  const tFooter = useScopedI18n('footer')
+
+  const footerLinks = {
+    accueil: [
+      { label: tFooter('links.about'), href: '/a-propos' },
+      { label: tFooter('links.whoAreWe'), href: '/qui-sommes-nous' },
+      { label: tFooter('links.blog'), href: '/blog' },
+      { label: tFooter('links.news'), href: '/actualites' },
+    ],
+    services: [
+      { label: tFooter('links.serviceOfferings'), href: '/services/prestations' },
+      { label: tFooter('links.rates'), href: '/services/tarifs' },
+      { label: tFooter('links.quotesInvoices'), href: '/services/devis-factures' },
+      { label: tFooter('links.brochure'), href: '/services/plaquette' },
+    ],
+    emploi: [
+      { label: tFooter('links.candidateSpace'), href: '/emploi/candidat' },
+      { label: tFooter('links.recruiterSpace'), href: '/emploi/recruteur' },
+      { label: tFooter('links.jobOffers'), href: '/emploi/offres' },
+      { label: tFooter('links.subscriptions'), href: '/emploi/abonnements' },
+    ],
+    legal: [
+      { label: tFooter('links.legalNotice'), href: '/mentions-legales' },
+      { label: tFooter('links.termsOfService'), href: '/cgv' },
+      { label: tFooter('links.privacyPolicy'), href: '/confidentialite' },
+      { label: tFooter('links.cookiePolicy'), href: '/cookies' },
+    ],
+  }
+
+  const socialLinks = [
+    { icon: Facebook, href: 'https://facebook.com/senfibem', label: tFooter('social.facebook') },
+    { icon: Twitter, href: 'https://twitter.com/senfibem', label: tFooter('social.twitter') },
+    { icon: Linkedin, href: 'https://linkedin.com/company/senfibem', label: tFooter('social.linkedin') },
+    { icon: Instagram, href: 'https://instagram.com/senfibem', label: tFooter('social.instagram') },
+    { icon: Youtube, href: 'https://youtube.com/senfibem', label: tFooter('social.youtube') },
+  ]
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -67,13 +70,13 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
-              <h3 className="text-xl font-bold">Inscrivez-vous à notre newsletter</h3>
-              <p className="text-blue-100">Recevez nos dernières offres et actualités</p>
+              <h3 className="text-xl font-bold">{tFooter('newsletter.title')}</h3>
+              <p className="text-blue-100">{tFooter('newsletter.subtitle')}</p>
             </div>
             <form onSubmit={handleNewsletterSubmit} className="flex gap-2 w-full md:w-auto">
               <input
                 type="email"
-                placeholder="Votre adresse email"
+                placeholder={tFooter('newsletter.placeholder')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -84,11 +87,11 @@ export default function Footer() {
                 className="px-6 py-2 bg-fibem-accent text-white rounded-lg hover:bg-amber-600 transition-colors flex items-center gap-2"
               >
                 <Send className="w-4 h-4" />
-                <span className="hidden sm:inline">S'inscrire</span>
+                <span className="hidden sm:inline">{tFooter('newsletter.button')}</span>
               </button>
             </form>
             {subscribed && (
-              <p className="text-green-300 text-sm">Merci pour votre inscription !</p>
+              <p className="text-green-300 text-sm">{tFooter('newsletter.success')}</p>
             )}
           </div>
         </div>
@@ -101,51 +104,51 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
-                <span className="text-fibem-primary font-bold text-lg">FB</span>
+                <span className="text-fibem-primary font-bold text-lg">{t('common.fb')}</span>
               </div>
               <div>
-                <h2 className="font-bold text-xl">SEN FIBEM</h2>
-                <p className="text-sm text-solid-500">FRANCE</p>
+                <h2 className="font-bold text-xl">{tFooter('company.title')}</h2>
+                <p className="text-sm text-solid-500">{t('common.france')}</p>
               </div>
             </div>
             <p className="text-solid-500 mb-4 text-sm">
-              Plateforme de mise en relation professionnelle, recrutement et services aux entreprises en France et au Sénégal.
+              {tFooter('company.subtitle')}
             </p>
 
             {/* Contact France */}
             <div className="mb-4">
-              <h4 className="font-semibold text-slate-50 mb-2">🇨🇵France</h4>
+              <h4 className="font-semibold text-slate-50 mb-2">🇨🇵{tFooter('company.france')}</h4>
               <div className="space-y-1 text-sm text-solid-500">
                 <p className="flex items-center gap-2">
                   <MapPin className="w-4 h-4" />
-                  Paris, France
+                  {tFooter('company.franceAddress')}
                 </p>
                 <p className="flex items-center gap-2">
                   <Phone className="w-4 h-4" />
-                  +33 1 XX XX XX XX
+                  {tFooter('company.francePhone')}
                 </p>
                 <p className="flex items-center gap-2">
                   <Mail className="w-4 h-4" />
-                  contact@senfibem.fr
+                  {tFooter('company.franceEmail')}
                 </p>
               </div>
             </div>
 
             {/* Contact Sénégal */}
             <div>
-              <h4 className="font-semibold text-slate-50 mb-2">🇸🇳Sénégal</h4>
+              <h4 className="font-semibold text-slate-50 mb-2">🇸🇳{tFooter('company.senegal')}</h4>
               <div className="space-y-1 text-sm text-solid-500">
                 <p className="flex items-center gap-2">
                   <MapPin className="w-4 h-4" />
-                  Dakar, Sénégal
+                  {tFooter('company.senegalAddress')}
                 </p>
                 <p className="flex items-center gap-2">
                   <Phone className="w-4 h-4" />
-                  +221 XX XXX XX XX
+                  {tFooter('company.senegalPhone')}
                 </p>
                 <p className="flex items-center gap-2">
                   <Mail className="w-4 h-4" />
-                  contact@senfibem.sn
+                  {tFooter('company.senegalEmail')}
                 </p>
               </div>
             </div>
@@ -153,7 +156,7 @@ export default function Footer() {
 
           {/* Accueil links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Accueil</h3>
+            <h3 className="font-semibold text-lg mb-4">{t('common.home')}</h3>
             <ul className="space-y-2">
               {footerLinks.accueil.map((link) => (
                 <li key={link.href}>
@@ -170,7 +173,7 @@ export default function Footer() {
 
           {/* Services links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Services</h3>
+            <h3 className="font-semibold text-lg mb-4">{t('common.services')}</h3>
             <ul className="space-y-2">
               {footerLinks.services.map((link) => (
                 <li key={link.href}>
@@ -187,7 +190,7 @@ export default function Footer() {
 
           {/* Emploi links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Emploi</h3>
+            <h3 className="font-semibold text-lg mb-4">{t('common.jobs')}</h3>
             <ul className="space-y-2">
               {footerLinks.emploi.map((link) => (
                 <li key={link.href}>
@@ -204,7 +207,7 @@ export default function Footer() {
 
           {/* Legal links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Informations</h3>
+            <h3 className="font-semibold text-lg mb-4">{tFooter('links.legal')}</h3>
             <ul className="space-y-2">
               {footerLinks.legal.map((link) => (
                 <li key={link.href}>
@@ -224,7 +227,7 @@ export default function Footer() {
         <div className="border-t border-gray-700 mt-8 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <span className="text-solid-500 text-sm">Suivez-nous :</span>
+              <span className="text-solid-500 text-sm">{tFooter('social.followUs')}</span>
               <div className="flex items-center gap-3">
                 {socialLinks.map((social) => (
                   <a
@@ -241,7 +244,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-solid-500 text-sm text-center md:text-right">
-              © {new Date().getFullYear()} SEN FIBEM FRANCE. Tous droits réservés.
+              {tFooter('copyright', { year: new Date().getFullYear().toString() })}
             </p>
           </div>
         </div>

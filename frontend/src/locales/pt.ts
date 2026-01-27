@@ -524,6 +524,21 @@ export default {
       senegal: 'Endereço no Senegal',
     },
   },
+  news: {
+    badge: 'Notícias',
+    title: 'Notícias FIBEM',
+    subtitle: 'Descubra as últimas notícias e tendências do mundo B2B franco-africano',
+    searchPlaceholder: 'Pesquisar um artigo...',
+    featured: 'Artigos em destaque',
+    allNews: 'Todos os artigos',
+    readMore: 'Ler mais',
+    newsletter: {
+      title: 'Mantenha-se informado',
+      subtitle: 'Receba nossas últimas notícias diretamente na sua caixa de entrada',
+      placeholder: 'Seu endereço de e-mail',
+      subscribe: 'Inscrever-se'
+    }
+  },
   dashboard: {
     title: 'Painel',
     welcome: 'Bem-vindo, {name}!',

@@ -850,6 +850,21 @@ export default {
       contactButton: 'Nous contacter',
     },
   },
+  news: {
+    badge: 'Actualités',
+    title: 'Actualités FIBEM',
+    subtitle: 'Découvrez les dernières actualités et tendances du monde B2B franco-africain',
+    searchPlaceholder: 'Rechercher un article...',
+    featured: 'Articles mis en avant',
+    allNews: 'Tous les articles',
+    readMore: 'Lire plus',
+    newsletter: {
+      title: 'Restez informé',
+      subtitle: 'Recevez nos dernières actualités directement dans votre boîte mail',
+      placeholder: 'Votre adresse email',
+      subscribe: 'S\'abonner'
+    }
+  },
   dashboard: {
     title: 'Tableau de bord',
     welcome: 'Bienvenue, {name} !',

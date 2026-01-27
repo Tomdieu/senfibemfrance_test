@@ -752,4 +752,73 @@ export default {
       },
     },
   },
+  about: {
+    title: 'À propos de nous',
+    underConstruction: 'Page en construction. Contenu pour À propos à venir.',
+    hero: {
+      title: 'Accompagner la transmission d\'entreprise au cœur de Madagascar',
+      subtitle: 'FIBEM facilite l\'achat et la vente d\'entreprises (Fonds de commerce, PME, TPE) avec professionnalisme et transparence',
+    },
+    ourHistory: {
+      title: 'Notre Histoire',
+      paragraph1: 'FIBEM est née d\'une vision claire : professionnaliser le marché de la transmission d\'entreprises à Madagascar et en Afrique francophone. Face à un marché informel et fragmenté, nous avons créé une plateforme digitale moderne pour sécuriser et faciliter les transactions B2B.',
+      paragraph2: 'Notre mission est de connecter vendeurs et acheteurs d\'entreprises dans un environnement sécurisé, transparent et professionnel. Nous accompagnons chaque transaction avec expertise et rigueur, de l\'évaluation initiale jusqu\'à la finalisation de la vente.',
+      paragraph3: 'Aujourd\'hui, FIBEM est devenue la référence pour l\'achat et la vente d\'entreprises, avec une présence établie en France et au Sénégal, et une expansion continue vers de nouveaux marchés.',
+    },
+    ourVision: {
+      title: 'Notre Vision',
+      subtitle: 'Transformer le marché B2B africain',
+      description: 'Devenir la plateforme de référence pour toutes les transactions d\'entreprises en Afrique francophone, en apportant transparence, sécurité et professionnalisme à chaque étape du processus.',
+    },
+    ourValues: {
+      title: 'Nos Valeurs',
+      subtitle: 'Les principes qui guident notre action au quotidien',
+      expertise: {
+        title: 'Expertise',
+        description: 'Une connaissance approfondie du tissu économique pour des transactions sécurisées',
+      },
+      security: {
+        title: 'Sécurité',
+        description: 'Annonces vérifiées et processus sécurisés pour protéger acheteurs et vendeurs',
+      },
+      innovation: {
+        title: 'Innovation',
+        description: 'Une plateforme digitale moderne pour faciliter les transactions B2B',
+      },
+    },
+    impact: {
+      title: 'L\'Impact FIBEM',
+      subtitle: 'Des chiffres qui témoignent de notre engagement et de notre croissance',
+      stats: {
+        experience: 'Années d\'expertise',
+        companies: 'Entreprises listées',
+        satisfaction: 'Taux de satisfaction',
+        countries: 'Pays (France & Sénégal)',
+      },
+    },
+    team: {
+      title: 'Une Équipe Dédiée',
+      subtitle: 'Des experts passionnés au service de vos transactions',
+      roles: {
+        evaluation: {
+          title: 'Experts en évaluation',
+          description: 'Valorisation précise de votre entreprise',
+        },
+        legal: {
+          title: 'Conseillers juridiques',
+          description: 'Sécurisation de toutes les étapes légales',
+        },
+        commercial: {
+          title: 'Accompagnement commercial',
+          description: 'Support personnalisé tout au long du processus',
+        },
+      },
+    },
+    cta: {
+      title: 'Commencer votre projet aujourd\'hui',
+      subtitle: 'Rejoignez des centaines d\'entreprises qui nous font confiance pour leurs transactions B2B',
+      startButton: 'Démarrer maintenant',
+      contactButton: 'Nous contacter',
+    },
+  },
 } as const

@@ -531,7 +531,7 @@ export default {
       instagram: 'Instagram',
       youtube: 'YouTube',
     },
-    copyright: '© {year} SEN FIBEM FRANCE. All rights reserved.',
+    copyright: '© {year} FIBEM. All rights reserved.',
   },
   services: {
     title: 'Our Services',
@@ -831,6 +831,97 @@ export default {
       dashboard: {
         title: 'Dashboard',
         description: 'Dashboard',
+      },
+    },
+  },
+  subscriptions: {
+    hero: {
+      title: 'Our Subscription Plans',
+      subtitle: 'Choose the plan that fits your needs and get the most out of the FIBEM ecosystem.',
+      monthly: '/month',
+      year: '/year',
+      choosePlan: 'Choose this plan',
+      currentPlan: 'Your current plan',
+      mostPopular: 'Most Popular',
+    },
+    plans: {
+      stagiaire: {
+        title: 'Intern Plan',
+        subtitle: 'For students and recent graduates',
+        price: 'Free',
+        description: 'Everything you need to find your ideal internship and launch your career.',
+        features: [
+          'Complete profile creation',
+          'Access to internship offers',
+          'Unlimited applications',
+          'Visibility to recruiters',
+          'Access to training resources'
+        ],
+      },
+      candidat: {
+        title: 'Candidate Plan',
+        subtitle: 'For active job seekers',
+        price: 'Free',
+        description: 'Showcase your profile and access the best career opportunities.',
+        features: [
+          'Professional FIBEM CV',
+          'Access to all job offers',
+          'Personalized job alerts',
+          'Application tracking',
+          'Visibility statistics'
+        ],
+      },
+      particulier: {
+        title: 'Individual Plan',
+        subtitle: 'For your personal needs',
+        price: 'Free',
+        description: 'Easily find trusted service providers for all your projects.',
+        features: [
+          'Search for providers',
+          'Unlimited quote requests',
+          'Access to verified reviews',
+          'Secure payment',
+          'Standard customer support'
+        ],
+      },
+      freelance: {
+        title: 'Freelance Plan',
+        subtitle: 'Boost your freelance activity',
+        price: '19.99€',
+        description: 'Powerful tools to find missions and manage your business.',
+        features: [
+          'Verified Freelance profile',
+          'Priority access to missions',
+          'Integrated invoicing tools',
+          'Portfolio management',
+          'Reduced commission on missions'
+        ],
+      },
+      professionnel: {
+        title: 'Professional Plan',
+        subtitle: 'For companies and artisans',
+        price: '49.99€',
+        description: 'Grow your client base and manage your business efficiently.',
+        features: [
+          'Dedicated company page',
+          'Premium SEO',
+          'Multi-user management',
+          'Quote & Invoice tools',
+          'Access to CV database'
+        ],
+      },
+      partenaire: {
+        title: 'Partner Plan',
+        subtitle: 'A strategic collaboration',
+        price: 'Custom',
+        description: 'Integrate the FIBEM ecosystem and benefit from exclusive advantages.',
+        features: [
+          'Maximum visibility on the platform',
+          'Dedicated marketing campaigns',
+          'API and custom integrations',
+          'Dedicated Account Manager',
+          'Exclusive access to events'
+        ],
       },
     },
   },

@@ -10,7 +10,7 @@ import SearchModal from "@/components/modals/SearchModal";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SEN FIBEM FRANCE - Services Professionnels & Recrutement",
+  title: "FIBEM - Services Professionnels & Recrutement",
   description:
     "Plateforme de mise en relation professionnelle, recrutement et services aux entreprises - France & Sénégal",
 };

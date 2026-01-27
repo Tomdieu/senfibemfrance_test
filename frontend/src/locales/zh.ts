@@ -752,4 +752,73 @@ export default {
       },
     },
   },
+  about: {
+    title: '关于我们',
+    underConstruction: '页面建设中。关于我们的内容即将推出。',
+    hero: {
+      title: '支持马达加斯加核心地区的企业转让',
+      subtitle: 'FIBEM以专业和透明的方式促进企业（商誉、中小企业、微型企业）的买卖',
+    },
+    ourHistory: {
+      title: '我们的历史',
+      paragraph1: 'FIBEM诞生于一个清晰的愿景：使马达加斯加和法语非洲的企业转让市场专业化。面对非正式和分散的市场，我们创建了一个现代化的数字平台，以确保和促进B2B交易。',
+      paragraph2: '我们的使命是在安全、透明和专业的环境中连接企业卖家和买家。我们以专业知识和严谨态度陪伴每一笔交易，从初步评估到最终完成销售。',
+      paragraph3: '今天，FIBEM已成为企业买卖的标杆，在法国和塞内加尔建立了稳固的存在，并持续向新市场扩张。',
+    },
+    ourVision: {
+      title: '我们的愿景',
+      subtitle: '改变非洲B2B市场',
+      description: '成为法语非洲所有企业交易的参考平台，在流程的每个阶段带来透明度、安全性和专业性。',
+    },
+    ourValues: {
+      title: '我们的价值观',
+      subtitle: '指导我们日常行动的原则',
+      expertise: {
+        title: '专业知识',
+        description: '对经济格局的深入了解，确保交易安全',
+      },
+      security: {
+        title: '安全',
+        description: '经过验证的公告和安全流程，保护买家和卖家',
+      },
+      innovation: {
+        title: '创新',
+        description: '现代化的数字平台，促进B2B交易',
+      },
+    },
+    impact: {
+      title: 'FIBEM的影响',
+      subtitle: '见证我们承诺和增长的数字',
+      stats: {
+        experience: '年专业经验',
+        companies: '上市公司',
+        satisfaction: '满意度',
+        countries: '国家（法国和塞内加尔）',
+      },
+    },
+    team: {
+      title: '专业团队',
+      subtitle: '热情的专家为您的交易服务',
+      roles: {
+        evaluation: {
+          title: '评估专家',
+          description: '精确评估您的企业',
+        },
+        legal: {
+          title: '法律顾问',
+          description: '确保所有法律阶段的安全',
+        },
+        commercial: {
+          title: '商业支持',
+          description: '整个过程中的个性化支持',
+        },
+      },
+    },
+    cta: {
+      title: '今天开始您的项目',
+      subtitle: '加入数百家信任我们进行B2B交易的公司',
+      startButton: '立即开始',
+      contactButton: '联系我们',
+    },
+  },
 } as const

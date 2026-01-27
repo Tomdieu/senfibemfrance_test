@@ -452,7 +452,7 @@ export default {
       instagram: 'Instagram',
       youtube: 'YouTube',
     },
-    copyright: '© {year} SEN FIBEM FRANCE。保留所有权利。',
+    copyright: '© {year} FIBEM。保留所有权利。',
   },
   services: {
     title: '我们的服务',
@@ -658,6 +658,97 @@ export default {
       dashboard: {
         title: '仪表板',
         description: '仪表板',
+      },
+    },
+  },
+  subscriptions: {
+    hero: {
+      title: '我们的订阅方案',
+      subtitle: '选择适合您需求的方案，并充分利用FIBEM生态系统。',
+      monthly: '/月',
+      year: '/年',
+      choosePlan: '选择此方案',
+      currentPlan: '您当前的方案',
+      mostPopular: '最受欢迎',
+    },
+    plans: {
+      stagiaire: {
+        title: '实习生方案',
+        subtitle: '适用于学生和应届毕业生',
+        price: '免费',
+        description: '为您提供寻找理想实习和开启职业生涯所需的一切。',
+        features: [
+          '完整的个人资料创建',
+          '访问实习机会',
+          '无限申请',
+          '招聘人员可见',
+          '访问培训资源'
+        ],
+      },
+      candidat: {
+        title: '候选人方案',
+        subtitle: '适用于积极求职者',
+        price: '免费',
+        description: '展示您的个人资料并获得最佳职业机会。',
+        features: [
+          '专业的FIBEM简历',
+          '访问所有职位',
+          '个性化职位提醒',
+          '申请追踪',
+          '可见性统计'
+        ],
+      },
+      particulier: {
+        title: '个人方案',
+        subtitle: '满足您的个人需求',
+        price: '免费',
+        description: '轻松找到值得信赖的服务提供商，满足您的所有项目需求。',
+        features: [
+          '搜索服务提供商',
+          '无限报价请求',
+          '访问经过验证的评论',
+          '安全付款',
+          '标准客户服务'
+        ],
+      },
+      freelance: {
+        title: '自由职业方案',
+        subtitle: '提升您的自由职业活动',
+        price: '19.99€',
+        description: '强大的工具来寻找任务并管理您的业务。',
+        features: [
+          '经过验证的自由职业个人资料',
+          '优先访问任务',
+          '集成开票工具',
+          '作品集管理',
+          '降低任务佣金'
+        ],
+      },
+      professionnel: {
+        title: '专业方案',
+        subtitle: '适用于公司和工匠',
+        price: '49.99€',
+        description: '扩大您的客户群并高效管理您的业务。',
+        features: [
+          '专属公司页面',
+          '高级SEO',
+          '多用户管理',
+          '报价和发票工具',
+          '访问简历数据库'
+        ],
+      },
+      partenaire: {
+        title: '合作伙伴方案',
+        subtitle: '战略合作',
+        price: '定制',
+        description: '整合FIBEM生态系统并享受独家优势。',
+        features: [
+          '平台上最大可见性',
+          '专属营销活动',
+          'API和自定义集成',
+          '专属客户经理',
+          '独家活动访问权限'
+        ],
       },
     },
   },

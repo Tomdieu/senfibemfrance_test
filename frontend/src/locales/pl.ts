@@ -452,7 +452,7 @@ export default {
       instagram: 'Instagram',
       youtube: 'YouTube',
     },
-    copyright: '© {year} SEN FIBEM FRANCE. Wszystkie prawa zastrzeżone.',
+    copyright: '© {year} FIBEM. Wszystkie prawa zastrzeżone.',
   },
   services: {
     title: 'Nasze usługi',
@@ -658,6 +658,97 @@ export default {
       dashboard: {
         title: 'Panel główny',
         description: 'Panel główny',
+      },
+    },
+  },
+  subscriptions: {
+    hero: {
+      title: 'Nasze plany subskrypcji',
+      subtitle: 'Wybierz plan, który odpowiada Twoim potrzebom i w pełni wykorzystaj ekosystem FIBEM.',
+      monthly: '/miesiąc',
+      year: '/rok',
+      choosePlan: 'Wybierz ten plan',
+      currentPlan: 'Twój obecny plan',
+      mostPopular: 'Najpopularniejszy',
+    },
+    plans: {
+      stagiaire: {
+        title: 'Plan dla stażysty',
+        subtitle: 'Dla studentów i świeżych absolwentów',
+        price: 'Darmowy',
+        description: 'Wszystko, czego potrzebujesz, aby znaleźć idealny staż i rozpocząć karierę.',
+        features: [
+          'Tworzenie kompletnego profilu',
+          'Dostęp do ofert staży',
+          'Nieograniczone aplikacje',
+          'Widoczność dla rekruterów',
+          'Dostęp do zasobów szkoleniowych'
+        ],
+      },
+      candidat: {
+        title: 'Plan dla kandydata',
+        subtitle: 'Dla aktywnych poszukiwaczy pracy',
+        price: 'Darmowy',
+        description: 'Pokazuj swój profil i uzyskuj dostęp do najlepszych możliwości kariery.',
+        features: [
+          'Profesjonalne CV FIBEM',
+          'Dostęp do wszystkich ofert pracy',
+          'Spersonalizowane alerty pracy',
+          'Śledzenie aplikacji',
+          'Statystyki widoczności'
+        ],
+      },
+      particulier: {
+        title: 'Plan indywidualny',
+        subtitle: 'Do Twoich osobistych potrzeb',
+        price: 'Darmowy',
+        description: 'Łatwo znajdź zaufanych dostawców usług dla wszystkich swoich projektów.',
+        features: [
+          'Wyszukiwanie dostawców',
+          'Nieograniczone żądania wycen',
+          'Dostęp do zweryfikowanych opinii',
+          'Bezpieczne płatności',
+          'Standardowe wsparcie klienta'
+        ],
+      },
+      freelance: {
+        title: 'Plan freelancerski',
+        subtitle: 'Wzmocnij swoją działalność freelancerską',
+        price: '19,99€',
+        description: 'Potężne narzędzia do znajdowania zleceń i zarządzania firmą.',
+        features: [
+          'Zweryfikowany profil freelancerski',
+          'Priorytetowy dostęp do zleceń',
+          'Zintegrowane narzędzia fakturowania',
+          'Zarządzanie portfolio',
+          'Obniżona prowizja za zlecenia'
+        ],
+      },
+      professionnel: {
+        title: 'Plan profesjonalny',
+        subtitle: 'Dla firm i rzemieślników',
+        price: '49,99€',
+        description: 'Rozwijaj bazę klientów i efektywnie zarządzaj firmą.',
+        features: [
+          'Dedykowana strona firmy',
+          'Zaawansowane SEO',
+          'Zarządzanie wieloma użytkownikami',
+          'Narzędzia do wycen i faktur',
+          'Dostęp do bazy danych CV'
+        ],
+      },
+      partenaire: {
+        title: 'Plan partnera',
+        subtitle: 'Strategiczna współpraca',
+        price: 'Na zamówienie',
+        description: 'Zintegruj ekosystem FIBEM i skorzystaj z ekskluzywnych korzyści.',
+        features: [
+          'Maksymalna widoczność na platformie',
+          'Dedykowane kampanie marketingowe',
+          'API i niestandardowe integracje',
+          'Dedykowany menedżer konta',
+          'Ekskluzywny dostęp do wydarzeń'
+        ],
       },
     },
   },

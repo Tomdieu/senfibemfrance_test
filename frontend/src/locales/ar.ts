@@ -524,6 +524,21 @@ export default {
       senegal: 'عنوان السنغال',
     },
   },
+  news: {
+    badge: 'الأخبار',
+    title: 'أخبار FIBEM',
+    subtitle: 'اكتشف أحدث الأخبار والاتجاهات في عالم B2B الفرنسي الأفريقي',
+    searchPlaceholder: 'البحث عن مقال...',
+    featured: 'مقالات مميزة',
+    allNews: 'جميع المقالات',
+    readMore: 'اقرأ المزيد',
+    newsletter: {
+      title: 'ابق على اطلاع',
+      subtitle: 'تلقى أحدث أخبارنا مباشرة في بريدك الإلكتروني',
+      placeholder: 'عنوان بريدك الإلكتروني',
+      subscribe: 'اشتراك'
+    }
+  },
   dashboard: {
     title: 'لوحة التحكم',
     welcome: 'مرحباً، {name}!',

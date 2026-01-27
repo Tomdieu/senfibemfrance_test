@@ -145,7 +145,7 @@ export default function Header() {
       <div className="bg-fibem-dark text-gray-300 py-1 px-2 text-xs">
         <div className="max-w-7xl mx-auto flex justify-between items-center w-full overflow-x-auto">
           {/* Left Side: Contact & Info */}
-          <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
+          <div className="flex items-center gap-2 sm:gap-4 shrink-0">
             <a
               href={`tel:${t('utilityBar.phone').replace(/\s/g, '')}`}
               className="flex items-center gap-1 sm:gap-2 hover:text-white transition-colors duration-200 group flex-shrink-0"
@@ -162,7 +162,7 @@ export default function Header() {
               <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-fibem-primary/10 flex items-center justify-center group-hover:bg-fibem-primary/20 flex-shrink-0">
                 <Mail className="w-3 h-3 sm:w-4 sm:h-4 text-fibem-secondary" />
               </div>
-              <span className="hidden sm:inline text-xs sm:text-sm truncate max-w-[80px] sm:max-w-[120px]">{t('utilityBar.email')}</span>
+              <span className="hidden sm:inline text-xs sm:text-sm truncate max-w-20 sm:max-w-30">{t('utilityBar.email')}</span>
             </a>
             <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
               <div className="w-2 h-2 bg-fibem-secondary rounded-full animate-pulse"></div>
@@ -247,6 +247,7 @@ export default function Header() {
                         <>
                           <NavigationMenuTrigger
                             className="text-fibem-textPrimary hover:text-fibem-primary font-medium bg-transparent hover:bg-fibem-surface data-[state=open]:bg-fibem-surface transition-all rounded-lg px-4 py-2 h-auto text-[15px]"
+                            onClick={() => router.push(item.href)}
                           >
                             {t(`menu.${item.label}` as any)}
                           </NavigationMenuTrigger>

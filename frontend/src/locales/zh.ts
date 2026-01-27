@@ -524,6 +524,21 @@ export default {
       senegal: '塞内加尔地址',
     },
   },
+  news: {
+    badge: '新闻',
+    title: 'FIBEM 新闻',
+    subtitle: '探索法非 B2B 世界的最新新闻和趋势',
+    searchPlaceholder: '搜索文章...',
+    featured: '精选文章',
+    allNews: '所有文章',
+    readMore: '阅读更多',
+    newsletter: {
+      title: '保持关注',
+      subtitle: '直接在您的收件箱中接收我们的最新消息',
+      placeholder: '您的电子邮箱地址',
+      subscribe: '订阅'
+    }
+  },
   dashboard: {
     title: '仪表板',
     welcome: '欢迎，{name}！',

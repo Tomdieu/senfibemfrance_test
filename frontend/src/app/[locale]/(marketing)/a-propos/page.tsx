@@ -12,24 +12,24 @@ export default function AproposPage() {
   const values = [
     {
       icon: Target,
-      title: 'Expertise',
-      description: 'Une connaissance approfondie du tissu économique pour des transactions sécurisées',
+      title: t('about.ourValues.expertise.title'),
+      description: t('about.ourValues.expertise.description'),
       color: 'from-fibem-primary to-fibem-secondary',
       iconBg: 'bg-blue-100',
       iconColor: 'text-fibem-primary'
     },
     {
       icon: Shield,
-      title: 'Sécurité',
-      description: 'Annonces vérifiées et processus sécurisés pour protéger acheteurs et vendeurs',
+      title: t('about.ourValues.security.title'),
+      description: t('about.ourValues.security.description'),
       color: 'from-green-600 to-green-700',
       iconBg: 'bg-green-100',
       iconColor: 'text-green-600'
     },
     {
       icon: TrendingUp,
-      title: 'Innovation',
-      description: 'Une plateforme digitale moderne pour faciliter les transactions B2B',
+      title: t('about.ourValues.innovation.title'),
+      description: t('about.ourValues.innovation.description'),
       color: 'from-fibem-accent to-orange-600',
       iconBg: 'bg-orange-100',
       iconColor: 'text-fibem-accent'
@@ -37,10 +37,10 @@ export default function AproposPage() {
   ]
 
   const stats = [
-    { value: '10+', label: 'Années d\'expertise', icon: Award },
-    { value: '500+', label: 'Entreprises listées', icon: Briefcase },
-    { value: '95%', label: 'Taux de satisfaction', icon: CheckCircle },
-    { value: '2', label: 'Pays (France & Sénégal)', icon: Globe },
+    { value: '10+', label: t('about.impact.stats.experience'), icon: Award },
+    { value: '500+', label: t('about.impact.stats.companies'), icon: Briefcase },
+    { value: '95%', label: t('about.impact.stats.satisfaction'), icon: CheckCircle },
+    { value: '2', label: t('about.impact.stats.countries'), icon: Globe },
   ]
 
   return (
@@ -54,11 +54,10 @@ export default function AproposPage() {
             className="text-center mb-12"
           >
             <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
-              Accompagner la transmission d'entreprise au cœur de Madagascar
+              {t('about.hero.title')}
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              FIBEM facilite l'achat et la vente d'entreprises (Fonds de commerce, PME, TPE)
-              avec professionnalisme et transparence
+              {t('about.hero.subtitle')}
             </p>
           </motion.div>
         </div>
@@ -73,24 +72,17 @@ export default function AproposPage() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-fibem-dark mb-6">
-              Notre Histoire
+              {t('about.ourHistory.title')}
             </h2>
             <div className="space-y-4 text-gray-700 leading-relaxed">
               <p>
-                FIBEM est née d'une vision claire : professionnaliser le marché de la transmission
-                d'entreprises à Madagascar et en Afrique francophone. Face à un marché informel et
-                fragmenté, nous avons créé une plateforme digitale moderne pour sécuriser et faciliter
-                les transactions B2B.
+                {t('about.ourHistory.paragraph1')}
               </p>
               <p>
-                Notre mission est de connecter vendeurs et acheteurs d'entreprises dans un environnement
-                sécurisé, transparent et professionnel. Nous accompagnons chaque transaction avec expertise
-                et rigueur, de l'évaluation initiale jusqu'à la finalisation de la vente.
+                {t('about.ourHistory.paragraph2')}
               </p>
               <p>
-                Aujourd'hui, FIBEM est devenue la référence pour l'achat et la vente d'entreprises,
-                avec une présence établie en France et au Sénégal, et une expansion continue vers
-                de nouveaux marchés.
+                {t('about.ourHistory.paragraph3')}
               </p>
             </div>
           </motion.div>
@@ -108,14 +100,12 @@ export default function AproposPage() {
                     <Briefcase className="w-8 h-8" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold">Notre Vision</h3>
-                    <p className="text-blue-100">Transformer le marché B2B africain</p>
+                    <h3 className="text-2xl font-bold">{t('about.ourVision.title')}</h3>
+                    <p className="text-blue-100">{t('about.ourVision.subtitle')}</p>
                   </div>
                 </div>
                 <p className="text-blue-100 leading-relaxed">
-                  Devenir la plateforme de référence pour toutes les transactions d'entreprises
-                  en Afrique francophone, en apportant transparence, sécurité et professionnalisme
-                  à chaque étape du processus.
+                  {t('about.ourVision.description')}
                 </p>
               </div>
             </div>
@@ -133,10 +123,10 @@ export default function AproposPage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-fibem-dark mb-4">
-              Nos Valeurs
+              {t('about.ourValues.title')}
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Les principes qui guident notre action au quotidien
+              {t('about.ourValues.subtitle')}
             </p>
           </motion.div>
 
@@ -170,10 +160,10 @@ export default function AproposPage() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-fibem-dark mb-4">
-            L'Impact FIBEM
+            {t('about.impact.title')}
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Des chiffres qui témoignent de notre engagement et de notre croissance
+            {t('about.impact.subtitle')}
           </p>
         </motion.div>
 
@@ -211,18 +201,18 @@ export default function AproposPage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-fibem-dark mb-4">
-              Une Équipe Dédiée
+              {t('about.team.title')}
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Des experts passionnés au service de vos transactions
+              {t('about.team.subtitle')}
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { role: 'Experts en évaluation', desc: 'Valorisation précise de votre entreprise' },
-              { role: 'Conseillers juridiques', desc: 'Sécurisation de toutes les étapes légales' },
-              { role: 'Accompagnement commercial', desc: 'Support personnalisé tout au long du processus' },
+              { role: t('about.team.roles.evaluation.title'), desc: t('about.team.roles.evaluation.description') },
+              { role: t('about.team.roles.legal.title'), desc: t('about.team.roles.legal.description') },
+              { role: t('about.team.roles.commercial.title'), desc: t('about.team.roles.commercial.description') },
             ].map((team, idx) => (
               <motion.div
                 key={idx}
@@ -247,23 +237,23 @@ export default function AproposPage() {
       <section className="bg-gradient-to-r from-fibem-dark to-slate-900 text-white py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Commencer votre projet aujourd'hui
+            {t('about.cta.title')}
           </h2>
           <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
-            Rejoignez des centaines d'entreprises qui nous font confiance pour leurs transactions B2B
+            {t('about.cta.subtitle')}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/inscription"
               className="px-10 py-5 bg-fibem-accent text-white font-bold rounded-xl hover:bg-orange-500 transform hover:-translate-y-1 transition-all shadow-xl text-lg"
             >
-              Démarrer maintenant
+              {t('about.cta.startButton')}
             </Link>
             <Link
               href="/contact"
               className="px-10 py-5 bg-white/10 backdrop-blur-md text-white border-2 border-white/20 font-bold rounded-xl hover:bg-white/20 transition-all text-lg"
             >
-              Nous contacter
+              {t('about.cta.contactButton')}
             </Link>
           </div>
         </div>

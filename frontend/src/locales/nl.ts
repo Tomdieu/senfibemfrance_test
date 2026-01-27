@@ -452,7 +452,7 @@ export default {
       instagram: 'Instagram',
       youtube: 'YouTube',
     },
-    copyright: '© {year} SEN FIBEM FRANCE. Alle rechten voorbehouden.',
+    copyright: '© {year} FIBEM. Alle rechten voorbehouden.',
   },
   services: {
     title: 'Onze diensten',
@@ -658,6 +658,97 @@ export default {
       dashboard: {
         title: 'Dashboard',
         description: 'Dashboard',
+      },
+    },
+  },
+  subscriptions: {
+    hero: {
+      title: 'Onze abonnementsplannen',
+      subtitle: 'Kies het plan dat bij uw behoeften past en haal het maximale uit het FIBEM-ecosysteem.',
+      monthly: '/maand',
+      year: '/jaar',
+      choosePlan: 'Kies dit plan',
+      currentPlan: 'Uw huidige plan',
+      mostPopular: 'Meest populair',
+    },
+    plans: {
+      stagiaire: {
+        title: 'Stagiairplan',
+        subtitle: 'Voor studenten en recente afgestudeerden',
+        price: 'Gratis',
+        description: 'Alles wat u nodig heeft om uw ideale stage te vinden en uw carrière op gang te brengen.',
+        features: [
+          'Volledige profielcreatie',
+          'Toegang tot stageaanbod',
+          'Onbeperkte sollicitaties',
+          'Zichtbaarheid voor wervingsmedewerkers',
+          'Toegang tot trainingsmateriaal'
+        ],
+      },
+      candidat: {
+        title: 'Kandidaatplan',
+        subtitle: 'Voor actieve jobzoekers',
+        price: 'Gratis',
+        description: 'Presenteer uw profiel en krijg toegang tot de beste carrièremogelijkheden.',
+        features: [
+          'Professionele FIBEM CV',
+          'Toegang tot alle vacatures',
+          'Gepersonaliseerde vacaturemeldingen',
+          'Sollicitatietracking',
+          'Zichtbaarheidsstatistieken'
+        ],
+      },
+      particulier: {
+        title: 'Individueel plan',
+        subtitle: 'Voor uw persoonlijke behoeften',
+        price: 'Gratis',
+        description: 'Vind eenvoudig vertrouwde serviceproviders voor al uw projecten.',
+        features: [
+          'Zoeken naar leveranciers',
+          'Onbeperkt offerteaanvragen',
+          'Toegang tot geverifieerde beoordelingen',
+          'Veilige betaling',
+          'Standaard klantenservice'
+        ],
+      },
+      freelance: {
+        title: 'Freelanceplan',
+        subtitle: 'Versterk uw freelanceactiviteit',
+        price: '19,99€',
+        description: 'Krachtige tools om opdrachten te vinden en uw bedrijf te beheren.',
+        features: [
+          'Geverifieerd Freelanceprofiel',
+          'Prioritaire toegang tot opdrachten',
+          'Geïntegreerde factuurtools',
+          'Portfoliobeheer',
+          'Verminderde commissie op opdrachten'
+        ],
+      },
+      professionnel: {
+        title: 'Professioneel plan',
+        subtitle: 'Voor bedrijven en ambachtslieden',
+        price: '49,99€',
+        description: 'Verkrijg meer klanten en beheer uw bedrijf efficiënt.',
+        features: [
+          'Gededicatieerde bedrijfspagina',
+          'Premium SEO',
+          'Multi-gebruikersbeheer',
+          'Offerte- en factuurtools',
+          'Toegang tot CV-database'
+        ],
+      },
+      partenaire: {
+        title: 'Partnerplan',
+        subtitle: 'Een strategische samenwerking',
+        price: 'Op maat',
+        description: 'Integreer het FIBEM-ecosysteem en profiteer van exclusieve voordelen.',
+        features: [
+          'Maximale zichtbaarheid op het platform',
+          'Gedediceerde marketingcampagnes',
+          'API en aangepaste integraties',
+          'Gededicatieerde accountmanager',
+          'Exclusieve toegang tot evenementen'
+        ],
       },
     },
   },

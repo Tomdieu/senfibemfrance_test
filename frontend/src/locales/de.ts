@@ -452,7 +452,7 @@ export default {
       instagram: 'Instagram',
       youtube: 'YouTube',
     },
-    copyright: '© {year} SEN FIBEM FRANCE. Alle Rechte vorbehalten.',
+    copyright: '© {year} FIBEM. Alle Rechte vorbehalten.',
   },
   services: {
     title: 'Unsere Dienstleistungen',
@@ -658,6 +658,97 @@ export default {
       dashboard: {
         title: 'Dashboard',
         description: 'Dashboard',
+      },
+    },
+  },
+  subscriptions: {
+    hero: {
+      title: 'Unsere Abonnementpläne',
+      subtitle: 'Wählen Sie den Plan, der Ihren Bedürfnissen entspricht, und nutzen Sie das FIBEM-Ökosystem optimal.',
+      monthly: '/Monat',
+      year: '/Jahr',
+      choosePlan: 'Diesen Plan wählen',
+      currentPlan: 'Ihr aktueller Plan',
+      mostPopular: 'Am beliebtesten',
+    },
+    plans: {
+      stagiaire: {
+        title: 'Praktikanten-Plan',
+        subtitle: 'Für Studenten und Absolventen',
+        price: 'Kostenlos',
+        description: 'Alles, was Sie brauchen, um Ihr ideales Praktikum zu finden und Ihre Karriere zu starten.',
+        features: [
+          'Vollständige Profilerstellung',
+          'Zugang zu Praktikumsangeboten',
+          'Unbegrenzte Bewerbungen',
+          'Sichtbarkeit für Personalvermittler',
+          'Zugang zu Schulungsressourcen'
+        ],
+      },
+      candidat: {
+        title: 'Kandidaten-Plan',
+        subtitle: 'Für aktive Arbeitssuchende',
+        price: 'Kostenlos',
+        description: 'Präsentieren Sie Ihr Profil und greifen Sie auf die besten Karrieremöglichkeiten zu.',
+        features: [
+          'Professioneller FIBEM-Lebenslauf',
+          'Zugang zu allen Stellenangeboten',
+          'Personalisierte Job-Benachrichtigungen',
+          'Bewerbungsverfolgung',
+          'Sichtbarkeitsstatistiken'
+        ],
+      },
+      particulier: {
+        title: 'Privatpersonen-Plan',
+        subtitle: 'Für Ihre persönlichen Bedürfnisse',
+        price: 'Kostenlos',
+        description: 'Finden Sie einfach vertrauenswürdige Dienstleister für alle Ihre Projekte.',
+        features: [
+          'Suche nach Dienstleistern',
+          'Unbegrenzte Angebotsanfragen',
+          'Zugang zu verifizierten Bewertungen',
+          'Sichere Zahlung',
+          'Standard-Kundensupport'
+        ],
+      },
+      freelance: {
+        title: 'Freelancer-Plan',
+        subtitle: 'Steigern Sie Ihre Freelance-Aktivität',
+        price: '19.99€',
+        description: 'Leistungsstarke Tools, um Aufträge zu finden und Ihr Geschäft zu verwalten.',
+        features: [
+          'Verifiziertes Freelancer-Profil',
+          'Priorisierter Zugang zu Aufträgen',
+          'Integrierte Rechnungstools',
+          'Portfolio-Management',
+          'Reduzierte Provision auf Aufträge'
+        ],
+      },
+      professionnel: {
+        title: 'Professioneller Plan',
+        subtitle: 'Für Unternehmen und Handwerker',
+        price: '49.99€',
+        description: 'Erweitern Sie Ihren Kundenstamm und verwalten Sie Ihr Geschäft effizient.',
+        features: [
+          'Dedizierte Unternehmensseite',
+          'Premium-SEO',
+          'Mehrbenutzer-Verwaltung',
+          'Angebots- & Rechnungstools',
+          'Zugang zur Lebenslaufdatenbank'
+        ],
+      },
+      partenaire: {
+        title: 'Partner-Plan',
+        subtitle: 'Eine strategische Zusammenarbeit',
+        price: 'Nach Maß',
+        description: 'Integrieren Sie das FIBEM-Ökosystem und profitieren Sie von exklusiven Vorteilen.',
+        features: [
+          'Maximale Sichtbarkeit auf der Plattform',
+          'Dedizierte Marketingkampagnen',
+          'API und benutzerdefinierte Integrationen',
+          'Dedizierter Account Manager',
+          'Exklusiver Zugang zu Veranstaltungen'
+        ],
       },
     },
   },

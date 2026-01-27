@@ -361,8 +361,8 @@ export default function ActualitesPage() {
               </Button>
             </div>
           </motion.div>
-        </div>
+        </div> 
       </section>
     </div>
   )
-}
+} 

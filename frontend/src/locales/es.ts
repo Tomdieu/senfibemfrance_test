@@ -453,6 +453,8 @@ export default {
       youtube: 'YouTube',
     },
     copyright: '© {year} SEN FIBEM FRANCE. Todos los derechos reservados.',
+    guaranteedService: 'Servicio garantizado',
+    customerSatisfaction: 'Satisfacción del cliente',
   },
   services: {
     title: 'Nuestros servicios',

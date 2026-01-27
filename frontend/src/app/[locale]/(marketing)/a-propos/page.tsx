@@ -1,273 +1,474 @@
 'use client'
 
+import { Globe, Target, Users, Shield, TrendingUp, Award, Clock, CheckCircle, Sparkles, ArrowRight } from 'lucide-react'
+import { useScopedI18n } from '@/locales/client'
 import { motion } from 'framer-motion'
-import { useI18n } from '@/locales/client'
-import { Target, Users, Shield, TrendingUp, Award, Globe, CheckCircle, Briefcase } from 'lucide-react'
-import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
 import Image from 'next/image'
 
-export default function AproposPage() {
-  const t = useI18n()
+export default function AboutPage() {
+  const t = useScopedI18n('about')
 
   const values = [
     {
-      icon: Target,
-      title: 'Expertise',
-      description: 'Une connaissance approfondie du tissu économique pour des transactions sécurisées',
-      color: 'from-fibem-primary to-fibem-secondary',
-      iconBg: 'bg-blue-100',
+      icon: Shield,
+      title: t('values.trust.title'),
+      description: t('values.trust.description'),
+      color: 'bg-fibem-primary/10',
       iconColor: 'text-fibem-primary'
     },
     {
-      icon: Shield,
-      title: 'Sécurité',
-      description: 'Annonces vérifiées et processus sécurisés pour protéger acheteurs et vendeurs',
-      color: 'from-green-600 to-green-700',
-      iconBg: 'bg-green-100',
-      iconColor: 'text-green-600'
+      icon: Target,
+      title: t('values.excellence.title'),
+      description: t('values.excellence.description'),
+      color: 'bg-fibem-secondary/10',
+      iconColor: 'text-fibem-secondary'
     },
     {
-      icon: TrendingUp,
-      title: 'Innovation',
-      description: 'Une plateforme digitale moderne pour faciliter les transactions B2B',
-      color: 'from-fibem-accent to-orange-600',
-      iconBg: 'bg-orange-100',
+      icon: Users,
+      title: t('values.innovation.title'),
+      description: t('values.innovation.description'),
+      color: 'bg-fibem-accent/10',
       iconColor: 'text-fibem-accent'
     },
+    {
+      icon: Globe,
+      title: t('values.impact.title'),
+      description: t('values.impact.description'),
+      color: 'bg-fibem-secondary/20',
+      iconColor: 'text-fibem-secondary'
+    }
   ]
 
-  const stats = [
-    { value: '10+', label: 'Années d\'expertise', icon: Award },
-    { value: '500+', label: 'Entreprises listées', icon: Briefcase },
-    { value: '95%', label: 'Taux de satisfaction', icon: CheckCircle },
-    { value: '2', label: 'Pays (France & Sénégal)', icon: Globe },
+  const milestones = [
+    { year: '2018', title: t('milestones.foundation.title'), description: t('milestones.foundation.description') },
+    { year: '2019', title: t('milestones.expansion.title'), description: t('milestones.expansion.description') },
+    { year: '2020', title: t('milestones.innovation.title'), description: t('milestones.innovation.description') },
+    { year: '2022', title: t('milestones.growth.title'), description: t('milestones.growth.description') },
+    { year: '2023', title: t('milestones.recognition.title'), description: t('milestones.recognition.description') }
+  ]
+
+  const team = [
+    { name: 'Sophie Martin', role: t('team.ceo.role'), expertise: t('team.ceo.expertise'), image: '/team/ceo.jpg' },
+    { name: 'Thomas Dubois', role: t('team.cto.role'), expertise: t('team.cto.expertise'), image: '/team/cto.jpg' },
+    { name: 'Fatou Diop', role: t('team.africa.role'), expertise: t('team.africa.expertise'), image: '/team/africa.jpg' },
+    { name: 'Pierre Lemoine', role: t('team.sales.role'), expertise: t('team.sales.expertise'), image: '/team/sales.jpg' }
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-fibem-surface to-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-fibem-primary to-fibem-dark text-white py-20 px-4">
-        <div className="max-w-6xl mx-auto">
+      <div className="relative overflow-hidden bg-gradient-to-br from-fibem-dark via-fibem-primary to-fibem-dark/90 py-24">
+        <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M50 50c0-5.523-4.477-10-10-10s-10 4.477-10 10 4.477 10 10 10 10-4.477 10-10zM10 10c0-5.523-4.477-10-10-10S0 4.477 0 10s4.477 10 10 10 10-4.477 10-10zM80 10c0-5.523-4.477-10-10-10S60 4.477 60 10s4.477 10 10 10 10-4.477 10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}></div>
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4">
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+              <Image src="/logo.png" alt="FIBEM" width={20} height={20} className="w-5 h-5" />
+              <span className="text-sm font-medium text-white">{t('badge')}</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+              {t('title')} <span className="text-fibem-secondary">{t('subtitle')}</span>
+            </h1>
+            
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8 leading-relaxed">
+              {t('description')}
+            </p>
+            
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Button size="lg" className="bg-white text-fibem-primary hover:bg-gray-100">
+                {t('cta.team')} <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                {t('cta.values')}
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Mission & Vision */}
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+            className="space-y-6"
+          >
+            <div className="inline-flex items-center gap-2 text-fibem-primary font-semibold">
+              <div className="w-2 h-2 bg-fibem-primary rounded-full"></div>
+              {t('mission.title')}
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-fibem-textPrimary">
+              {t('mission.heading')}<br />
+              <span className="text-fibem-primary">{t('mission.highlight')}</span>
+            </h2>
+            <p className="text-lg text-fibem-textSecondary leading-relaxed">
+              {t('mission.description')}
+            </p>
+            <div className="space-y-4">
+              {[
+                t('mission.points.expertise'),
+                t('mission.points.platform'),
+                t('mission.points.network'),
+                t('mission.points.support')
+              ].map((item, index) => (
+                <div key={index} className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-fibem-accent" />
+                  <span className="text-fibem-textPrimary">{item}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <Card className="bg-gradient-to-br from-fibem-primary/5 to-fibem-dark/5 border-0 shadow-xl overflow-hidden">
+              <CardContent className="p-8">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 bg-gradient-to-br from-fibem-primary to-fibem-dark rounded-xl flex items-center justify-center">
+                      <Target className="w-7 h-7 text-white" />
+                    </div>
+                    <div>
+                      {t('vision.title')}
+                      <p className="text-fibem-textSecondary">{t('vision.subtitle')}</p>
+                    </div>
+                  </div>
+                  <p className="text-fibem-textSecondary text-lg leading-relaxed">
+                    {t('vision.description')}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Nos Valeurs */}
+      <div className="bg-gradient-to-b from-white to-fibem-surface/50 py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
-              Accompagner la transmission d'entreprise au cœur de Madagascar
-            </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              FIBEM facilite l'achat et la vente d'entreprises (Fonds de commerce, PME, TPE)
-              avec professionnalisme et transparence
+            <div className="inline-flex items-center gap-2 text-fibem-primary font-semibold mb-4">
+              <div className="w-2 h-2 bg-fibem-primary rounded-full"></div>
+              {t('values.title')}
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-fibem-textPrimary mb-4">
+              {t('values.heading')}
+            </h2>
+            <p className="text-fibem-textSecondary max-w-2xl mx-auto">
+              {t('values.description')}
             </p>
           </motion.div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {values.map((value, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8 }}
+              >
+                <Card className="bg-white border border-fibem-border shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                  <CardContent className="p-6">
+                    <div className={`${value.color} w-14 h-14 rounded-xl flex items-center justify-center mb-4`}>
+                      <value.icon className={`w-7 h-7 ${value.iconColor}`} />
+                    </div>
+                    <h3 className="text-xl font-bold text-fibem-textPrimary mb-3">
+                      {value.title}
+                    </h3>
+                    <p className="text-fibem-textSecondary">
+                      {value.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </section>
+      </div>
 
       {/* Notre Histoire */}
-      <section className="max-w-6xl mx-auto px-4 py-20">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-fibem-dark mb-6">
-              Notre Histoire
-            </h2>
-            <div className="space-y-4 text-gray-700 leading-relaxed">
-              <p>
-                FIBEM est née d'une vision claire : professionnaliser le marché de la transmission
-                d'entreprises à Madagascar et en Afrique francophone. Face à un marché informel et
-                fragmenté, nous avons créé une plateforme digitale moderne pour sécuriser et faciliter
-                les transactions B2B.
-              </p>
-              <p>
-                Notre mission est de connecter vendeurs et acheteurs d'entreprises dans un environnement
-                sécurisé, transparent et professionnel. Nous accompagnons chaque transaction avec expertise
-                et rigueur, de l'évaluation initiale jusqu'à la finalisation de la vente.
-              </p>
-              <p>
-                Aujourd'hui, FIBEM est devenue la référence pour l'achat et la vente d'entreprises,
-                avec une présence établie en France et au Sénégal, et une expansion continue vers
-                de nouveaux marchés.
-              </p>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <div className="bg-gradient-to-br from-fibem-primary to-fibem-secondary rounded-2xl p-8 text-white shadow-2xl">
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
-                    <Briefcase className="w-8 h-8" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold">Notre Vision</h3>
-                    <p className="text-blue-100">Transformer le marché B2B africain</p>
-                  </div>
-                </div>
-                <p className="text-blue-100 leading-relaxed">
-                  Devenir la plateforme de référence pour toutes les transactions d'entreprises
-                  en Afrique francophone, en apportant transparence, sécurité et professionnalisme
-                  à chaque étape du processus.
-                </p>
-              </div>
-            </div>
-          </motion.div>
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 text-fibem-primary font-semibold mb-4">
+            <div className="w-2 h-2 bg-fibem-primary rounded-full"></div>
+            {t('history.title')}
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-fibem-textPrimary mb-4">
+            {t('history.heading')}
+          </h2>
+          <p className="text-fibem-textSecondary max-w-2xl mx-auto">
+            {t('history.description')}
+          </p>
         </div>
-      </section>
-
-      {/* Nos Valeurs */}
-      <section className="bg-fibem-light py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-fibem-dark mb-4">
-              Nos Valeurs
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Les principes qui guident notre action au quotidien
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {values.map((value, idx) => (
+        
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-fibem-primary via-fibem-secondary to-fibem-primary"></div>
+          
+          {/* Timeline items */}
+          <div className="space-y-12">
+            {milestones.map((milestone, index) => (
               <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all"
+                key={index}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.2 }}
+                className={`relative flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
               >
-                <div className={`w-16 h-16 ${value.iconBg} rounded-2xl flex items-center justify-center mb-6`}>
-                  <value.icon className={`w-8 h-8 ${value.iconColor}`} />
+                <div className="w-1/2">
+                  <div className={`p-6 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8'}`}>
+                    <div className={`inline-flex items-center gap-2 mb-2 ${index % 2 === 0 ? 'flex-row-reverse' : ''}`}>
+                      <div className="w-3 h-3 bg-fibem-primary rounded-full"></div>
+                      <span className="text-sm font-semibold text-fibem-primary">{milestone.year}</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-fibem-textPrimary mb-2">
+                      {milestone.title}
+                    </h3>
+                    <p className="text-fibem-textSecondary">
+                      {milestone.description}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-fibem-dark mb-4">{value.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                
+                {/* Timeline dot */}
+                <div className="absolute left-1/2 transform -translate-x-1/2">
+                  <div className="w-8 h-8 bg-white border-4 border-fibem-primary rounded-full flex items-center justify-center">
+                    <div className="w-2 h-2 bg-fibem-primary rounded-full"></div>
+                  </div>
+                </div>
+                
+                <div className="w-1/2"></div>
               </motion.div>
             ))}
           </div>
         </div>
-      </section>
-
-      {/* L'Impact FIBEM */}
-      <section className="max-w-6xl mx-auto px-4 py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-fibem-dark mb-4">
-            L'Impact FIBEM
-          </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Des chiffres qui témoignent de notre engagement et de notre croissance
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {stats.map((stat, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="bg-white rounded-2xl p-6 shadow-md text-center hover:shadow-xl transition-all"
-            >
-              <div className="w-16 h-16 bg-gradient-to-br from-fibem-primary to-fibem-secondary rounded-full flex items-center justify-center mx-auto mb-4">
-                <stat.icon className="w-8 h-8 text-white" />
-              </div>
-              <div className="text-4xl md:text-5xl font-extrabold text-fibem-primary mb-2">
-                {stat.value}
-              </div>
-              <div className="text-gray-600 font-medium text-sm">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+      </div>
 
       {/* Notre Équipe */}
-      <section className="bg-white py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-fibem-dark mb-4">
-              Une Équipe Dédiée
+      <div className="bg-gradient-to-b from-fibem-surface to-white py-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 text-fibem-primary font-semibold mb-4">
+              <div className="w-2 h-2 bg-fibem-primary rounded-full"></div>
+              {t('team.title')}
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-fibem-textPrimary mb-4">
+              {t('team.heading')}
             </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Des experts passionnés au service de vos transactions
+            <p className="text-fibem-textSecondary max-w-2xl mx-auto">
+              {t('team.description')}
             </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { role: 'Experts en évaluation', desc: 'Valorisation précise de votre entreprise' },
-              { role: 'Conseillers juridiques', desc: 'Sécurisation de toutes les étapes légales' },
-              { role: 'Accompagnement commercial', desc: 'Support personnalisé tout au long du processus' },
-            ].map((team, idx) => (
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {team.map((member, index) => (
               <motion.div
-                key={idx}
+                key={index}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-fibem-light rounded-2xl p-8 text-center"
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8 }}
+                className="group"
               >
-                <div className="w-20 h-20 bg-gradient-to-br from-fibem-primary to-fibem-secondary rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <Users className="w-10 h-10 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-fibem-dark mb-3">{team.role}</h3>
-                <p className="text-gray-600">{team.desc}</p>
+                <Card className="bg-white border border-fibem-border shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+                  <div className="relative h-48 bg-gradient-to-br from-fibem-primary/20 to-fibem-dark/20">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Users className="w-20 h-20 text-fibem-primary/30" />
+                    </div>
+                  </div>
+                  <CardContent className="p-6 text-center">
+                    <h3 className="text-xl font-bold text-fibem-textPrimary mb-1">
+                      {member.name}
+                    </h3>
+                    <p className="text-fibem-primary font-medium mb-2">
+                      {member.role}
+                    </p>
+                    <p className="text-sm text-fibem-textSecondary">
+                      {member.expertise}
+                    </p>
+                  </CardContent>
+                </Card>
               </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Footer CTA */}
-      <section className="bg-gradient-to-r from-fibem-dark to-slate-900 text-white py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Commencer votre projet aujourd'hui
-          </h2>
-          <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
-            Rejoignez des centaines d'entreprises qui nous font confiance pour leurs transactions B2B
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/inscription"
-              className="px-10 py-5 bg-fibem-accent text-white font-bold rounded-xl hover:bg-orange-500 transform hover:-translate-y-1 transition-all shadow-xl text-lg"
-            >
-              Démarrer maintenant
-            </Link>
-            <Link
-              href="/contact"
-              className="px-10 py-5 bg-white/10 backdrop-blur-md text-white border-2 border-white/20 font-bold rounded-xl hover:bg-white/20 transition-all text-lg"
-            >
-              Nous contacter
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Call-to-action */}
+      <div className="bg-gradient-to-r from-fibem-dark to-fibem-primary py-20">
+        <div className="max-w-4xl mx-auto px-4 text-center text-white">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="space-y-6"
+          >
+            <h3 className="text-3xl md:text-4xl font-bold text-white">
+              {t('cta.title')}
+            </h3>
+            <p className="text-blue-100 text-lg max-w-2xl mx-auto">
+              {t('cta.subtitle')}
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center pt-4">
+              <Button size="lg" className="bg-white text-fibem-primary hover:bg-gray-100">
+                {t('cta.contact')} <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                {t('cta.jobs')}
+              </Button>
     </div>
-  )
+    </motion.div>
+  </div>
+</div>
+
+<div className="max-w-7xl mx-auto px-4 py-16">
+  <div className="text-center mb-12">
+    <div className="inline-flex items-center gap-2 text-fibem-primary font-semibold mb-4">
+      <div className="w-2 h-2 bg-fibem-primary rounded-full"></div>
+      {t('history.title')}
+    </div>
+    <h2 className="text-3xl md:text-4xl font-bold text-fibem-textPrimary mb-4">
+      {t('history.heading')}
+    </h2>
+    <p className="text-fibem-textSecondary max-w-2xl mx-auto">
+      {t('history.description')}
+    </p>
+  </div>
+  
+  <div className="relative">
+    <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-fibem-primary via-fibem-secondary to-fibem-primary"></div>
+    
+    <div className="space-y-12">
+      {milestones.map((milestone, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: index * 0.2 }}
+          className={`relative flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
+        >
+          <div className="w-1/2">
+            <div className={`p-6 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8'}`}>
+              <div className={`inline-flex items-center gap-2 mb-2 ${index % 2 === 0 ? 'flex-row-reverse' : ''}`}>
+                <div className="w-3 h-3 bg-fibem-primary rounded-full"></div>
+                <span className="text-sm font-semibold text-fibem-primary">{milestone.year}</span>
+              </div>
+              <h3 className="text-xl font-bold text-fibem-textPrimary mb-2">
+                {milestone.title}
+              </h3>
+              <p className="text-fibem-textSecondary">
+                {milestone.description}
+              </p>
+            </div>
+          </div>
+          
+          <div className="absolute left-1/2 transform -translate-x-1/2">
+            <div className="w-8 h-8 bg-white border-4 border-fibem-primary rounded-full flex items-center justify-center">
+              <div className="w-2 h-2 bg-fibem-primary rounded-full"></div>
+            </div>
+          </div>
+          
+          <div className="w-1/2"></div>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<div className="bg-gradient-to-b from-fibem-surface to-white py-16">
+  <div className="max-w-7xl mx-auto px-4">
+    <div className="text-center mb-12">
+      <div className="inline-flex items-center gap-2 text-fibem-primary font-semibold mb-4">
+        <div className="w-2 h-2 bg-fibem-primary rounded-full"></div>
+        {t('team.title')}
+      </div>
+      <h2 className="text-3xl md:text-4xl font-bold text-fibem-textPrimary mb-4">
+        {t('team.heading')}
+      </h2>
+      <p className="text-fibem-textSecondary max-w-2xl mx-auto">
+        {t('team.description')}
+      </p>
+    </div>
+    
+    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {team.map((member, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1 }}
+          whileHover={{ y: -8 }}
+          className="group"
+        >
+          <Card className="bg-white border border-fibem-border shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+            <div className="relative h-48 bg-gradient-to-br from-fibem-primary/20 to-fibem-dark/20">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Users className="w-20 h-20 text-fibem-primary/30" />
+              </div>
+            </div>
+            <CardContent className="p-6 text-center">
+              <h3 className="text-xl font-bold text-fibem-textPrimary mb-1">
+                {member.name}
+              </h3>
+              <p className="text-fibem-primary font-medium mb-2">
+                {member.role}
+              </p>
+              <p className="text-sm text-fibem-textSecondary">
+                {member.expertise}
+              </p>
+            </CardContent>
+          </Card>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<div className="bg-gradient-to-r from-fibem-dark to-fibem-primary py-20">
+  <div className="max-w-4xl mx-auto px-4 text-center text-white">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="space-y-6"
+    >
+      <h3 className="text-3xl md:text-4xl font-bold text-white">
+        {t('cta.title')}
+      </h3>
+      <p className="text-blue-100 text-lg max-w-2xl mx-auto">
+        {t('cta.subtitle')}
+      </p>
+      <div className="flex flex-wrap gap-4 justify-center pt-4">
+        <Button size="lg" className="bg-white text-fibem-primary hover:bg-gray-100">
+          {t('cta.contact')} <ArrowRight className="ml-2 w-4 h-4" />
+        </Button>
+        <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+          {t('cta.jobs')}
+        </Button>
+      </div>
+    </motion.div>
+  </div>
+</div>
+</div>)
 }

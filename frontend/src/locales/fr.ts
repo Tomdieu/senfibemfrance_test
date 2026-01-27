@@ -122,6 +122,9 @@ export default {
       title: 'Connexion',
       subtitle: 'Accédez à votre espace personnel',
       selectProfile: 'Sélectionnez votre profil',
+      welcomeBack: 'Bienvenue de retour !',
+      hidePassword: 'Masquer le mot de passe',
+      showPassword: 'Afficher le mot de passe',
       particulier: {
         label: 'Particulier',
         description: 'Recherche de services ou d\'emploi'
@@ -142,8 +145,6 @@ export default {
       emailLabel: 'Adresse email',
       passwordLabel: 'Mot de passe',
       passwordPlaceholder: 'Votre mot de passe',
-      showPassword: 'Afficher le mot de passe',
-      hidePassword: 'Masquer le mot de passe',
       rememberMe: 'Se souvenir de moi',
       forgotPassword: 'Mot de passe oublié ?',
       signInButton: 'Se connecter',
@@ -155,8 +156,7 @@ export default {
       noAccount: 'Pas encore de compte ?',
       createAccount: 'Créer un compte',
       emailOrPasswordIncorrect: 'Email ou mot de passe incorrect',
-      errorOccurred: 'Une erreur est survenue lors de la connexion',
-      welcomeBack: 'Bienvenue de retour !',
+      errorOccurred: 'Une erreur est survenue lors de la connexion'
     },
     inscription: {
       title: 'Créer un compte',
@@ -265,13 +265,44 @@ export default {
       noTags: 'Pas de tags spécifiés',
     },
     categories: {
-      title: 'Nos catégories de services',
-      subtitle: 'Découvrez une large gamme de services professionnels pour tous vos besoins',
+      title: 'Explorez nos',
+      services: 'services',
+      subtitle: 'Découvrez une large gamme de services professionnels pour tous vos besoins, réalisés par des experts vérifiés et notés par notre communauté.',
+      badge: 'Services',
+      popular: 'Catégories populaires',
       viewAll: 'Voir toutes les catégories',
+      cta: {
+        title: 'Prêt à trouver le service parfait ?',
+        description: 'Explorez toutes nos catégories et découvrez des milliers de professionnels prêts à réaliser vos projets',
+        button: 'Explorer toutes les catégories'
+      },
+      categoryName: {
+        plumbing: 'Plomberie',
+        electricity: 'Électricité',
+        painting: 'Peinture',
+        renovation: 'Rénovation',
+        masonry: 'Maçonnerie',
+        transport: 'Transport',
+        digital: 'Services numériques',
+        catering: 'Restauration',
+        beauty: 'Beauté & Bien-être',
+        automotive: 'Automobile',
+        education: 'Éducation & Formation',
+        cleaning: 'Nettoyage',
+        gardening: 'Jardinage',
+        security: 'Sécurité',
+        consulting: 'Consulting',
+        photography: 'Photographie',
+        events: 'Événements',
+        moving: 'Déménagement',
+        repairs: 'Réparations',
+        fitness: 'Fitness & Sport'
+      }
     },
     howItWorks: {
       title: 'Comment ça marche',
       subtitle: 'Processus simple et efficace pour répondre à vos besoins',
+      badge: 'Comment ça marche',
       step1Title: 'Recherchez',
       step1Desc: 'Trouvez le service ou le professionnel dont vous avez besoin parmi notre réseau qualifié.',
       step2Title: 'Sélectionnez',
@@ -280,10 +311,51 @@ export default {
       step3Desc: 'Obtenez un devis détaillé et transparent adapté à vos besoins spécifiques.',
       step4Title: 'Validez & Payez',
       step4Desc: 'Confirmez la prestation et payez en toute sécurité via notre plateforme.',
+      features: {
+        search: 'Recherche intelligente',
+        filters: 'Filtres avancés',
+        alerts: 'Alertes personnalisées',
+        verified: 'Profils vérifiés',
+        reviews: 'Avis authentiques',
+        compare: 'Comparaison facile',
+        quotes: 'Devis détaillés',
+        transparent: 'Transparence totale',
+        commitment: 'Sans engagement',
+        payment: 'Paiement sécurisé',
+        tracking: 'Suivi en temps réel',
+        guarantee: 'Garantie satisfaction'
+      }
     },
     testimonials: {
       title: 'Ce que disent nos utilisateurs',
       subtitle: 'Des milliers de professionnels et particuliers nous font confiance',
+      badge: 'Témoignages',
+      verified: 'Vérifié',
+      rating: 'Note',
+      reviews: 'avis',
+      weeksAgo: 'Il y a {weeks} semaine(s)',
+      monthAgo: 'Il y a {months} mois',
+      service: 'Service',
+      verifiedReviews: 'Avis vérifiés',
+      users: 'utilisateurs',
+      trustDescription: 'Des milliers de professionnels et particuliers nous font confiance pour leurs projets les plus importants',
+      stats: {
+        reviews: 'Avis clients',
+        average: 'Note moyenne',
+        satisfaction: 'Satisfaction',
+        support: 'Support'
+      },
+      helpful: {
+        question: 'Cet avis vous a-t-il aidé ?',
+        yes: 'Oui',
+        no: 'Non'
+      },
+      cta: {
+        title: 'Rejoignez des milliers de clients satisfaits',
+        description: 'Partagez votre expérience et aidez d\'autres utilisateurs à faire le bon choix',
+        leaveReview: 'Laisser un avis',
+        viewAll: 'Voir tous les avis'
+      },
       marie: {
         role: 'Particulier',
         text: 'Service impeccable ! J\'ai trouvé un plombier en moins d\'une heure pour une urgence. Très professionnel et tarif transparent.'
@@ -304,7 +376,8 @@ export default {
     partners: {
       title: 'Nos partenaires',
       subtitle: 'Des milliers d\'entreprises et organisations nous font confiance',
-      trust: 'Ils nous font confiance'
+      trust: 'Ils nous font confiance',
+      badge: 'Partenaires de confiance'
     },
     cta: {
       title: 'Prêt à commencer ?',
@@ -312,6 +385,12 @@ export default {
       button: 'Commencer',
     },
     ctaSection: {
+      badge: 'Rejoignez-nous',
+      cta: {
+        title: 'Prêt à commencer ?',
+        subtitle: 'Rejoignez la communauté FIBEM',
+        description: 'Des milliers de professionnels et clients font déjà confiance à notre plateforme pour leurs projets les plus importants'
+      },
       pro: {
         title: 'Vous êtes un professionnel ?',
         description: 'Rejoignez notre réseau de professionnels et développez votre activité. Accédez à des centaines de demandes de services chaque jour.',
@@ -319,14 +398,16 @@ export default {
         benefit2: 'Gestion simplifiée des devis',
         benefit3: 'Paiements sécurisés',
         button: 'Devenir partenaire',
+        categories: '50+ catégories'
       },
       candidate: {
         title: 'Vous cherchez un emploi ?',
-        description: 'Créez votre profil et accédez à des centaines d\'offres d\'emploi. Nos recruteurs partenaires recherchent activement des talents.',
+        description: 'Créez votre profil et accédez à des centaines d offres d emploi. Nos recruteurs partenaires recherchent activement des talents.',
         benefit1: 'CV FIBEM professionnel',
         benefit2: 'Alertes emploi personnalisées',
         benefit3: 'Accompagnement personnalisé',
         button: 'Créer mon profil',
+        support: 'Support 24/7'
       }
     },
     emploi: {
@@ -532,6 +613,13 @@ export default {
       youtube: 'YouTube',
     },
     copyright: '© {year} SEN FIBEM FRANCE. Tous droits réservés.',
+    backToTop: 'Retour en haut',
+    guaranteedService: 'Service garanti',
+    customerSatisfaction: 'Satisfaction client',
+    help: 'Aide',
+    sitemap: 'Plan du site',
+    accessibility: 'Accessibilité',
+    securePayment: 'Paiement sécurisé',
   },
   services: {
     title: 'Nos Services',
@@ -657,30 +745,31 @@ export default {
   },
   contact: {
     title: 'Contactez-nous',
-    subtitle: 'Notre équipe est à votre disposition pour répondre à toutes vos questions',
+    subtitle: 'Nous sommes là pour répondre à toutes vos questions',
+    badge: 'Contact',
     form: {
       name: 'Nom complet',
       email: 'Email',
       phone: 'Téléphone',
       subject: 'Sujet',
       message: 'Message',
-      send: 'Envoyer le message',
+      send: 'Envoyer',
       sending: 'Envoi en cours...',
-      sent: 'Nous avons bien reçu votre message et vous répondrons rapidement.',
-      error: 'Erreur lors de l\'envoi du message',
+      sent: 'Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.',
+      error: 'Une erreur est survenue. Veuillez réessayer.',
       sendMessageTitle: 'Envoyez-nous un message',
-      responsePromise: 'Nous vous répondrons dans les plus brefs délais',
+      responsePromise: 'Nous vous répondrons dans les 24 heures.',
       messageSentTitle: 'Message envoyé !',
       sendAnotherMessage: 'Envoyer un autre message',
       requestType: 'Type de demande',
       requestTypes: {
-        general: 'Demande générale',
+        general: 'Question générale',
         service: 'Demande de service',
-        job: 'Question emploi',
+        job: 'Candidature spontanée',
         partnership: 'Proposition de partenariat',
         complaint: 'Réclamation',
-        other: 'Autre',
-      },
+        other: 'Autre'
+      }
     },
     addresses: {
       france: 'Adresse France',
@@ -694,8 +783,119 @@ export default {
     },
   },
   about: {
-    title: 'À propos de nous',
-    underConstruction: 'Page en construction. Contenu pour À propos à venir.',
+    title: 'FIBEM',
+    subtitle: 'France',
+    description: 'Leader dans la mise en relation professionnelle et le recrutement B2B entre la France et l\'Afrique.',
+    badge: 'À propos de nous',
+    mission: {
+      title: 'Notre Mission',
+      heading: 'Connecter les talents,',
+      highlight: 'transformer les entreprises',
+      description: 'Chez FIBEM France, nous croyons que la croissance des entreprises passe par la connexion des bonnes compétences aux bonnes opportunités. Notre mission est de créer des ponts durables entre les professionnels, les entreprises et les marchés.',
+      points: {
+        expertise: 'Expertise franco-africaine unique',
+        platform: 'Plateforme technologique innovante',
+        network: 'Réseau de 10 000+ professionnels',
+        support: 'Accompagnement personnalisé'
+      }
+    },
+    vision: {
+      title: 'Notre Vision',
+      subtitle: 'Pour 2030',
+      description: 'Devenir la plateforme de référence pour la mise en relation professionnelle et le recrutement entre la France et l\'Afrique, en connectant plus de 100 000 professionnels et 5 000 entreprises.'
+    },
+    values: {
+      title: 'Nos Valeurs',
+      heading: 'Nos Valeurs Fondamentales',
+      description: 'Les principes qui guident notre action au quotidien',
+      trust: {
+        title: 'Confiance & Transparence',
+        description: 'Nous construisons des relations durables basées sur la confiance et la transparence totale.'
+      },
+      excellence: {
+        title: 'Excellence Opérationnelle',
+        description: 'Nous visons l\'excellence dans chaque service, chaque projet et chaque interaction.'
+      },
+      innovation: {
+        title: 'Innovation Collective',
+        description: 'Nous croyons en la puissance du collectif pour innover et créer des solutions disruptives.'
+      },
+      impact: {
+        title: 'Impact International',
+        description: 'Nous connectons les talents et les opportunités à l\'échelle internationale.'
+      }
+    },
+    history: {
+      title: 'Notre Parcours',
+      heading: 'Moments Clés de Notre Histoire',
+      description: 'Découvrez les étapes importantes qui ont marqué notre croissance'
+    },
+    milestones: {
+      foundation: {
+        title: 'Fondation',
+        description: 'Création de FIBEM France'
+      },
+      expansion: {
+        title: 'Expansion',
+        description: 'Ouverture du bureau au Sénégal'
+      },
+      innovation: {
+        title: 'Innovation',
+        description: 'Lancement de la plateforme digitale'
+      },
+      growth: {
+        title: 'Croissance',
+        description: '10 000 professionnels inscrits'
+      },
+      recognition: {
+        title: 'Reconnaissance',
+        description: 'Prix de l\'innovation B2B'
+      }
+    },
+    team: {
+      title: 'Notre Équipe',
+      heading: 'Les Talents derrière FIBEM',
+      description: 'Découvrez les experts qui font notre force',
+      ceo: {
+        role: 'CEO & Fondatrice',
+        expertise: '15 ans en consulting B2B'
+      },
+      cto: {
+        role: 'Directeur Technique',
+        expertise: 'Expert en solutions digitales'
+      },
+      africa: {
+        role: 'Directrice Afrique',
+        expertise: 'Spécialiste marché africain'
+      },
+      sales: {
+        role: 'Directeur Commercial',
+        expertise: 'Développement partenariats'
+      }
+    },
+    cta: {
+      title: 'Prêt à écrire l\'histoire avec nous ?',
+      subtitle: 'Rejoignez notre communauté de professionnels et transformez vos ambitions en réalité.',
+      contact: 'Nous contacter',
+      jobs: 'Voir nos offres d\'emploi',
+      team: 'Découvrir notre équipe',
+      values: 'Nos valeurs'
+    }
+  },
+  news: {
+    badge: 'Actualités',
+    title: 'Actualités FIBEM',
+    subtitle: 'Découvrez les dernières nouvelles et tendances du monde B2B franco-africain',
+    searchPlaceholder: 'Rechercher un article...',
+    featured: 'Articles à la une',
+    allNews: 'Tous les articles',
+    readMore: 'Lire la suite',
+    newsletter: {
+      title: 'Restez informé',
+      subtitle: 'Recevez nos dernières actualités directement dans votre boîte mail',
+      placeholder: 'Votre adresse email',
+      subscribe: 'S\'abonner'
+    }
   },
   dashboard: {
     title: 'Tableau de bord',

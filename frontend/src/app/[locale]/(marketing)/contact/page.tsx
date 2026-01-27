@@ -1,11 +1,18 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, Phone, MapPin, Clock, Send, MessageSquare } from 'lucide-react'
-import { useI18n } from '@/locales/client'
+import { Mail, Phone, MapPin, Clock, Send, MessageSquare, Globe, Building, Users, Target, CheckCircle, Sparkles } from 'lucide-react'
+import { useScopedI18n } from '@/locales/client'
+import { motion } from 'framer-motion'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Card, CardContent } from '@/components/ui/card'
+import Image from 'next/image'
 
 export default function ContactPage() {
-  const t = useI18n();
+  const t = useScopedI18n('contact');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,234 +22,461 @@ export default function ContactPage() {
     type: 'general'
   })
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log(formData)
-    setSubmitted(true)
+    setLoading(true)
+    
+    // Simuler un envoi API
+    setTimeout(() => {
+      console.log('Form data:', formData)
+      setSubmitted(true)
+      setLoading(false)
+    }, 1000)
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
+  const handleSelectChange = (name: string, value: string) => {
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero */}
-      <div className="bg-fibem-primary text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-4">{t('contact.title')}</h1>
-          <p className="text-blue-100 text-lg max-w-2xl mx-auto">
-            {t('contact.subtitle')}
-          </p>
+    <div className="min-h-screen bg-gradient-to-b from-fibem-surface to-white">
+      {/* Hero avec effet glass */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-fibem-primary via-fibem-dark to-fibem-primary/90 py-20">
+        <div className="absolute inset-0 bg-black/10 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}></div>
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-4"
+          >
+            
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              {t('title')}
+              <span className="text-fibem-secondary">.</span>
+            </h1>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+              {t('subtitle')}
+            </p>
+          </motion.div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="max-w-7xl mx-auto px-4 py-16 -mt-8 relative z-20">
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Contact info */}
-          <div className="lg:col-span-1 space-y-6">
-            {/* France */}
-            <div className="bg-white rounded-xl p-6 shadow-sm">
-              <h3 className="font-bold text-lg text-gray-800 mb-4 flex items-center gap-2">
-                <span className="text-2xl">🇫🇷</span> France
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-fibem-primary mt-1" />
-                  <div>
-                    <p className="font-medium text-gray-800">{t('contact.addresses.addressLabel')}</p>
-                    <p className="text-gray-600 text-sm">123 Avenue des Champs-Élysées<br />75008 Paris, France</p>
+          {/* Colonne gauche - Informations de contact */}
+          <div className="space-y-6">
+            {/* Carte France */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+              whileHover={{ y: -5 }}
+            >
+              <Card className="bg-white/80 backdrop-blur-sm border border-white/20 shadow-xl overflow-hidden group">
+                <div className="absolute top-0 right-0 w-16 h-16 bg-fibem-primary/10 rounded-full -translate-y-8 translate-x-8"></div>
+                <CardContent className="p-8 relative">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 bg-gradient-to-br from-fibem-white to-fibem-background border-2 border-secondary rounded-xl flex items-center justify-center">
+                      <Image src="/logo.png" alt="FIBEM" width={24} height={24} className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-xl text-fibem-textPrimary">FIBEM France</h3>
+                      <p className="text-sm text-fibem-muted">Siège social</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Phone className="w-5 h-5 text-fibem-primary mt-1" />
-                  <div>
-                    <p className="font-medium text-gray-800">{t('contact.form.phone')}</p>
-                    <p className="text-gray-600 text-sm">+33 1 XX XX XX XX</p>
+                  
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3 group/item">
+                      <div className="w-10 h-10 bg-fibem-surface rounded-lg flex items-center justify-center group-hover/item:bg-fibem-primary/10 transition-colors">
+                        <MapPin className="w-5 h-5 text-fibem-primary" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-fibem-textPrimary">{t('addresses.addressLabel')}</p>
+                        <p className="text-fibem-textSecondary text-sm mt-1">
+                          123 Avenue des Champs-Élysées<br />
+                          75008 Paris, France
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-3 group/item">
+                      <div className="w-10 h-10 bg-fibem-surface rounded-lg flex items-center justify-center group-hover/item:bg-fibem-primary/10 transition-colors">
+                        <Phone className="w-5 h-5 text-fibem-primary" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-fibem-textPrimary">{t('form.phone')}</p>
+                        <a href="tel:+33123456789" className="text-fibem-textSecondary text-sm mt-1 hover:text-fibem-primary transition-colors">
+                          +33 1 23 45 67 89
+                        </a>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-3 group/item">
+                      <div className="w-10 h-10 bg-fibem-surface rounded-lg flex items-center justify-center group-hover/item:bg-fibem-primary/10 transition-colors">
+                        <Mail className="w-5 h-5 text-fibem-primary" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-fibem-textPrimary">{t('form.email')}</p>
+                        <a href="mailto:contact@senfibem.fr" className="text-fibem-textSecondary text-sm mt-1 hover:text-fibem-primary transition-colors">
+                          contact@senfibem.fr
+                        </a>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-3 group/item">
+                      <div className="w-10 h-10 bg-fibem-surface rounded-lg flex items-center justify-center group-hover/item:bg-fibem-primary/10 transition-colors">
+                        <Clock className="w-5 h-5 text-fibem-primary" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-fibem-textPrimary">{t('addresses.hoursLabel')}</p>
+                        <p className="text-fibem-textSecondary text-sm mt-1">
+                          {t('addresses.weekdaysHours')}<br />
+                          {t('addresses.saturdayHours')}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Mail className="w-5 h-5 text-fibem-primary mt-1" />
-                  <div>
-                    <p className="font-medium text-gray-800">{t('contact.form.email')}</p>
-                    <p className="text-gray-600 text-sm">contact@senfibem.fr</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Clock className="w-5 h-5 text-fibem-primary mt-1" />
-                  <div>
-                    <p className="font-medium text-gray-800">{t('contact.addresses.hoursLabel')}</p>
-                    <p className="text-gray-600 text-sm">{t('contact.addresses.weekdaysHours')}<br />{t('contact.addresses.saturdayHours')}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+                </CardContent>
+              </Card>
+            </motion.div>
 
-            {/* Sénégal */}
-            <div className="bg-white rounded-xl p-6 shadow-sm">
-              <h3 className="font-bold text-lg text-gray-800 mb-4 flex items-center gap-2">
-                <span className="text-2xl">🇸🇳</span> Sénégal
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-fibem-primary mt-1" />
-                  <div>
-                    <p className="font-medium text-gray-800">{t('contact.addresses.addressLabel')}</p>
-                    <p className="text-gray-600 text-sm">Avenue Cheikh Anta Diop<br />Dakar, Sénégal</p>
+            {/* Carte Sénégal */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 }}
+              whileHover={{ y: -5 }}
+            >
+              <Card className="bg-white/80 backdrop-blur-sm border border-white/20 shadow-xl overflow-hidden group">
+                <div className="absolute top-0 right-0 w-16 h-16 bg-fibem-secondary/10 rounded-full -translate-y-8 translate-x-8"></div>
+                <CardContent className="p-8 relative">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 bg-gradient-to-br from-fibem-white to-fibem-background rounded-xl flex items-center justify-center">
+                      <Image src="/logo.png" alt="FIBEM" width={24} height={24} className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-xl text-fibem-textPrimary">FIBEM Sénégal</h3>
+                      <p className="text-sm text-fibem-muted">Bureau régional</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Phone className="w-5 h-5 text-fibem-primary mt-1" />
-                  <div>
-                    <p className="font-medium text-gray-800">{t('contact.form.phone')}</p>
-                    <p className="text-gray-600 text-sm">+221 XX XXX XX XX</p>
+                  
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-fibem-surface rounded-lg flex items-center justify-center">
+                        <MapPin className="w-5 h-5 text-fibem-secondary" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-fibem-textPrimary">{t('addresses.addressLabel')}</p>
+                        <p className="text-fibem-textSecondary text-sm mt-1">
+                          Avenue Cheikh Anta Diop<br />
+                          Dakar, Sénégal
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-fibem-surface rounded-lg flex items-center justify-center">
+                        <Phone className="w-5 h-5 text-fibem-secondary" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-fibem-textPrimary">{t('form.phone')}</p>
+                        <a href="tel:+221771234567" className="text-fibem-textSecondary text-sm mt-1 hover:text-fibem-secondary transition-colors">
+                          +221 77 123 45 67
+                        </a>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 bg-fibem-surface rounded-lg flex items-center justify-center">
+                        <Mail className="w-5 h-5 text-fibem-secondary" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-fibem-textPrimary">{t('form.email')}</p>
+                        <a href="mailto:contact@senfibem.sn" className="text-fibem-textSecondary text-sm mt-1 hover:text-fibem-secondary transition-colors">
+                          contact@senfibem.sn
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Mail className="w-5 h-5 text-fibem-primary mt-1" />
-                  <div>
-                    <p className="font-medium text-gray-800">{t('contact.form.email')}</p>
-                    <p className="text-gray-600 text-sm">contact@senfibem.sn</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+                </CardContent>
+              </Card>
+            </motion.div>
 
-            {/* Map placeholder */}
-            <div className="bg-white rounded-xl p-6 shadow-sm">
-              <h3 className="font-bold text-lg text-gray-800 mb-4">{t('contact.addresses.locationLabel')}</h3>
-              <div className="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                <div className="text-center text-gray-500">
-                  <MapPin className="w-8 h-8 mx-auto mb-2" />
-                  <p className="text-sm">{t('contact.addresses.mapPlaceholder')}</p>
-                </div>
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4 }}
+              className="grid grid-cols-2 gap-4"
+            >
+              <div className="bg-gradient-to-br from-fibem-primary/10 to-fibem-primary/5 rounded-xl p-4 text-center">
+                <div className="text-2xl font-bold text-fibem-primary">24h</div>
+                <div className="text-sm text-fibem-textSecondary">Réponse moyenne</div>
               </div>
-            </div>
+              <div className="bg-gradient-to-br from-fibem-secondary/10 to-fibem-secondary/5 rounded-xl p-4 text-center">
+                <div className="text-2xl font-bold text-fibem-secondary">98%</div>
+                <div className="text-sm text-fibem-textSecondary">Satisfaction client</div>
+              </div>
+            </motion.div>
           </div>
 
-          {/* Contact form */}
+          {/* Colonne droite - Formulaire */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-xl p-8 shadow-sm">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-fibem-light rounded-xl flex items-center justify-center">
-                  <MessageSquare className="w-6 h-6 text-fibem-primary" />
-                </div>
-                <div>
-                  <h2 className="font-bold text-xl text-gray-800">{t('contact.form.sendMessageTitle')}</h2>
-                  <p className="text-gray-500 text-sm">{t('contact.form.responsePromise')}</p>
-                </div>
-              </div>
-
-              {submitted ? (
-                <div className="text-center py-12">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Send className="w-8 h-8 text-green-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-2">{t('contact.form.messageSentTitle')}</h3>
-                  <p className="text-gray-600 mb-6">{t('contact.form.sent')}</p>
-                  <button
-                    onClick={() => {
-                      setSubmitted(false)
-                      setFormData({ name: '', email: '', phone: '', subject: '', message: '', type: 'general' })
-                    }}
-                    className="px-6 py-2 border border-fibem-primary text-fibem-primary rounded-lg hover:bg-fibem-light transition-colors"
-                  >
-                    {t('contact.form.sendAnotherMessage')}
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">{t('contact.form.requestType')}</label>
-                    <select
-                      name="type"
-                      value={formData.type}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <Card className="bg-white/90 backdrop-blur-sm border border-white/20 shadow-2xl overflow-hidden">
+                <CardContent className="p-8">
+                  {submitted ? (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="text-center py-12"
                     >
-                      <option value="general">{t('contact.form.requestTypes.general')}</option>
-                      <option value="service">{t('contact.form.requestTypes.service')}</option>
-                      <option value="emploi">{t('contact.form.requestTypes.job')}</option>
-                      <option value="partenariat">{t('contact.form.requestTypes.partnership')}</option>
-                      <option value="reclamation">{t('contact.form.requestTypes.complaint')}</option>
-                      <option value="autre">{t('contact.form.requestTypes.other')}</option>
-                    </select>
-                  </div>
+                      <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <CheckCircle className="w-10 h-10 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-fibem-textPrimary mb-3">{t('form.messageSentTitle')}</h3>
+                      <p className="text-fibem-textSecondary mb-8 max-w-md mx-auto">
+                        {t('form.sent')}
+                      </p>
+                      <Button
+                        onClick={() => {
+                          setSubmitted(false)
+                          setFormData({ name: '', email: '', phone: '', subject: '', message: '', type: 'general' })
+                        }}
+                        variant="outline"
+                        className="border-fibem-primary text-fibem-primary hover:bg-fibem-primary/10"
+                      >
+                        {t('form.sendAnotherMessage')}
+                      </Button>
+                    </motion.div>
+                  ) : (
+                    <>
+                      <div className="flex items-center gap-3 mb-8">
+                        <div className="w-14 h-14 bg-gradient-to-br from-fibem-primary to-fibem-dark rounded-xl flex items-center justify-center">
+                          <Send className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h2 className="font-bold text-2xl text-fibem-textPrimary">{t('form.sendMessageTitle')}</h2>
+                          <p className="text-fibem-textSecondary">{t('form.responsePromise')}</p>
+                        </div>
+                      </div>
 
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">{t('contact.form.name')} *</label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">{t('contact.form.phone')}</label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary"
-                      />
-                    </div>
-                  </div>
+                      <form onSubmit={handleSubmit} className="space-y-6">
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div className="space-y-2">
+                            <label className="block text-sm font-medium text-fibem-textPrimary">
+                              {t('form.name')} *
+                            </label>
+                            <Input
+                              type="text"
+                              name="name"
+                              value={formData.name}
+                              onChange={handleChange}
+                              required
+                              placeholder="Jean Dupont"
+                              className="border-fibem-border focus:border-fibem-primary focus:ring-fibem-primary"
+                            />
+                          </div>
+                          
+                          <div className="space-y-2">
+                            <label className="block text-sm font-medium text-fibem-textPrimary">
+                              {t('form.phone')}
+                            </label>
+                            <Input
+                              type="tel"
+                              name="phone"
+                              value={formData.phone}
+                              onChange={handleChange}
+                              placeholder="+33 1 23 45 67 89"
+                              className="border-fibem-border focus:border-fibem-primary focus:ring-fibem-primary"
+                            />
+                          </div>
+                        </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">{t('contact.form.email')} *</label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary"
-                    />
-                  </div>
+                        <div className="space-y-2">
+                          <label className="block text-sm font-medium text-fibem-textPrimary">
+                            {t('form.email')} *
+                          </label>
+                          <Input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            placeholder="jean.dupont@email.com"
+                            className="border-fibem-border focus:border-fibem-primary focus:ring-fibem-primary"
+                          />
+                        </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">{t('contact.form.subject')} *</label>
-                    <input
-                      type="text"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary"
-                    />
-                  </div>
+                        <div className="space-y-2">
+                          <label className="block text-sm font-medium text-fibem-textPrimary">
+                            {t('form.requestType')}
+                          </label>
+                          <Select value={formData.type} onValueChange={(value) => handleSelectChange('type', value)}>
+                            <SelectTrigger className="border-fibem-border focus:border-fibem-primary focus:ring-fibem-primary">
+                              <SelectValue placeholder={t('form.requestType')} />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="general">{t('form.requestTypes.general')}</SelectItem>
+                              <SelectItem value="service">{t('form.requestTypes.service')}</SelectItem>
+                              <SelectItem value="job">{t('form.requestTypes.job')}</SelectItem>
+                              <SelectItem value="partnership">{t('form.requestTypes.partnership')}</SelectItem>
+                              <SelectItem value="complaint">{t('form.requestTypes.complaint')}</SelectItem>
+                              <SelectItem value="other">{t('form.requestTypes.other')}</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">{t('contact.form.message')} *</label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={6}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fibem-secondary resize-none"
-                    />
-                  </div>
+                        <div className="space-y-2">
+                          <label className="block text-sm font-medium text-fibem-textPrimary">
+                            {t('form.subject')} *
+                          </label>
+                          <Input
+                            type="text"
+                            name="subject"
+                            value={formData.subject}
+                            onChange={handleChange}
+                            required
+                            placeholder={t('form.subject')}
+                            className="border-fibem-border focus:border-fibem-primary focus:ring-fibem-primary"
+                          />
+                        </div>
 
-                  <button
-                    type="submit"
-                    className="w-full py-3 bg-fibem-primary text-white font-semibold rounded-lg hover:bg-fibem-dark transition-colors flex items-center justify-center gap-2"
-                  >
-                    <Send className="w-5 h-5" />
-                    {t('contact.form.send')}
-                  </button>
-                </form>
-              )}
-            </div>
+                        <div className="space-y-2">
+                          <label className="block text-sm font-medium text-fibem-textPrimary">
+                            {t('form.message')} *
+                          </label>
+                          <Textarea
+                            name="message"
+                            value={formData.message}
+                            onChange={handleChange}
+                            required
+                            rows={6}
+                            placeholder={t('form.message')}
+                            className="border-fibem-border focus:border-fibem-primary focus:ring-fibem-primary resize-none"
+                          />
+                        </div>
+
+                        <Button
+                          type="submit"
+                          disabled={loading}
+                          className="w-full py-3 bg-gradient-to-r from-fibem-primary to-fibem-dark hover:from-fibem-primary/90 hover:to-fibem-dark/90 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+                        >
+                          {loading ? (
+                            <div className="flex items-center justify-center gap-2">
+                              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                              {t('form.sending')}
+                            </div>
+                          ) : (
+                            <div className="flex items-center justify-center gap-2">
+                              <Send className="w-5 h-5" />
+                              {t('form.send')}
+                            </div>
+                          )}
+                        </Button>
+                      </form>
+                    </>
+                  )}
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* FAQ rapide */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="mt-8 grid md:grid-cols-3 gap-4"
+            >
+              <div className="bg-gradient-to-br from-fibem-surface to-white border border-fibem-border rounded-xl p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-fibem-primary/10 rounded-lg flex items-center justify-center">
+                    <Clock className="w-5 h-5 text-fibem-primary" />
+                  </div>
+                  <h4 className="font-semibold text-fibem-textPrimary">Horaires</h4>
+                </div>
+                <p className="text-sm text-fibem-textSecondary">
+                  Lundi - Vendredi : 9h-18h<br />
+                  Samedi : 10h-14h
+                </p>
+              </div>
+              
+              <div className="bg-gradient-to-br from-fibem-surface to-white border border-fibem-border rounded-xl p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-fibem-secondary/10 rounded-lg flex items-center justify-center">
+                    <Globe className="w-5 h-5 text-fibem-secondary" />
+                  </div>
+                  <h4 className="font-semibold text-fibem-textPrimary">Support</h4>
+                </div>
+                <p className="text-sm text-fibem-textSecondary">
+                  Assistance technique<br />
+                  Support client dédié
+                </p>
+              </div>
+              
+              <div className="bg-gradient-to-br from-fibem-surface to-white border border-fibem-border rounded-xl p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-fibem-accent/10 rounded-lg flex items-center justify-center">
+                    <Users className="w-5 h-5 text-fibem-accent" />
+                  </div>
+                  <h4 className="font-semibold text-fibem-textPrimary">Équipe</h4>
+                </div>
+                <p className="text-sm text-fibem-textSecondary">
+                  Experts à votre service<br />
+                  Réponse rapide garantie
+                </p>
+              </div>
+            </motion.div>
           </div>
+        </div>
+      </div>
+
+      {/* Call-to-action */}
+      <div className="bg-gradient-to-r from-fibem-dark to-fibem-primary py-16">
+        <div className="max-w-4xl mx-auto px-4 text-center text-white">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="space-y-4"
+          >
+           
+            <h3 className="text-3xl font-bold">Prêt à transformer votre projet ?</h3>
+            <p className="text-blue-100 text-lg max-w-2xl mx-auto">
+              Rejoignez des milliers de professionnels qui font confiance à FIBEM
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center mt-6">
+              <Button size="lg" className="bg-white text-fibem-primary hover:bg-gray-100">
+                Découvrir nos services
+              </Button>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                Voir les témoignages
+              </Button>
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>
   )
 }
+
+
+
+

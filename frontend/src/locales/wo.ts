@@ -452,7 +452,7 @@ export default {
       instagram: 'Instagram',
       youtube: 'YouTube',
     },
-    copyright: '© {year} SEN FIBEM FRANCE. Tous droits réservés.',
+    copyright: '© {year} FIBEM. Tous droits réservés.',
   },
   services: {
     title: 'Nos Sérwiis',
@@ -658,6 +658,97 @@ export default {
       dashboard: {
         title: 'Tableau de bord',
         description: 'Tableau de bord',
+      },
+    },
+  },
+  subscriptions: {
+    hero: {
+      title: 'Nos solutions d\'abonnement',
+      subtitle: 'Choisissez le plan adapté à vos besoins et profitez pleinement de l\'écosystème FIBEM.',
+      monthly: '/mois',
+      year: '/an',
+      choosePlan: 'Choisir ce plan',
+      currentPlan: 'Votre plan actuel',
+      mostPopular: 'Le plus populaire',
+    },
+    plans: {
+      stagiaire: {
+        title: 'Formule Stagiaire',
+        subtitle: 'Pour les étudiants et jeunes diplômés',
+        price: 'Gratuit',
+        description: 'Tout ce dont vous avez besoin pour trouver votre stage idéal et lancer votre carrière.',
+        features: [
+          'Création de profil complet',
+          'Accès aux offres de stage',
+          'Candidatures illimitées',
+          'Visibilité auprès des recruteurs',
+          'Accès aux ressources de formation'
+        ],
+      },
+      candidat: {
+        title: 'Formule Candidat',
+        subtitle: 'Pour les chercheurs d\'emploi actifs',
+        price: 'Gratuit',
+        description: 'Valorisez votre profil et accédez aux meilleures opportunités de carrière.',
+        features: [
+          'CV FIBEM professionnel',
+          'Accès à toutes les offres d\'emploi',
+          'Alertes emploi personnalisées',
+          'Suivi des candidatures',
+          'Statistiques de visibilité'
+        ],
+      },
+      particulier: {
+        title: 'Formule Particulier',
+        subtitle: 'Pour vos besoins personnels',
+        price: 'Gratuit',
+        description: 'Trouvez facilement des prestataires de confiance pour tous vos projts.',
+        features: [
+          'Recherche de prestataires',
+          'Demandes de devis illimitées',
+          'Accès aux avis vérifiés',
+          'Paiement sécurisé',
+          'Support client standard'
+        ],
+      },
+      freelance: {
+        title: 'Formule Freelance',
+        subtitle: 'Boostez votre activité d\'indépendant',
+        price: '19.99€',
+        description: 'Des outils puissants pour trouver des missions et gérer votre activité.',
+        features: [
+          'Profil Freelance vérifié',
+          'Accès prioritaire aux missions',
+          'Outils de facturation intégrés',
+          'Gestion de portfolio',
+          'Commission réduite sur les missions'
+        ],
+      },
+      professionnel: {
+        title: 'Formule Professionnel',
+        subtitle: 'Pour les entreprises et artisans',
+        price: '49.99€',
+        description: 'Développez votre clientèle et gérez votre entreprise efficacement.',
+        features: [
+          'Page entreprise dédiée',
+          'Référencement premium',
+          'Gestion multi-utilisateurs',
+          'Outils de devis & facturation',
+          'Accès à la CVthèque'
+        ],
+      },
+      partenaire: {
+        title: 'Formule Partenaire',
+        subtitle: 'Une collaboration stratégique',
+        price: 'Sur devis',
+        description: 'Intégrez l\'écosystème FIBEM et bénéficiez d\'avantages exclusifs.',
+        features: [
+          'Visibilité maximale sur la plateforme',
+          'Campagnes marketing dédiées',
+          'API et intégrations personnalisées',
+          'Account Manager dédié',
+          'Accès exclusif aux événements'
+        ],
       },
     },
   },

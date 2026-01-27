@@ -524,6 +524,21 @@ export default {
       senegal: 'Adresse Sénégal',
     },
   },
+  news: {
+    badge: 'Xibaar',
+    title: 'Xibaar FIBEM',
+    subtitle: 'Ñoo xalaatiku xibaar yu néew ak yëkkët yi ciin dige bu B2B bu Farans-Senegali',
+    searchPlaceholder: 'Gàttal ak xaalis bu njàng...',
+    featured: 'Xaalis bu njàng',
+    allNews: 'Xaalis yépp',
+    readMore: 'Xalaatal bu njàng',
+    newsletter: {
+      title: 'Aw jëmmaliku',
+      subtitle: 'Dugaliku xibaar yu néewam di nañu ci boowaay bu mel',
+      placeholder: 'Imeel bu mel',
+      subscribe: 'Jëmmaliku'
+    }
+  },
   dashboard: {
     title: 'Tableau de bord',
     welcome: 'Bienvenue, {name} !',

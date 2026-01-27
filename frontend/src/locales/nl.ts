@@ -524,6 +524,21 @@ export default {
       senegal: 'Adres Senegal',
     },
   },
+  news: {
+    badge: 'Nieuws',
+    title: 'FIBEM Nieuws',
+    subtitle: 'Ontdek het laatste nieuws en trends in de franco-Afrikaanse B2B wereld',
+    searchPlaceholder: 'Zoek een artikel...',
+    featured: 'Uitgelichte artikelen',
+    allNews: 'Alle artikelen',
+    readMore: 'Lees meer',
+    newsletter: {
+      title: 'Blijf geïnformeerd',
+      subtitle: 'Ontvang ons laatste nieuws direct in uw inbox',
+      placeholder: 'Uw e-mailadres',
+      subscribe: 'Abonneren'
+    }
+  },
   dashboard: {
     title: 'Dashboard',
     welcome: 'Welkom, {name}!',

@@ -752,4 +752,73 @@ export default {
       },
     },
   },
+  about: {
+    title: 'Sobre nós',
+    underConstruction: 'Página em construção. Conteúdo para Sobre nós em breve.',
+    hero: {
+      title: 'Acompanhar a transmissão de empresas no coração de Madagascar',
+      subtitle: 'A FIBEM facilita a compra e venda de empresas (Fundo de comércio, PME, microempresas) com profissionalismo e transparência',
+    },
+    ourHistory: {
+      title: 'Nossa História',
+      paragraph1: 'A FIBEM nasceu de uma visão clara: profissionalizar o mercado de transmissão de empresas em Madagascar e na África francófona. Diante de um mercado informal e fragmentado, criamos uma plataforma digital moderna para garantir e facilitar as transações B2B.',
+      paragraph2: 'Nossa missão é conectar vendedores e compradores de empresas em um ambiente seguro, transparente e profissional. Acompanhamos cada transação com expertise e rigor, desde a avaliação inicial até a finalização da venda.',
+      paragraph3: 'Hoje, a FIBEM tornou-se a referência para a compra e venda de empresas, com uma presença estabelecida na França e no Senegal, e uma expansão contínua para novos mercados.',
+    },
+    ourVision: {
+      title: 'Nossa Visão',
+      subtitle: 'Transformar o mercado B2B africano',
+      description: 'Tornar-se a plataforma de referência para todas as transações de empresas na África francófona, trazendo transparência, segurança e profissionalismo em cada etapa do processo.',
+    },
+    ourValues: {
+      title: 'Nossos Valores',
+      subtitle: 'Os princípios que orientam nossa ação diária',
+      expertise: {
+        title: 'Expertise',
+        description: 'Um conhecimento profundo do tecido econômico para transações seguras',
+      },
+      security: {
+        title: 'Segurança',
+        description: 'Anúncios verificados e processos seguros para proteger compradores e vendedores',
+      },
+      innovation: {
+        title: 'Inovação',
+        description: 'Uma plataforma digital moderna para facilitar as transações B2B',
+      },
+    },
+    impact: {
+      title: 'O Impacto da FIBEM',
+      subtitle: 'Números que testemunham nosso compromisso e crescimento',
+      stats: {
+        experience: 'Anos de experiência',
+        companies: 'Empresas listadas',
+        satisfaction: 'Taxa de satisfação',
+        countries: 'Países (França e Senegal)',
+      },
+    },
+    team: {
+      title: 'Uma Equipe Dedicada',
+      subtitle: 'Especialistas apaixonados ao serviço de suas transações',
+      roles: {
+        evaluation: {
+          title: 'Especialistas em avaliação',
+          description: 'Avaliação precisa da sua empresa',
+        },
+        legal: {
+          title: 'Consultores jurídicos',
+          description: 'Segurança de todas as etapas legais',
+        },
+        commercial: {
+          title: 'Acompanhamento comercial',
+          description: 'Suporte personalizado durante todo o processo',
+        },
+      },
+    },
+    cta: {
+      title: 'Comece seu projeto hoje',
+      subtitle: 'Junte-se a centenas de empresas que confiam em nós para suas transações B2B',
+      startButton: 'Começar agora',
+      contactButton: 'Entre em contato',
+    },
+  },
 } as const

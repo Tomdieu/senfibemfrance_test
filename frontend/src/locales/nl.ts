@@ -752,4 +752,73 @@ export default {
       },
     },
   },
+  about: {
+    title: 'Over ons',
+    underConstruction: 'Pagina in aanbouw. Inhoud voor Over ons komt binnenkort.',
+    hero: {
+      title: 'Begeleiding van bedrijfsoverdracht in het hart van Madagascar',
+      subtitle: 'FIBEM faciliteert de aan- en verkoop van bedrijven (Goodwill, KMO\'s, micro-ondernemingen) met professionaliteit en transparantie',
+    },
+    ourHistory: {
+      title: 'Onze geschiedenis',
+      paragraph1: 'FIBEM is geboren uit een duidelijke visie: de markt voor bedrijfsoverdracht in Madagascar en Franstalig Afrika professionaliseren. Geconfronteerd met een informele en gefragmenteerde markt, hebben we een modern digitaal platform gecreëerd om B2B-transacties te beveiligen en te vergemakkelijken.',
+      paragraph2: 'Onze missie is om verkopers en kopers van bedrijven te verbinden in een veilige, transparante en professionele omgeving. We begeleiden elke transactie met expertise en nauwkeurigheid, van de eerste waardering tot de afronding van de verkoop.',
+      paragraph3: 'Vandaag is FIBEM de referentie geworden voor de aan- en verkoop van bedrijven, met een gevestigde aanwezigheid in Frankrijk en Senegal, en een voortdurende expansie naar nieuwe markten.',
+    },
+    ourVision: {
+      title: 'Onze visie',
+      subtitle: 'De Afrikaanse B2B-markt transformeren',
+      description: 'Het referentieplatform worden voor alle bedrijfstransacties in Franstalig Afrika, door transparantie, veiligheid en professionaliteit te brengen in elke fase van het proces.',
+    },
+    ourValues: {
+      title: 'Onze waarden',
+      subtitle: 'De principes die ons dagelijks handelen leiden',
+      expertise: {
+        title: 'Expertise',
+        description: 'Diepgaande kennis van het economische weefsel voor veilige transacties',
+      },
+      security: {
+        title: 'Veiligheid',
+        description: 'Geverifieerde advertenties en veilige processen om kopers en verkopers te beschermen',
+      },
+      innovation: {
+        title: 'Innovatie',
+        description: 'Een modern digitaal platform om B2B-transacties te vergemakkelijken',
+      },
+    },
+    impact: {
+      title: 'De impact van FIBEM',
+      subtitle: 'Cijfers die getuigen van onze betrokkenheid en groei',
+      stats: {
+        experience: 'Jaren ervaring',
+        companies: 'Genoteerde bedrijven',
+        satisfaction: 'Tevredenheidspercentage',
+        countries: 'Landen (Frankrijk & Senegal)',
+      },
+    },
+    team: {
+      title: 'Een toegewijd team',
+      subtitle: 'Gepassioneerde experts ten dienste van uw transacties',
+      roles: {
+        evaluation: {
+          title: 'Waarderingsexperts',
+          description: 'Nauwkeurige waardering van uw bedrijf',
+        },
+        legal: {
+          title: 'Juridische adviseurs',
+          description: 'Beveiliging van alle juridische stappen',
+        },
+        commercial: {
+          title: 'Commerciële begeleiding',
+          description: 'Gepersonaliseerde ondersteuning gedurende het hele proces',
+        },
+      },
+    },
+    cta: {
+      title: 'Start vandaag uw project',
+      subtitle: 'Sluit u aan bij honderden bedrijven die ons vertrouwen voor hun B2B-transacties',
+      startButton: 'Nu beginnen',
+      contactButton: 'Neem contact op',
+    },
+  },
 } as const

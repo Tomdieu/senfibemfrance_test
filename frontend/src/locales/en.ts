@@ -784,104 +784,73 @@ export default {
     },
   },
   about: {
-    title: 'FIBEM',
-    subtitle: 'France',
-    description: 'Leader in professional networking and B2B recruitment between France and Africa.',
-    badge: 'About us',
-    mission: {
-      title: 'Our Mission',
-      heading: 'Connecting talents,',
-      highlight: 'transforming businesses',
-      description: 'At FIBEM France, we believe that business growth comes from connecting the right skills to the right opportunities. Our mission is to create lasting bridges between professionals, companies, and markets.',
-      points: {
-        expertise: 'Unique Franco-African expertise',
-        platform: 'Innovative technological platform',
-        network: 'Network of 10,000+ professionals',
-        support: 'Personalized support'
-      }
+    title: 'About Us',
+    underConstruction: 'Page under construction. Content for About Us coming soon.',
+    hero: {
+      title: 'Supporting business transfers at the heart of Madagascar',
+      subtitle: 'FIBEM facilitates the buying and selling of businesses (Goodwill, SMEs, VSEs) with professionalism and transparency',
     },
-    vision: {
+    ourHistory: {
+      title: 'Our History',
+      paragraph1: 'FIBEM was born from a clear vision: to professionalize the business transfer market in Madagascar and French-speaking Africa. Faced with an informal and fragmented market, we created a modern digital platform to secure and facilitate B2B transactions.',
+      paragraph2: 'Our mission is to connect business sellers and buyers in a secure, transparent, and professional environment. We support each transaction with expertise and rigor, from initial valuation to finalization of the sale.',
+      paragraph3: 'Today, FIBEM has become the reference for buying and selling businesses, with an established presence in France and Senegal, and continuous expansion to new markets.',
+    },
+    ourVision: {
       title: 'Our Vision',
-      subtitle: 'For 2030',
-      description: 'To become the reference platform for professional networking and recruitment between France and Africa, connecting more than 100,000 professionals and 5,000 companies.'
+      subtitle: 'Transforming the African B2B market',
+      description: 'To become the reference platform for all business transactions in French-speaking Africa, bringing transparency, security, and professionalism to every step of the process.',
     },
-    values: {
+    ourValues: {
       title: 'Our Values',
-      heading: 'Our Core Values',
-      description: 'The principles that guide our daily actions',
-      trust: {
-        title: 'Trust & Transparency',
-        description: 'We build lasting relationships based on trust and complete transparency.'
+      subtitle: 'The principles that guide our daily actions',
+      expertise: {
+        title: 'Expertise',
+        description: 'In-depth knowledge of the economic landscape for secure transactions',
       },
-      excellence: {
-        title: 'Operational Excellence',
-        description: 'We strive for excellence in every service, every project, and every interaction.'
-      },
-      innovation: {
-        title: 'Collective Innovation',
-        description: 'We believe in the power of collective to innovate and create disruptive solutions.'
-      },
-      impact: {
-        title: 'International Impact',
-        description: 'We connect talents and opportunities on an international scale.'
-      }
-    },
-    history: {
-      title: 'Our Journey',
-      heading: 'Key Moments in Our History',
-      description: 'Discover the important milestones that marked our growth'
-    },
-    milestones: {
-      foundation: {
-        title: 'Foundation',
-        description: 'Creation of FIBEM France'
-      },
-      expansion: {
-        title: 'Expansion',
-        description: 'Opening of Senegal office'
+      security: {
+        title: 'Security',
+        description: 'Verified listings and secure processes to protect buyers and sellers',
       },
       innovation: {
         title: 'Innovation',
-        description: 'Launch of digital platform'
+        description: 'A modern digital platform to facilitate B2B transactions',
       },
-      growth: {
-        title: 'Growth',
-        description: '10,000 professionals registered'
+    },
+    impact: {
+      title: 'FIBEM\'s Impact',
+      subtitle: 'Numbers that testify to our commitment and growth',
+      stats: {
+        experience: 'Years of expertise',
+        companies: 'Listed companies',
+        satisfaction: 'Satisfaction rate',
+        countries: 'Countries (France & Senegal)',
       },
-      recognition: {
-        title: 'Recognition',
-        description: 'B2B Innovation Award'
-      }
     },
     team: {
-      title: 'Our Team',
-      heading: 'The Talents Behind FIBEM',
-      description: 'Meet the experts who make our strength',
-      ceo: {
-        role: 'CEO & Founder',
-        expertise: '15 years in B2B consulting'
+      title: 'A Dedicated Team',
+      subtitle: 'Passionate experts at the service of your transactions',
+      roles: {
+        evaluation: {
+          title: 'Valuation experts',
+          description: 'Precise valuation of your business',
+        },
+        legal: {
+          title: 'Legal advisors',
+          description: 'Securing all legal stages',
+        },
+        commercial: {
+          title: 'Commercial support',
+          description: 'Personalized support throughout the process',
+        },
       },
-      cto: {
-        role: 'Technical Director',
-        expertise: 'Expert in digital solutions'
-      },
-      africa: {
-        role: 'Africa Director',
-        expertise: 'African market specialist'
-      },
-      sales: {
-        role: 'Sales Director',
-        expertise: 'Partnership development'
-      }
     },
     cta: {
-      title: 'Ready to write history with us?',
-      subtitle: 'Join our community of professionals and turn your ambitions into reality.',
-      contact: 'Contact us',
-      jobs: 'See our job offers',
-      team: 'Discover our team',
-      values: 'Our values'
-    }
+      title: 'Start your project today',
+      subtitle: 'Join hundreds of companies that trust us for their B2B transactions',
+      startButton: 'Get started now',
+      contactButton: 'Contact us',
+    },
   },
   news: {
     badge: 'News',

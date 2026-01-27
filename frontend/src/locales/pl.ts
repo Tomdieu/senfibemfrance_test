@@ -752,4 +752,73 @@ export default {
       },
     },
   },
+  about: {
+    title: 'O nas',
+    underConstruction: 'Strona w budowie. Treść dla O nas wkrótce.',
+    hero: {
+      title: 'Wspieranie przekazywania przedsiębiorstw w sercu Madagaskaru',
+      subtitle: 'FIBEM ułatwia kupno i sprzedaż firm (Goodwill, MŚP, mikroprzedsiębiorstwa) z profesjonalizmem i przejrzystością',
+    },
+    ourHistory: {
+      title: 'Nasza historia',
+      paragraph1: 'FIBEM narodziła się z jasnej wizji: profesjonalizacji rynku przekazywania przedsiębiorstw na Madagaskarze i w Afryce frankofońskiej. W obliczu nieformalnego i rozdrobnionego rynku stworzyliśmy nowoczesną platformę cyfrową, aby zabezpieczyć i ułatwić transakcje B2B.',
+      paragraph2: 'Naszą misją jest łączenie sprzedawców i kupujących firmy w bezpiecznym, przejrzystym i profesjonalnym środowisku. Wspieramy każdą transakcję z wiedzą i rygorem, od wstępnej wyceny do finalizacji sprzedaży.',
+      paragraph3: 'Dziś FIBEM stała się punktem odniesienia dla kupna i sprzedaży firm, z ugruntowaną obecnością we Francji i Senegalu oraz ciągłą ekspansją na nowe rynki.',
+    },
+    ourVision: {
+      title: 'Nasza wizja',
+      subtitle: 'Transformacja afrykańskiego rynku B2B',
+      description: 'Stać się platformą referencyjną dla wszystkich transakcji biznesowych w Afryce frankofońskiej, przynosząc przejrzystość, bezpieczeństwo i profesjonalizm na każdym etapie procesu.',
+    },
+    ourValues: {
+      title: 'Nasze wartości',
+      subtitle: 'Zasady, które kierują naszymi codziennymi działaniami',
+      expertise: {
+        title: 'Ekspertyza',
+        description: 'Dogłębna znajomość krajobrazu gospodarczego dla bezpiecznych transakcji',
+      },
+      security: {
+        title: 'Bezpieczeństwo',
+        description: 'Zweryfikowane ogłoszenia i bezpieczne procesy chroniące kupujących i sprzedających',
+      },
+      innovation: {
+        title: 'Innowacja',
+        description: 'Nowoczesna platforma cyfrowa ułatwiająca transakcje B2B',
+      },
+    },
+    impact: {
+      title: 'Wpływ FIBEM',
+      subtitle: 'Liczby świadczące o naszym zaangażowaniu i wzroście',
+      stats: {
+        experience: 'Lat doświadczenia',
+        companies: 'Wymienionych firm',
+        satisfaction: 'Wskaźnik zadowolenia',
+        countries: 'Kraje (Francja i Senegal)',
+      },
+    },
+    team: {
+      title: 'Oddany zespół',
+      subtitle: 'Pasjonaci eksperci w służbie Twoich transakcji',
+      roles: {
+        evaluation: {
+          title: 'Eksperci ds. wyceny',
+          description: 'Precyzyjna wycena Twojej firmy',
+        },
+        legal: {
+          title: 'Doradcy prawni',
+          description: 'Zabezpieczenie wszystkich etapów prawnych',
+        },
+        commercial: {
+          title: 'Wsparcie komercyjne',
+          description: 'Spersonalizowane wsparcie przez cały proces',
+        },
+      },
+    },
+    cta: {
+      title: 'Rozpocznij swój projekt dziś',
+      subtitle: 'Dołącz do setek firm, które nam ufają w swoich transakcjach B2B',
+      startButton: 'Zacznij teraz',
+      contactButton: 'Skontaktuj się z nami',
+    },
+  },
 } as const

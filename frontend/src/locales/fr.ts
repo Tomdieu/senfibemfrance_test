@@ -782,119 +782,73 @@ export default {
     },
   },
   about: {
-    title: 'FIBEM',
-    subtitle: 'France',
-    description: 'Leader dans la mise en relation professionnelle et le recrutement B2B entre la France et l\'Afrique.',
-    badge: 'À propos de nous',
-    mission: {
-      title: 'Notre Mission',
-      heading: 'Connecter les talents,',
-      highlight: 'transformer les entreprises',
-      description: 'Chez FIBEM France, nous croyons que la croissance des entreprises passe par la connexion des bonnes compétences aux bonnes opportunités. Notre mission est de créer des ponts durables entre les professionnels, les entreprises et les marchés.',
-      points: {
-        expertise: 'Expertise franco-africaine unique',
-        platform: 'Plateforme technologique innovante',
-        network: 'Réseau de 10 000+ professionnels',
-        support: 'Accompagnement personnalisé'
-      }
+    title: 'À propos de nous',
+    underConstruction: 'Page en construction. Contenu pour À propos à venir.',
+    hero: {
+      title: 'Accompagner la transmission d\'entreprise au cœur de Madagascar',
+      subtitle: 'FIBEM facilite l\'achat et la vente d\'entreprises (Fonds de commerce, PME, TPE) avec professionnalisme et transparence',
     },
-    vision: {
+    ourHistory: {
+      title: 'Notre Histoire',
+      paragraph1: 'FIBEM est née d\'une vision claire : professionnaliser le marché de la transmission d\'entreprises à Madagascar et en Afrique francophone. Face à un marché informel et fragmenté, nous avons créé une plateforme digitale moderne pour sécuriser et faciliter les transactions B2B.',
+      paragraph2: 'Notre mission est de connecter vendeurs et acheteurs d\'entreprises dans un environnement sécurisé, transparent et professionnel. Nous accompagnons chaque transaction avec expertise et rigueur, de l\'évaluation initiale jusqu\'à la finalisation de la vente.',
+      paragraph3: 'Aujourd\'hui, FIBEM est devenue la référence pour l\'achat et la vente d\'entreprises, avec une présence établie en France et au Sénégal, et une expansion continue vers de nouveaux marchés.',
+    },
+    ourVision: {
       title: 'Notre Vision',
-      subtitle: 'Pour 2030',
-      description: 'Devenir la plateforme de référence pour la mise en relation professionnelle et le recrutement entre la France et l\'Afrique, en connectant plus de 100 000 professionnels et 5 000 entreprises.'
+      subtitle: 'Transformer le marché B2B africain',
+      description: 'Devenir la plateforme de référence pour toutes les transactions d\'entreprises en Afrique francophone, en apportant transparence, sécurité et professionnalisme à chaque étape du processus.',
     },
-    values: {
+    ourValues: {
       title: 'Nos Valeurs',
-      heading: 'Nos Valeurs Fondamentales',
-      description: 'Les principes qui guident notre action au quotidien',
-      trust: {
-        title: 'Confiance & Transparence',
-        description: 'Nous construisons des relations durables basées sur la confiance et la transparence totale.'
+      subtitle: 'Les principes qui guident notre action au quotidien',
+      expertise: {
+        title: 'Expertise',
+        description: 'Une connaissance approfondie du tissu économique pour des transactions sécurisées',
       },
-      excellence: {
-        title: 'Excellence Opérationnelle',
-        description: 'Nous visons l\'excellence dans chaque service, chaque projet et chaque interaction.'
-      },
-      innovation: {
-        title: 'Innovation Collective',
-        description: 'Nous croyons en la puissance du collectif pour innover et créer des solutions disruptives.'
-      },
-      impact: {
-        title: 'Impact International',
-        description: 'Nous connectons les talents et les opportunités à l\'échelle internationale.'
-      }
-    },
-    history: {
-      title: 'Notre Parcours',
-      heading: 'Moments Clés de Notre Histoire',
-      description: 'Découvrez les étapes importantes qui ont marqué notre croissance'
-    },
-    milestones: {
-      foundation: {
-        title: 'Fondation',
-        description: 'Création de FIBEM France'
-      },
-      expansion: {
-        title: 'Expansion',
-        description: 'Ouverture du bureau au Sénégal'
+      security: {
+        title: 'Sécurité',
+        description: 'Annonces vérifiées et processus sécurisés pour protéger acheteurs et vendeurs',
       },
       innovation: {
         title: 'Innovation',
-        description: 'Lancement de la plateforme digitale'
+        description: 'Une plateforme digitale moderne pour faciliter les transactions B2B',
       },
-      growth: {
-        title: 'Croissance',
-        description: '10 000 professionnels inscrits'
+    },
+    impact: {
+      title: 'L\'Impact FIBEM',
+      subtitle: 'Des chiffres qui témoignent de notre engagement et de notre croissance',
+      stats: {
+        experience: 'Années d\'expertise',
+        companies: 'Entreprises listées',
+        satisfaction: 'Taux de satisfaction',
+        countries: 'Pays (France & Sénégal)',
       },
-      recognition: {
-        title: 'Reconnaissance',
-        description: 'Prix de l\'innovation B2B'
-      }
     },
     team: {
-      title: 'Notre Équipe',
-      heading: 'Les Talents derrière FIBEM',
-      description: 'Découvrez les experts qui font notre force',
-      ceo: {
-        role: 'CEO & Fondatrice',
-        expertise: '15 ans en consulting B2B'
+      title: 'Une Équipe Dédiée',
+      subtitle: 'Des experts passionnés au service de vos transactions',
+      roles: {
+        evaluation: {
+          title: 'Experts en évaluation',
+          description: 'Valorisation précise de votre entreprise',
+        },
+        legal: {
+          title: 'Conseillers juridiques',
+          description: 'Sécurisation de toutes les étapes légales',
+        },
+        commercial: {
+          title: 'Accompagnement commercial',
+          description: 'Support personnalisé tout au long du processus',
+        },
       },
-      cto: {
-        role: 'Directeur Technique',
-        expertise: 'Expert en solutions digitales'
-      },
-      africa: {
-        role: 'Directrice Afrique',
-        expertise: 'Spécialiste marché africain'
-      },
-      sales: {
-        role: 'Directeur Commercial',
-        expertise: 'Développement partenariats'
-      }
     },
     cta: {
-      title: 'Prêt à écrire l\'histoire avec nous ?',
-      subtitle: 'Rejoignez notre communauté de professionnels et transformez vos ambitions en réalité.',
-      contact: 'Nous contacter',
-      jobs: 'Voir nos offres d\'emploi',
-      team: 'Découvrir notre équipe',
-      values: 'Nos valeurs'
-    }
-  },
-  news: {
-    badge: 'Actualités',
-    title: 'Actualités FIBEM',
-    subtitle: 'Découvrez les dernières nouvelles et tendances du monde B2B franco-africain',
-    searchPlaceholder: 'Rechercher un article...',
-    featured: 'Articles à la une',
-    allNews: 'Tous les articles',
-    readMore: 'Lire la suite',
-    newsletter: {
-      title: 'Restez informé',
-      subtitle: 'Recevez nos dernières actualités directement dans votre boîte mail',
-      placeholder: 'Votre adresse email',
-      subscribe: 'S\'abonner'
-    }
+      title: 'Commencer votre projet aujourd\'hui',
+      subtitle: 'Rejoignez des centaines d\'entreprises qui nous font confiance pour leurs transactions B2B',
+      startButton: 'Démarrer maintenant',
+      contactButton: 'Nous contacter',
+    },
   },
   dashboard: {
     title: 'Tableau de bord',
